@@ -16,35 +16,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 /**
  *
  * @author santy
  */
-@Entity 
-@Table(name="users")
-public class User implements Serializable{
-      
+@Entity
+@Table(name = "users")
+public class User implements Serializable {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String userID;
-    
-    @Column(name="Username", unique=true)
+
+    @Column(name = "Username", unique = true)
     private String userName;
-    
-    @Column(name="Email", unique=true)
+
+    @Column(name = "Email", unique = true)
     private String email;
-    
-    @Column(name="Password")
+
+    @Column(name = "Password")
     private String password;
-    
-    @Column(name="Name")
+
+    @Column(name = "Name")
     private String name;
-    
-    @Column(name="Type")
+
+    @Column(name = "Type")
     private String type;
-    
-    @JoinColumn(name="RolID")
+
+    @JoinColumn(name = "RolID")
     @ManyToOne
     private Rol rol;
 
@@ -152,8 +151,17 @@ public class User implements Serializable{
         }
         return true;
     }
-
-   
     
-    
+    public String toString() {
+        StringBuffer output = new StringBuffer();
+        
+        output.append(this.userName + "\n");
+        output.append(this.email + "\n");
+        output.append(this.password + "\n");
+        output.append(this.name + "\n");
+        output.append(this.type + "\n");
+        output.append(getRol() + "\n");
+        
+        return output.toString();
+    }
 }

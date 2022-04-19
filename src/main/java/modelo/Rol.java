@@ -24,18 +24,18 @@ import javax.persistence.TemporalType;
  *
  * @author santy
  */
-@Entity 
-@Table(name="rols")
-public class Rol implements Serializable{
-      
+@Entity
+@Table(name = "rols")
+public class Rol implements Serializable {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String rolID;
-    
-    @Column(name="UserType")
+
+    @Column(name = "UserType")
     private String userType;
-    
-    @Column(name="Description")
+
+    @Column(name = "Description")
     private String Description;
 
     public String getRolID() {
@@ -94,8 +94,5 @@ public class Rol implements Serializable{
         }
         return true;
     }
-    
 
-    
-    
 }

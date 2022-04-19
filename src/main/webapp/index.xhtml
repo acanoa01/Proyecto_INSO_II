@@ -1,32 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html 
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
         <h:form>
-            <p:outputLabel value="Inserte el nombre de usuario"/>
-            <p:inputText value="#{pruebaController.user.userName}" />
-            
-            <p:outputLabel value="Inserte el email"/>
-            <p:inputText value="#{pruebaController.user.email}" />
-            
-            <p:outputLabel value="Inserte password"/>
-            <p:inputText value="#{pruebaController.user.password}" />
-            
-            <p:outputLabel value="Inserte nombre"/>
-            <p:inputText value="#{pruebaController.user.name}" />
-            
-            <p:outputLabel value="Inserte el tipo"/>
-            <p:inputText value="#{pruebaController.user.type}" />
-            <p:commandButton value="Insertar" actionListener="#{pruebaController.insertarUsuario()}" />
-        </h:form>
+            <p:outputLabel value="Inserte el nombre del usuario" /> 
+            <p:inputText value="#{sessionController.user.userName}" />
 
+            <p:outputLabel value="Inserte el email"/>
+            <p:inputText value="#{sessionController.user.email}" />
+
+            <p:outputLabel value="Inserte password"/>
+            <p:inputText value="#{sessionController.user.password}" />
+
+            <p:outputLabel value="Inserte nombre"/>
+            <p:inputText value="#{sessionController.user.name}" />
+
+            <p:outputLabel value="Inserte el tipo"/>
+            <p:inputText value="#{sessionController.user.type}" />
+
+
+            <p:commandButton value="Insertar" actionListener="#{sessionController.createUser()}" />
+        </h:form>
     </h:body>
 </html>
 

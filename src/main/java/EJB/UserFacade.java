@@ -12,7 +12,7 @@ import modelo.User;
 
 /**
  *
- * @author santy
+ * @author Alberto
  */
 @Stateless
 public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {

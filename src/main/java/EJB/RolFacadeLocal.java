@@ -11,7 +11,7 @@ import modelo.Rol;
 
 /**
  *
- * @author santy
+ * @author Alberto
  */
 @Local
 public interface RolFacadeLocal {
