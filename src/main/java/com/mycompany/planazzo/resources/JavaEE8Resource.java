@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.mycompany.planazzo.resources;
 
 import javax.ws.rs.GET;
@@ -19,25 +19,3 @@ public class JavaEE8Resource {
                 .build();
     }
 }
-=======
-package com.mycompany.planazzo.resources;
-
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-
-/**
- *
- * @author 
- */
-@Path("javaee8")
-public class JavaEE8Resource {
-    
-    @GET
-    public Response ping(){
-        return Response
-                .ok("ping")
-                .build();
-    }
-}
->>>>>>> c06315e (Creacion de todas las clases de persistencia entities y EJB)
