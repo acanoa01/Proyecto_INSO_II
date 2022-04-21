@@ -1,3 +1,5 @@
+
+
 package com.mycompany.planazzo.resources;
 
 import javax.ws.rs.GET;
