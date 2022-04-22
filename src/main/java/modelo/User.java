@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String userID;
+    private int userID;
 
     @Column(name = "Username", unique = true)
     private String userName;
@@ -44,14 +45,22 @@ public class User implements Serializable {
     private String type;
 
     @JoinColumn(name = "RolID")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Rol rol;
 
-    public String getUserID() {
+//    public User(String username, String email, String password, String name, String type) {
+//        this.userName = username;
+//        this.email = email;
+//        this.password = password;
+//        this.name = name;
+//        this.type = type;
+//    }
+
+    public int getUserID() {
         return userID;
     }
 
-    public void setUserID(String userID) {
+    public void setUserID(int userID) {
         this.userID = userID;
     }
 
@@ -152,16 +161,5 @@ public class User implements Serializable {
         return true;
     }
     
-    public String toString() {
-        StringBuffer output = new StringBuffer();
-        
-        output.append(this.userName + "\n");
-        output.append(this.email + "\n");
-        output.append(this.password + "\n");
-        output.append(this.name + "\n");
-        output.append(this.type + "\n");
-        output.append(getRol() + "\n");
-        
-        return output.toString();
-    }
+ 
 }

@@ -4,28 +4,17 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Planazzo</title>
+        <h:outputStylesheet name="style.css" />
     </h:head>
     <h:body>
-        <h:form>
-            <p:outputLabel value="Inserte el nombre del usuario" /> 
-            <p:inputText value="#{sessionController.user.userName}" />
-
-            <p:outputLabel value="Inserte el email"/>
-            <p:inputText value="#{sessionController.user.email}" />
-
-            <p:outputLabel value="Inserte password"/>
-            <p:inputText value="#{sessionController.user.password}" />
-
-            <p:outputLabel value="Inserte nombre"/>
-            <p:inputText value="#{sessionController.user.name}" />
-
-            <p:outputLabel value="Inserte el tipo"/>
-            <p:inputText value="#{sessionController.user.type}" />
+        <h:panelGrid columns="2" cellspacing="7">
+            <h:button value="Iniciar sesión" outcome="#{indexController.moveToLogin()}"/>
+            <h:button value="Registrarse" outcome="#{indexController.moveToRegister()}"/>
+        </h:panelGrid>
 
 
-            <p:commandButton value="Insertar" actionListener="#{sessionController.createUser()}" />
-        </h:form>
+        
     </h:body>
 </html>
 

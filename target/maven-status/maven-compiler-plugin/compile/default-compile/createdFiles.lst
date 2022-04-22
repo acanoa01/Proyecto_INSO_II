@@ -2,9 +2,10 @@ com\mycompany\inso\resources\JavaEE8Resource.class
 EJB\UserFacade.class
 EJB\RolFacade.class
 modelo\User.class
+controller\IndexController.class
 EJB\AbstractFacade.class
 modelo\Rol.class
 com\mycompany\inso\JAXRSConfiguration.class
 EJB\RolFacadeLocal.class
 EJB\UserFacadeLocal.class
-controller\SessionController.class
+controller\RegisterController.class

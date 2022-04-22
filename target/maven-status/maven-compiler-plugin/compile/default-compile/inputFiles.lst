@@ -1,10 +1,11 @@
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\EJB\AbstractFacade.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\modelo\User.java
-C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\controller\SessionController.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\modelo\Rol.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\EJB\RolFacade.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\EJB\RolFacadeLocal.java
+C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\controller\RegisterController.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\EJB\UserFacadeLocal.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\com\mycompany\inso\JAXRSConfiguration.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\com\mycompany\inso\resources\JavaEE8Resource.java
 C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\EJB\UserFacade.java
+C:\Users\Alberto\OneDrive\Documents\NetBeansProjects\INSO\src\main\java\controller\IndexController.java
