@@ -6,112 +6,68 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+
     <h:head>
-        <title>Crear Plan</title>
-        <style>
-            #createPlanForm{
-                padding:20px;
-                float: left;
-                width: 50%;
-            }
-            #createPlanView {
-                float: left;
-                width: 50%;
-            }
-        </style>
+        <title>Inicio</title>
+
     </h:head>
     <h:body>
-        <div id="createPlanForm">
-            <h:form>
-                <p:messages id="messages" showDetail="true" closable="true">
-                    <p:autoUpdate/>
-                </p:messages>            
-                <p:fieldset legend="Descripción">
-                    <h:panelGrid id="grid" columns="3" cellpadding="10">
-                        <p:outputLabel for="name" value="Nombre:"/>
-                        <p:inputText id="name" required="true" maxlength="50" size="50" value="#{CreatePlanController.plan.name}"/>
-                        <p:message for="name"/>
-
-                        <p:outputLabel for="description" value="Descripción:"/>
-                        <p:inputTextarea id="description" maxlength="1000" required="true" rows="5" cols="54" value="#{CreatePlanController.plan.description}"/>
-                        <p:message for="description" display="text"/>
-                        <p>Imagen</p>
-                        <p:fileUpload id="image" value="#{CreatePlanController.image}"   messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" skinSimple="true" />
-                        <p:message for="image" display="text"/>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Inicio" url="http://www.primefaces.org" icon="pi pi-home" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Planes" url="http://www.primefaces.org" icon="pi pi-instagram" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Mi Perfil" url="http://www.primefaces.org" icon="pi pi-users"  />
+                <p:divider layout="vertical"/>
+                <f:facet name="options">
+                    <h:panelGrid columns="2" cellpadding="7">
+                        <p:button value="Login" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                        <p:commandButton value="Registro" icon="pi pi-fw pi-sign-out" action="#{indexController.moveToPrueba}" styleClass="ui-button-info"/>
                     </h:panelGrid>
-                </p:fieldset>
-                <p:fieldset legend="Características">
-                    <h:panelGrid id="grid2" columns="3" cellpadding="10">
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <p:divider align="left" type="dashed">
+            <b>Nuestros ultimos planazos</b>
+        </p:divider>
+        <p:dataTable  value="null">
+            <p:column headerText="Tipo">
+                <h:outputText value="Sexo y drogas" />
+            </p:column>
 
+            <p:column headerText="Edad">
+                <h:outputText value="18" />
+            </p:column>
 
-                        <p:outputLabel for="city" value="Ciudad/Lugar"/>
-                        <p:inputText id="city"  maxlength="30" size="30" required="true" value="#{CreatePlanController.plan.city}"/>
-                        <p:message for="city" display="text"/>
+            <p:column headerText="Ciudad">
+                <h:outputText value="Ibiza" />
+            </p:column>
 
-                        <p:outputLabel for="type" value="Tipo:"/>
-                        <h:selectOneMenu id="type" value="#{CreatePlanController.plan.type}" required="true" label="Text 3">
-                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="En casa" itemValue="1"/>
-                            <f:selectItem itemLabel="Gastronómico" itemValue="2"/>
-                            <f:selectItem itemLabel="Fiesta" itemValue="3"/>
-                            <f:selectItem itemLabel="Otro" itemValue="4"/>
-                        </h:selectOneMenu>
-                        <p:message for="type" display="text"/>
-
-                        <p:outputLabel for="price" value="Precio:"/>
-                        <h:selectOneMenu id="price" value="#{CreatePlanController.plan.price}" required="true" label="Text 3">
-                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="€" itemValue="1"/>
-                            <f:selectItem itemLabel="€€" itemValue="2"/>
-                            <f:selectItem itemLabel="€€€" itemValue="3"/>
-                            <f:selectItem itemLabel="€€€€" itemValue="4"/>
-                        </h:selectOneMenu>
-                        <p:message for="price" display="text"/>
-
-                        <p:outputLabel for="age" value="Edad:"/>
-                        <h:selectOneMenu id="age" value="#{CreatePlanController.plan.age}" required="true" label="Text 3">
-                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="3-12 años" itemValue="1"/>
-                            <f:selectItem itemLabel="12-17 años" itemValue="2"/>
-                            <f:selectItem itemLabel="18-24 años" itemValue="3"/>
-                            <f:selectItem itemLabel="24-35 años" itemValue="4"/>
-                            <f:selectItem itemLabel="35-60 años" itemValue="2"/>
-                            <f:selectItem itemLabel="60-70 años" itemValue="3"/>
-                        </h:selectOneMenu>
-                        <p:message for="age" display="text"/>
-
-                        <p:outputLabel for="companion" value="Compañia:"/>
-                        <h:selectOneMenu id="companion" value="#{CreatePlanController.plan.companion}" required="true" label="Text 3">
-                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="En familia" itemValue="1"/>
-                            <f:selectItem itemLabel="Con amigos" itemValue="2"/>
-                            <f:selectItem itemLabel="Solo" itemValue="3"/>
-                            <f:selectItem itemLabel="En pareja" itemValue="4"/>
-                        </h:selectOneMenu>
-                        <p:message for="companion" display="text"/>
-                    </h:panelGrid>
-                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{CreatePlanController.insertPlan()}" styleClass="p-mt-3" />
-
-                </p:fieldset>
-            </h:form>
+            <p:column headerText="Compañia">
+                <h:outputText value="BangBros" />
+            </p:column>
+        </p:dataTable>
+        <p:divider align="left" type="dashed">
+            <b>Busca Aqui Planes a tu Gusto</b>
+        </p:divider>
+        <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
+        <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
+        <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
+        <p:tooltip for="Edad" value="Introduce tu edad" position="top"/>
+        <p:inputText id="Ciudad" type="text" style="margin-right: 10px;" placeholder="Ciudad" />
+        <p:tooltip for="Ciudad" value="Introduce la Ciudad" position="top"/>
+        <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
+        <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
+        <p:commandButton  value="Buscar" action="#{messagesView.warn}" styleClass="rounded-button" />
+        <div class="card">
+            <h5>AQUI VA UNA IMAGEN QUE NO ME CARGA</h5>
+            <p:graphicImage name="WEB-INF/hola.png" library="demo"/>
         </div>
-        <div id="createPlanView" style="margin-bottom:20px">
-            <h1>Previsualización</h1>
-            <h2 id='planName'>Nombre</h2>
-            <div id='planI' style="float:left;width:50%">
-                <img src="./placeholder.png"  width="400" />
-            </div>
-            <div id='planD' style="float:left;width:50%">
-                <p id='planDescription'>Por la sierra</p>
-            </div>
-
-
-        </div>
-        <div style="padding-top:20px;padding-bottom:20px">Ubicación: León</div>
-        <span  style="padding-right:20px"><b>Tipo:</b><span>En casa</span></span>
-        <span  style="padding-right:20px"><b>Precio:</b><span>€</span></span>
-        <span  style="padding-right:20px"><b>Edad:</b><span>3-12 años</span></span>
-        <span  style="padding-right:20px"><b>Compañía:</b><span>En familia</span></span>
+        <h:panelGrid columns="2" cellpadding="7">
+            <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
+            <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
+        </h:panelGrid>
     </h:body>
 </html>
 
