@@ -1,3 +1,14 @@
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+com\mycompany\planazzo\JAXRSConfiguration.class
+com\mycompany\planazzo\resources\JavaEE8Resource.class
+=======
+>>>>>>> origin/develop
+=======
+>>>>>>> Stashed changes
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class
@@ -33,3 +44,12 @@ modelo\List.class
 com\mycompany\planazzo\JAXRSConfiguration.class
 EJB\AdminFacade.class
 modelo\Client.class
+<<<<<<< Updated upstream
+<<<<<<< HEAD
+=======
+>>>>>>> c06315e (Creacion de todas las clases de persistencia entities y EJB)
+=======
+>>>>>>> sergio
+>>>>>>> origin/develop
+=======
+>>>>>>> Stashed changes
