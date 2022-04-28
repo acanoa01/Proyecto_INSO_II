@@ -25,13 +25,19 @@ public class IndexController implements Serializable {
     public void init() {
         user = new User();
     }
-    
-    public String moveToLogin(){
+
+    public String moveToLogin() {
         return "login";
     }
-    
-        public String moveToRegister(){
+
+    public String moveToRegister() {
         return "register";
+    }
+
+    public void moveToHome() {
+        LoginController controller = new LoginController();
+        controller.verificarUsuario();
+        
     }
 //    //Crear usuario
 //    public void createUser() {
