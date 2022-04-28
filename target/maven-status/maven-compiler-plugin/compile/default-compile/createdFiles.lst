@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -12,6 +13,11 @@ com\mycompany\planazzo\resources\JavaEE8Resource.class
 >>>>>>> Stashed changes
 =======
 >>>>>>> a5b0a07... Crear plan vista y conflictos
+=======
+com\mycompany\planazzo\JAXRSConfiguration.class
+com\mycompany\planazzo\resources\JavaEE8Resource.class
+=======
+>>>>>>> parent of a5b0a07... Crear plan vista y conflictos
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class
@@ -26,7 +32,6 @@ EJB\AdminFacadeLocal.class
 EJB\ClientFacadeLocal.class
 EJB\UserFacadeLocal.class
 modelo\Admin.class
-controller\CreatePlanController.class
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class
@@ -48,6 +53,7 @@ com\mycompany\planazzo\JAXRSConfiguration.class
 EJB\AdminFacade.class
 modelo\Client.class
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -59,3 +65,6 @@ modelo\Client.class
 >>>>>>> Stashed changes
 =======
 >>>>>>> a5b0a07... Crear plan vista y conflictos
+=======
+>>>>>>> c06315e (Creacion de todas las clases de persistencia entities y EJB)
+>>>>>>> parent of a5b0a07... Crear plan vista y conflictos

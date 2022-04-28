@@ -20,10 +20,7 @@ import modelo.User;
 @Named
 @ViewScoped
 
-/*
-Cambiar admin en plan a que se permita null
-Cambiar enums
-*/
+
 public class PruebaController implements Serializable{
     private User user;
     

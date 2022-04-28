@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -12,6 +13,11 @@ C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\
 >>>>>>> Stashed changes
 =======
 >>>>>>> a5b0a07... Crear plan vista y conflictos
+=======
+C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\resources\JavaEE8Resource.java
+C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
+=======
+>>>>>>> parent of a5b0a07... Crear plan vista y conflictos
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Clientplan.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\UserFacadeLocal.java
@@ -37,7 +43,6 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\UserFacade.
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AdminFacade.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\PlanFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\RolFacadeLocal.java
-C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\CreatePlanController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\MenuFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\List.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ListplanFacadeLocal.java
@@ -47,6 +52,7 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ClientFacad
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AbstractFacade.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ListFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Admin.java
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
@@ -63,3 +69,6 @@ C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main
 >>>>>>> Stashed changes
 =======
 >>>>>>> a5b0a07... Crear plan vista y conflictos
+=======
+>>>>>>> c06315e (Creacion de todas las clases de persistencia entities y EJB)
+>>>>>>> parent of a5b0a07... Crear plan vista y conflictos
