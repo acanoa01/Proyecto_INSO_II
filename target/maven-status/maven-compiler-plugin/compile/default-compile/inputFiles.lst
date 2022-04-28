@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -9,6 +10,8 @@ C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\
 >>>>>>> origin/develop
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> a5b0a07... Crear plan vista y conflictos
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Clientplan.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\UserFacadeLocal.java
@@ -44,6 +47,7 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ClientFacad
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AbstractFacade.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ListFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Admin.java
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -57,3 +61,5 @@ C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main
 >>>>>>> origin/develop
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> a5b0a07... Crear plan vista y conflictos

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -9,6 +10,8 @@ com\mycompany\planazzo\resources\JavaEE8Resource.class
 >>>>>>> origin/develop
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> a5b0a07... Crear plan vista y conflictos
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class
@@ -44,6 +47,7 @@ modelo\List.class
 com\mycompany\planazzo\JAXRSConfiguration.class
 EJB\AdminFacade.class
 modelo\Client.class
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< HEAD
 =======
@@ -53,3 +57,5 @@ modelo\Client.class
 >>>>>>> origin/develop
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> a5b0a07... Crear plan vista y conflictos
