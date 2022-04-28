@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -45,7 +46,7 @@ public class User implements Serializable{
     private String type;
     
     @JoinColumn(name="RolID")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Rol rol;
 
     public String getUserID() {

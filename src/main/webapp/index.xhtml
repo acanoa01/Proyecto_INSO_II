@@ -1,32 +1,69 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html 
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        
-        <h:form>
-            <p:outputLabel value="Inserte el nombre de usuario"/>
-            <p:inputText value="#{pruebaController.user.userName}" />
-            
-            <p:outputLabel value="Inserte el email"/>
-            <p:inputText value="#{pruebaController.user.email}" />
-            
-            <p:outputLabel value="Inserte password"/>
-            <p:inputText value="#{pruebaController.user.password}" />
-            
-            <p:outputLabel value="Inserte nombre"/>
-            <p:inputText value="#{pruebaController.user.name}" />
-            
-            <p:outputLabel value="Inserte el tipo"/>
-            <p:inputText value="#{pruebaController.user.type}" />
-            <p:commandButton value="Insertar" actionListener="#{pruebaController.insertarUsuario()}" />
-        </h:form>
 
+
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Inicio" url="http://www.primefaces.org" icon="pi pi-home" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Planes" url="http://www.primefaces.org" icon="pi pi-instagram" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Mi Perfil" url="http://www.primefaces.org" icon="pi pi-users"  />
+                <p:divider layout="vertical"/>
+                <f:facet name="options">
+                    <h:panelGrid columns="2" cellpadding="7">
+                        <p:button value="Login" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                        <p:commandButton value="Registro" icon="pi pi-fw pi-sign-out" action="#{indexController.moveToPrueba}" styleClass="ui-button-info"/>
+                    </h:panelGrid>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <p:divider align="left" type="dashed">
+            <b>Nuestros ultimos planazos</b>
+        </p:divider>
+        <p:dataTable  value="null">
+            <p:column headerText="Tipo">
+                <h:outputText value="Sexo y drogas" />
+            </p:column>
+
+            <p:column headerText="Edad">
+                <h:outputText value="18" />
+            </p:column>
+
+            <p:column headerText="Ciudad">
+                <h:outputText value="Ibiza" />
+            </p:column>
+
+            <p:column headerText="Compañia">
+                <h:outputText value="BangBros" />
+            </p:column>
+        </p:dataTable>
+        <p:divider align="left" type="dashed">
+            <b>Busca Aqui Planes a tu Gusto</b>
+        </p:divider>
+        <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
+        <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
+        <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
+        <p:tooltip for="Edad" value="Introduce tu edad" position="top"/>
+        <p:inputText id="Ciudad" type="text" style="margin-right: 10px;" placeholder="Ciudad" />
+        <p:tooltip for="Ciudad" value="Introduce la Ciudad" position="top"/>
+        <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
+        <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
+        <p:commandButton  value="Buscar" action="#{messagesView.warn}" styleClass="rounded-button" />
+        <div class="card">
+            <h5>AQUI VA UNA IMAGEN QUE NO ME CARGA</h5>
+            <p:graphicImage name="WEB-INF/hola.png" library="demo"/>
+        </div>
+        <h:panelGrid columns="2" cellpadding="7">
+            <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
+            <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
+        </h:panelGrid>
     </h:body>
 </html>
-

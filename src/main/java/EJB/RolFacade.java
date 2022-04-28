@@ -12,7 +12,7 @@ import modelo.Rol;
 
 /**
  *
- * @author santy
+ * @author Alberto
  */
 @Stateless
 public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
