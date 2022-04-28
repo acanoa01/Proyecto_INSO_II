@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 package com.mycompany.planazzo.resources;
 
 import javax.ws.rs.GET;
