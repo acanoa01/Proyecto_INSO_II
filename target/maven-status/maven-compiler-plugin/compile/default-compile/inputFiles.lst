@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\resources\JavaEE8Resource.java
 C:\Users\albert\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
 =======
@@ -37,3 +38,9 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AbstractFac
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ListFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Admin.java
 >>>>>>> c06315e (Creacion de todas las clases de persistencia entities y EJB)
+=======
+C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main\java\controller\MessagesView.java
+C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
+C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main\java\controller\IndexController.java
+C:\Users\sergi\OneDrive\Documentos\NetBeansProjects\mavenproject1\INSO2\src\main\java\com\mycompany\planazzo\resources\JavaEE8Resource.java
+>>>>>>> sergio
