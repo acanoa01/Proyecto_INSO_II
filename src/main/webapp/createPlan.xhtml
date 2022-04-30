@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Crear Plan</title>
+        <style>
+            #createPlanForm{
+                padding:20px;
+                float: left;
+                width: 50%;
+            }
+            #createPlanView {
+                float: left;
+                width: 50%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div id="createPlanForm">
+            <h:form>
+                <p:messages id="messages" showDetail="true" closable="true">
+                    <p:autoUpdate/>
+                </p:messages>            
+                <p:fieldset legend="Descripción">
+                    <h:panelGrid id="grid" columns="3" cellpadding="10">
+                        <p:outputLabel for="name" value="Nombre:"/>
+                        <p:inputText id="name" required="true" maxlength="50" size="50" value="#{CreatePlanController.plan.name}"/>
+                        <p:message for="name"/>
+
+                        <p:outputLabel for="description" value="Descripción:"/>
+                        <p:inputTextarea id="description" maxlength="1000" required="true" rows="5" cols="54" value="#{CreatePlanController.plan.description}"/>
+                        <p:message for="description" display="text"/>
+                        <p>Imagen</p>
+                        <p:fileUpload id="image" value="#{CreatePlanController.image}"   messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" skinSimple="true" />
+                        <p:message for="image" display="text"/>
+                    </h:panelGrid>
+                </p:fieldset>
+                <p:fieldset legend="Características">
+                    <h:panelGrid id="grid2" columns="3" cellpadding="10">
+
+
+                        <p:outputLabel for="city" value="Ciudad/Lugar"/>
+                        <p:inputText id="city"  maxlength="30" size="30" required="true" value="#{CreatePlanController.plan.city}"/>
+                        <p:message for="city" display="text"/>
+
+                        <p:outputLabel for="type" value="Tipo:"/>
+                        <h:selectOneMenu id="type" value="#{CreatePlanController.plan.type}" required="true" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En casa" itemValue="1"/>
+                            <f:selectItem itemLabel="Gastronómico" itemValue="2"/>
+                            <f:selectItem itemLabel="Fiesta" itemValue="3"/>
+                            <f:selectItem itemLabel="Otro" itemValue="4"/>
+                        </h:selectOneMenu>
+                        <p:message for="type" display="text"/>
+
+                        <p:outputLabel for="price" value="Precio:"/>
+                        <h:selectOneMenu id="price" value="#{CreatePlanController.plan.price}" required="true" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="€" itemValue="1"/>
+                            <f:selectItem itemLabel="€€" itemValue="2"/>
+                            <f:selectItem itemLabel="€€€" itemValue="3"/>
+                            <f:selectItem itemLabel="€€€€" itemValue="4"/>
+                        </h:selectOneMenu>
+                        <p:message for="price" display="text"/>
+
+                        <p:outputLabel for="age" value="Edad:"/>
+                        <h:selectOneMenu id="age" value="#{CreatePlanController.plan.age}" required="true" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="3-12 años" itemValue="1"/>
+                            <f:selectItem itemLabel="12-17 años" itemValue="2"/>
+                            <f:selectItem itemLabel="18-24 años" itemValue="3"/>
+                            <f:selectItem itemLabel="24-35 años" itemValue="4"/>
+                            <f:selectItem itemLabel="35-60 años" itemValue="2"/>
+                            <f:selectItem itemLabel="60-70 años" itemValue="3"/>
+                        </h:selectOneMenu>
+                        <p:message for="age" display="text"/>
+
+                        <p:outputLabel for="companion" value="Compañia:"/>
+                        <h:selectOneMenu id="companion" value="#{CreatePlanController.plan.companion}" required="true" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En familia" itemValue="1"/>
+                            <f:selectItem itemLabel="Con amigos" itemValue="2"/>
+                            <f:selectItem itemLabel="Solo" itemValue="3"/>
+                            <f:selectItem itemLabel="En pareja" itemValue="4"/>
+                        </h:selectOneMenu>
+                        <p:message for="companion" display="text"/>
+                    </h:panelGrid>
+                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{CreatePlanController.insertPlan()}" styleClass="p-mt-3" />
+
+                </p:fieldset>
+            </h:form>
+        </div>
+        <div id="createPlanView" style="margin-bottom:20px">
+            <h1>Previsualización</h1>
+            <h2 id='planName'>Nombre</h2>
+            <div id='planI' style="float:left;width:50%">
+                <img src="./placeholder.png"  width="400" />
+            </div>
+            <div id='planD' style="float:left;width:50%">
+                <p id='planDescription'>Por la sierra</p>
+            </div>
+
+
+        </div>
+        <div style="padding-top:20px;padding-bottom:20px">Ubicación: León</div>
+        <span  style="padding-right:20px"><b>Tipo:</b><span>En casa</span></span>
+        <span  style="padding-right:20px"><b>Precio:</b><span>€</span></span>
+        <span  style="padding-right:20px"><b>Edad:</b><span>3-12 años</span></span>
+        <span  style="padding-right:20px"><b>Compañía:</b><span>En familia</span></span>
+    </h:body>
+</html>

@@ -17,50 +17,43 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+
 /**
  *
  * @author santy
  */
-@Entity
-@Table(name = "users")
-public class User implements Serializable {
-
+@Entity 
+@Table(name="users")
+public class User implements Serializable{
+      
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userID;
-
-    @Column(name = "Username", unique = true)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private String userID;
+    
+    @Column(name="Username", unique=true)
     private String userName;
-
-    @Column(name = "Email", unique = true)
+    
+    @Column(name="Email", unique=true)
     private String email;
-
-    @Column(name = "Password")
+    
+    @Column(name="Password")
     private String password;
-
-    @Column(name = "Name")
+    
+    @Column(name="Name")
     private String name;
-
-    @Column(name = "Type")
+    
+    @Column(name="Type")
     private String type;
-
-    @JoinColumn(name = "RolID")
+    
+    @JoinColumn(name="RolID")
     @ManyToOne(cascade=CascadeType.PERSIST)
     private Rol rol;
 
-//    public User(String username, String email, String password, String name, String type) {
-//        this.userName = username;
-//        this.email = email;
-//        this.password = password;
-//        this.name = name;
-//        this.type = type;
-//    }
-
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 
@@ -160,6 +153,8 @@ public class User implements Serializable {
         }
         return true;
     }
+
+   
     
- 
+    
 }

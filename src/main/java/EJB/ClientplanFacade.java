@@ -8,14 +8,14 @@ package EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import modelo.Rol;
+import modelo.Clientplan;
 
 /**
  *
- * @author Alberto
+ * @author santy
  */
 @Stateless
-public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
+public class ClientplanFacade extends AbstractFacade<Clientplan> implements ClientplanFacadeLocal {
 
     @PersistenceContext(unitName = "PlanazzoPU")
     private EntityManager em;
@@ -25,8 +25,8 @@ public class RolFacade extends AbstractFacade<Rol> implements RolFacadeLocal {
         return em;
     }
 
-    public RolFacade() {
-        super(Rol.class);
+    public ClientplanFacade() {
+        super(Clientplan.class);
     }
     
 }

@@ -7,29 +7,27 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
-import modelo.User;
+import modelo.Listplan;
 
 /**
  *
- * @author Alberto
+ * @author santy
  */
 @Local
-public interface UserFacadeLocal {
+public interface ListplanFacadeLocal {
 
-    void create(User user);
+    void create(Listplan listplan);
 
-    void edit(User user);
+    void edit(Listplan listplan);
 
-    void remove(User user);
+    void remove(Listplan listplan);
 
-    User find(Object id);
+    Listplan find(Object id);
 
-    List<User> findAll();
+    List<Listplan> findAll();
 
-    List<User> findRange(int[] range);
+    List<Listplan> findRange(int[] range);
 
     int count();
-    
-    User verificarUsuario(User user);
     
 }

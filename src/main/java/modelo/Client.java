@@ -25,49 +25,62 @@ import javax.persistence.TemporalType;
  * @author santy
  */
 @Entity 
-@Table(name="rols")
-public class Rol implements Serializable{
+@Table(name="clients")
+public class Client implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String rolID;
+    private String clientID;
     
-    @Column(name="UserType")
-    private String userType;
+    @JoinColumn(name="UserID")
+    @ManyToOne
+    private User user;
+
+    @Column(name="Age")    
+    private int age;
     
-    @Column(name="Description")
-    private String Description;
+    @Column(name="City")    
+    private int city;
 
-    public String getRolID() {
-        return rolID;
+    public String getClientID() {
+        return clientID;
     }
 
-    public void setRolID(String rolID) {
-        this.rolID = rolID;
+    public void setClientID(String clientID) {
+        this.clientID = clientID;
     }
 
-    public String getUserType() {
-        return userType;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getDescription() {
-        return Description;
+    public int getAge() {
+        return age;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getCity() {
+        return city;
+    }
+
+    public void setCity(int city) {
+        this.city = city;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.rolID);
-        hash = 23 * hash + Objects.hashCode(this.userType);
-        hash = 23 * hash + Objects.hashCode(this.Description);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.clientID);
+        hash = 67 * hash + Objects.hashCode(this.user);
+        hash = 67 * hash + this.age;
+        hash = 67 * hash + this.city;
         return hash;
     }
 
@@ -82,20 +95,20 @@ public class Rol implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rol other = (Rol) obj;
-        if (!Objects.equals(this.rolID, other.rolID)) {
+        final Client other = (Client) obj;
+        if (this.age != other.age) {
             return false;
         }
-        if (!Objects.equals(this.userType, other.userType)) {
+        if (this.city != other.city) {
             return false;
         }
-        if (!Objects.equals(this.Description, other.Description)) {
+        if (!Objects.equals(this.clientID, other.clientID)) {
+            return false;
+        }
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         return true;
     }
-    
 
-    
-    
 }

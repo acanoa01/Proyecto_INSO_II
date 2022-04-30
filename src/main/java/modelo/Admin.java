@@ -25,49 +25,50 @@ import javax.persistence.TemporalType;
  * @author santy
  */
 @Entity 
-@Table(name="rols")
-public class Rol implements Serializable{
+@Table(name="admins")
+public class Admin implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String rolID;
+    private String adminID;
     
-    @Column(name="UserType")
-    private String userType;
-    
-    @Column(name="Description")
-    private String Description;
+    @JoinColumn(name="UserID")
+    @ManyToOne
+    private User user;
 
-    public String getRolID() {
-        return rolID;
+    @Column(name="AdminCode")    
+    private String adminCode;
+
+    public String getAdminID() {
+        return adminID;
     }
 
-    public void setRolID(String rolID) {
-        this.rolID = rolID;
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
     }
 
-    public String getUserType() {
-        return userType;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getDescription() {
-        return Description;
+    public String getAdminCode() {
+        return adminCode;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setAdminCode(String adminCode) {
+        this.adminCode = adminCode;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.rolID);
-        hash = 23 * hash + Objects.hashCode(this.userType);
-        hash = 23 * hash + Objects.hashCode(this.Description);
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.adminID);
+        hash = 13 * hash + Objects.hashCode(this.user);
+        hash = 13 * hash + Objects.hashCode(this.adminCode);
         return hash;
     }
 
@@ -82,20 +83,17 @@ public class Rol implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rol other = (Rol) obj;
-        if (!Objects.equals(this.rolID, other.rolID)) {
+        final Admin other = (Admin) obj;
+        if (!Objects.equals(this.adminID, other.adminID)) {
             return false;
         }
-        if (!Objects.equals(this.userType, other.userType)) {
+        if (!Objects.equals(this.adminCode, other.adminCode)) {
             return false;
         }
-        if (!Objects.equals(this.Description, other.Description)) {
+        if (!Objects.equals(this.user, other.user)) {
             return false;
         }
         return true;
     }
-    
 
-    
-    
 }

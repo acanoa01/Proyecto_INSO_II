@@ -7,22 +7,20 @@ package controller;
 
 import EJB.UserFacadeLocal;
 import java.io.Serializable;
-import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.faces.bean.RequestScoped;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import modelo.User;
+
 /**
  *
- * @author sergi
+ * @author santy
  */
 @Named
-@RequestScoped
+@ViewScoped
 
-
-public class IndexController implements Serializable{
+public class PruebaController implements Serializable{
     private User user;
     
     @EJB
@@ -32,9 +30,7 @@ public class IndexController implements Serializable{
     public void init(){
         user = new User();
     }
-    public String moveToPrueba(){
-        return "prueba";
-    }
+    
     public void insertarUsuario(){
         try{
             userEJB.create(user);

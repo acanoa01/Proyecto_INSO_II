@@ -5,28 +5,27 @@
  */
 package EJB;
 
-import java.util.List;
 import javax.ejb.Local;
-import modelo.Rol;
+import modelo.List;
 
 /**
  *
- * @author Alberto
+ * @author santy
  */
 @Local
-public interface RolFacadeLocal {
+public interface ListFacadeLocal {
 
-    void create(Rol rol);
+    void create(List list);
 
-    void edit(Rol rol);
+    void edit(List list);
 
-    void remove(Rol rol);
+    void remove(List list);
 
-    Rol find(Object id);
+    List find(Object id);
 
-    List<Rol> findAll();
+    java.util.List<List> findAll();
 
-    List<Rol> findRange(int[] range);
+    java.util.List<List> findRange(int[] range);
 
     int count();
     

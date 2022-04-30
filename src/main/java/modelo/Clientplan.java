@@ -6,7 +6,9 @@
 package modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -25,49 +28,51 @@ import javax.persistence.TemporalType;
  * @author santy
  */
 @Entity 
-@Table(name="rols")
-public class Rol implements Serializable{
-      
+@Table(name="clientplan")
+public class Clientplan implements Serializable{
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String rolID;
+    private int clientPlanID;
+         
+    @JoinColumn(name="PlanID")
+    @ManyToOne
+    private Plan plan;
     
-    @Column(name="UserType")
-    private String userType;
-    
-    @Column(name="Description")
-    private String Description;
+    @JoinColumn(name="ClientID")
+    @ManyToOne
+    private Client client;
 
-    public String getRolID() {
-        return rolID;
+    public int getClientPlanID() {
+        return clientPlanID;
     }
 
-    public void setRolID(String rolID) {
-        this.rolID = rolID;
+    public void setClientPlanID(int clientPlanID) {
+        this.clientPlanID = clientPlanID;
     }
 
-    public String getUserType() {
-        return userType;
+    public Plan getPlan() {
+        return plan;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setPlan(Plan plan) {
+        this.plan = plan;
     }
 
-    public String getDescription() {
-        return Description;
+    public Client getClient() {
+        return client;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.rolID);
-        hash = 23 * hash + Objects.hashCode(this.userType);
-        hash = 23 * hash + Objects.hashCode(this.Description);
+        hash = 19 * hash + this.clientPlanID;
+        hash = 19 * hash + Objects.hashCode(this.plan);
+        hash = 19 * hash + Objects.hashCode(this.client);
         return hash;
     }
 
@@ -82,19 +87,18 @@ public class Rol implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rol other = (Rol) obj;
-        if (!Objects.equals(this.rolID, other.rolID)) {
+        final Clientplan other = (Clientplan) obj;
+        if (this.clientPlanID != other.clientPlanID) {
             return false;
         }
-        if (!Objects.equals(this.userType, other.userType)) {
+        if (!Objects.equals(this.plan, other.plan)) {
             return false;
         }
-        if (!Objects.equals(this.Description, other.Description)) {
+        if (!Objects.equals(this.client, other.client)) {
             return false;
         }
         return true;
     }
-    
 
     
     

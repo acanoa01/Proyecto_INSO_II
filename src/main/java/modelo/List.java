@@ -25,49 +25,50 @@ import javax.persistence.TemporalType;
  * @author santy
  */
 @Entity 
-@Table(name="rols")
-public class Rol implements Serializable{
+@Table(name="lists")
+public class List implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String rolID;
+    private String listID;
     
-    @Column(name="UserType")
-    private String userType;
+    @Column(name="Name")
+    private String name;
     
-    @Column(name="Description")
-    private String Description;
+    @JoinColumn(name="ClientID")
+    @ManyToOne
+    private Client client;
 
-    public String getRolID() {
-        return rolID;
+    public String getListID() {
+        return listID;
     }
 
-    public void setRolID(String rolID) {
-        this.rolID = rolID;
+    public void setListID(String listID) {
+        this.listID = listID;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getName() {
+        return name;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription() {
-        return Description;
+    public Client getClient() {
+        return client;
     }
 
-    public void setDescription(String Description) {
-        this.Description = Description;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.rolID);
-        hash = 23 * hash + Objects.hashCode(this.userType);
-        hash = 23 * hash + Objects.hashCode(this.Description);
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.listID);
+        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.client);
         return hash;
     }
 
@@ -82,20 +83,18 @@ public class Rol implements Serializable{
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Rol other = (Rol) obj;
-        if (!Objects.equals(this.rolID, other.rolID)) {
+        final List other = (List) obj;
+        if (!Objects.equals(this.listID, other.listID)) {
             return false;
         }
-        if (!Objects.equals(this.userType, other.userType)) {
+        if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.Description, other.Description)) {
+        if (!Objects.equals(this.client, other.client)) {
             return false;
         }
         return true;
     }
-    
 
-    
-    
+
 }
