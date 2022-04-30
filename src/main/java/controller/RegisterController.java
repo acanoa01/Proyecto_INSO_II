@@ -40,14 +40,14 @@ public class RegisterController implements Serializable{
         //Mostrar errores de campos vacios
         
         //Seteamos el rolId a 1
-        Rol userRol = new Rol();
-        userRol.setRolID(Integer.parseInt("1"));
-        userRol.setDescription("Rol de usuario asignado");
-        userRol.setUserType("C");
-        
-        user.setRol(userRol);
-        
-        user.setUserID(Integer.parseInt("1"));
+//        Rol userRol = new Rol();
+//        userRol.setRolID(Integer.parseInt("1"));
+//        userRol.setDescription("Rol de usuario asignado");
+//        userRol.setUserType("C");
+//        
+//        user.setRol(userRol);
+//        
+//        user.setUserID(Integer.parseInt("1"));
         
   
         
