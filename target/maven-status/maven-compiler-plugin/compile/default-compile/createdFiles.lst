@@ -1,10 +1,13 @@
+controller\HomeController.class
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class
 controller\PruebaController.class
+controller\RegisterController.class
 EJB\PlanFacade.class
 EJB\ListFacade.class
 com\mycompany\planazzo\resources\JavaEE8Resource.class
+controller\LoginController.class
 EJB\RolFacade.class
 EJB\ClientplanFacade.class
 EJB\ListFacadeLocal.class
@@ -13,6 +16,7 @@ EJB\ClientFacadeLocal.class
 EJB\UserFacadeLocal.class
 modelo\Admin.class
 controller\CreatePlanController.class
+.netbeans_automatic_build
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class

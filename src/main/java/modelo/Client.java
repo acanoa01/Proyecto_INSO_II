@@ -31,7 +31,7 @@ public class Client implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String clientID;
+    private long clientID;
     
     @JoinColumn(name="UserID")
     @OneToOne(cascade=CascadeType.PERSIST)
@@ -43,11 +43,11 @@ public class Client implements Serializable{
     @Column(name="City")    
     private String city;
 
-    public String getClientID() {
+    public long getClientID() {
         return clientID;
     }
 
-    public void setClientID(String clientID) {
+    public void setClientID(long clientID) {
         this.clientID = clientID;
     }
 
@@ -100,10 +100,10 @@ public class Client implements Serializable{
         if (this.age != other.age) {
             return false;
         }
-        if (this.city != other.city) {
+        if (!Objects.equals(this.clientID, other.clientID)) {
             return false;
         }
-        if (!Objects.equals(this.clientID, other.clientID)) {
+        if (!Objects.equals(this.city, other.city)) {
             return false;
         }
         if (!Objects.equals(this.user, other.user)) {
@@ -111,5 +111,7 @@ public class Client implements Serializable{
         }
         return true;
     }
+
+    
 
 }

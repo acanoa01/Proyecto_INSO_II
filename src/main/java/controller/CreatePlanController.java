@@ -25,6 +25,7 @@ import modelo.User;
 @ViewScoped
 
 
+
 public class CreatePlanController implements Serializable{
     private Plan plan;
     private Client client;
@@ -34,6 +35,7 @@ public class CreatePlanController implements Serializable{
     
     @EJB
     RolFacadeLocal rolEJB;
+
     
     @PostConstruct
     public void init(){
