@@ -32,4 +32,5 @@ public interface UserFacadeLocal {
     
     User verificarUsuario(User user);
     
+    
 }

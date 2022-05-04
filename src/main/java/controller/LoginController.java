@@ -33,17 +33,7 @@ public class LoginController implements Serializable {
         user = new User();
     }
 
-    public String verificarUsuario() {
-        User checkUser = null;
-        checkUser = userEJB.verificarUsuario(this.user);
-        if (checkUser == null) {
-            return "index";
-        } else {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
-            return "privado/home";
-        }
-
-    }
+    
     
         public User getUser() {
         return user;

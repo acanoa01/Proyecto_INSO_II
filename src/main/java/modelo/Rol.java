@@ -30,7 +30,7 @@ public class Rol implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String rolID;
+    private long rolID;
     
     @Column(name="UserType")
     private String userType;
@@ -38,11 +38,11 @@ public class Rol implements Serializable{
     @Column(name="Description")
     private String Description;
 
-    public String getRolID() {
+    public long getRolID() {
         return rolID;
     }
 
-    public void setRolID(String rolID) {
+    public void setRolID(long rolID) {
         this.rolID = rolID;
     }
 
