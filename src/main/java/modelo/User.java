@@ -46,7 +46,7 @@ public class User implements Serializable{
     private String type;
     
     @JoinColumn(name="RolID")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Rol rol;
 
     public String getUserID() {
