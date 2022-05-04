@@ -11,6 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Client;
@@ -40,7 +42,8 @@ public class CreatePlanController implements Serializable{
     @PostConstruct
     public void init(){
         this.plan = new Plan();
-        //this.client = session("client");
+        this.client = (Client)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente");
+
     }
 
     public Plan getPlan() {
@@ -52,7 +55,7 @@ public class CreatePlanController implements Serializable{
     }
     
     public String insertPlan(){
-        //TODO ESTO SE QUITA CON LA SESIÓN
+        /*TODO ESTO SE QUITA CON LA SESIÓN
         Client clienteP = new Client();
         clienteP.setAge(12);
         clienteP.setCity("Madrid");
@@ -65,11 +68,16 @@ public class CreatePlanController implements Serializable{
         usuarioP.setRol(rol);
         usuarioP.setType("C");
         usuarioP.setUserName("Santiago");
-        clienteP.setUser(usuarioP);
-        this.plan.setVerified(false);
-        this.plan.setClient(clienteP);
-        planEJB.create(plan);
-        return ".";
+        clienteP.setUser(usuarioP);*/
+        if(this.client != null){
+            this.plan.setVerified(false);
+            this.plan.setClient(this.client);
+            planEJB.create(plan);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PLAN CREADO CORRECTAMENTE"));
+            return ".";
+        }else{
+            return ".";
+        }
         
     }
    

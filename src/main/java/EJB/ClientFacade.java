@@ -5,10 +5,15 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Client;
+import modelo.Rol;
+import modelo.User;
+import static org.primefaces.component.inputmask.InputMaskBase.PropertyKeys.type;
 
 /**
  *
@@ -29,4 +34,19 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         super(Client.class);
     }
     
+    @Override
+    public Client getClient(User user) {
+        String consulta = "FROM Client c WHERE c.userid=:param1";
+        Query query = em.createQuery(consulta);
+
+        query.setParameter("param1", user.getUserID());
+
+        List<Client> clients = query.getResultList();
+
+        if (clients.isEmpty() || clients.size() != 1) {
+            return null;
+        } else {
+             return clients.get(0);
+        }
+    }
 }
