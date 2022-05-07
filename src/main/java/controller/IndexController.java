@@ -44,6 +44,8 @@ public class IndexController implements Serializable {
     @PostConstruct
     public void init() {
         user = new User();
+        user.setType("U");
+        
         client = new Client();
     }
 

@@ -16,7 +16,6 @@ EJB\ClientFacadeLocal.class
 EJB\UserFacadeLocal.class
 modelo\Admin.class
 controller\CreatePlanController.class
-.netbeans_automatic_build
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class

@@ -1,22 +1,24 @@
 <html 
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    >
 
 
     <h:head>
         <title>Planazzo</title>
-        <link rel="shortcut icon" type="image/x-icon" href="images/favicon.jpg" />
+        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
         <h:outputStylesheet name="index.css" />
     </h:head>
     <h:body>
-        <header>
-
-            <span>Planazzo</span>
+        <header class="header">
+            <span><h:graphicImage name="images/favicon.jpg" width="50"/> </span>
             <nav class="header-nav">
                 <ul class="header-nav__list">
-                    <li class="header-nav__item">Planes</li>
-                    <li class="header-nav__item">Mi perfil</li>
+                    <li class="header-nav__item"><a href="#home">Inicio</a></li>
+                    <li class="header-nav__item">Sobre nosotros</li>
+                    <li class="header-nav__item"><a href="#contacto">Contacto</a></li>
+
                 </ul>
             </nav>
 
@@ -75,7 +77,7 @@
             </p:dialog>
         </header>
 
-        <section class="slider">
+        <section class="slider" id="home">
             <div class="slide-track">
                 <div class="slide">
                     <h:graphicImage value = "https://www.refinery29.com/images/8644007.jpg?crop=40:21" width="100%"/> 
@@ -91,37 +93,54 @@
                 </div>
             </div>
         </section>
+        <section class="section about">
+            <h2 class="about__title">Vuelve a recordar esos momentos!</h2>
+            <p class="about__description">De lo que siempre nos hemos ocupado desde hace 10 años es de priorizar la comodidad de nuestros usuarios.
+                Así que no dudes de nuestra calidad.
+            </p>
+            <div class="about__cards">
+                <article class="about-card">
+                    <div class="about-card__number">10</div>
+                    <div class="about-card__text">Años de experiencia</div>
+                </article>
+                <article class="about-card">
+                    <div class="about-card__number">400</div>
+                    <div class="about-card__text">Agencias colaboradoras</div>
+                </article>
+                <article class="about-card">
+                    <div class="about-card__number">30K +</div>
+                    <div class="about-card__text">clientes satisfechos</div>
+                </article>
+            </div>
 
-        <section>
-            <p:divider align="left" type="dashed">
-                <b>Nuestros ultimos planazos</b>
-            </p:divider>
-            
-            <p:dataTable  value="null">
+        </section>
+        <section class="section plan">
+            <h2 class="plan__title">Nuestros últimos planazos!</h2>
+            <p class="plan__description">Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!
+            </p>
+            <article>
+                <p:dataTable  value="null">
                     <p:column headerText="Tipo">
                         <h:outputText value="Sexo y drogas" />
                     </p:column>
-        
+
                     <p:column headerText="Edad">
                         <h:outputText value="18" />
                     </p:column>
-        
+
                     <p:column headerText="Ciudad">
                         <h:outputText value="Ibiza" />
                     </p:column>
-        
+
                     <p:column headerText="Compañia">
                         <h:outputText value="BangBros" />
                     </p:column>
                 </p:dataTable>
-        </section>
-        <!--        
 
-  
-                
                 <p:divider align="left" type="dashed">
                     <b>Busca Aqui Planes a tu Gusto</b>
                 </p:divider>
+
                 <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
                 <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
                 <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
@@ -132,13 +151,77 @@
                 <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
                 <p:commandButton  value="Buscar" action="{messagesView.warn}" styleClass="rounded-button" />
                 <div class="card">
-                    <h5>AQUI VA UNA IMAGEN QUE NO ME CARGA</h5>
-                    <p:graphicImage name="WEB-INF/hola.png" library="demo"/>
+                    
+                    <h:graphicImage name="images/adventureClouds.jpg" width="100"/>
                 </div>
                 <h:panelGrid columns="2" cellpadding="7">
                     <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
                     <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
                 </h:panelGrid>
-        -->    
+
+            </article>
+        </section>
+
+        <section class="section testimonials">
+            <h2 class="testimonials__title">Qué dicen nuestros clientes?</h2>
+            <p class="testimonials__description">Algunos testimonios de aquellos que han usado nuestros servicios</p>
+
+            <section class="testimonials-cards">
+
+                <article class="testimonials-card ">
+                    <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                    <span class="testimonials-card__title">Theresa Jordan</span>
+                    <span class="testimonials-card__subtitle">Traveler</span>
+
+                    <div class="testimonials__stars">
+                        <a href="#" class="fas fa-star s1"></a>
+                        <a href="#" class="fas fa-star s2"></a>
+                        <a href="#" class="fas fa-star s3"></a>
+                        <a href="#" class="fas fa-star s4"></a>
+                        <a href="#" class="fas fa-star s5"></a>
+                    </div>
+                    <p class="testimonials-card__description">"Considero que es el mejor servicio de viajes que he probado. Altamente recomendado!</p>
+                </article>
+
+                <article class="testimonials-card ">
+                    <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                    <span class="testimonials-card__title">Wade Warren</span>
+                    <span class="testimonials-card__subtitle">Photographer</span>
+
+                    <div class="testimonials__stars">
+                        <a href="#" class="fas fa-star s1"></a>
+                        <a href="#" class="fas fa-star s2"></a>
+                        <a href="#" class="fas fa-star s3"></a>
+                        <a href="#" class="fas fa-star s4"></a>
+                        <a href="#" class="fas fa-star s5 no-star"></a>
+                    </div>
+                    <p class="testimonials-card__description">
+                        "Gracias a Planazzo ahora puedo complir mi sueño de dar la vuelta al mundo!
+                    </p>
+                </article>
+
+                <article class="testimonials-card ">
+                    <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                    <span class="testimonials-card__title">Jenny Wilson</span>
+                    <span class="testimonials-card__subtitle">Traveler</span>
+
+                    <div class="testimonials__stars">
+                        <a href="#" class="fas fa-star s1"></a>
+                        <a href="#" class="fas fa-star s2"></a>
+                        <a href="#" class="fas fa-star s3"></a>
+                        <a href="#" class="fas fa-star s4"></a>
+                        <a href="#" class="fas fa-star s5"></a>
+                    </div>
+                    <p class="testimonials-card__description">
+                        "Planazzo me ayudo mucho a la hora de encontrar destinos interesantes que ni conocía!</p>
+                </article>
+
+            </section>
+        </section>
+
+        <footer class="section footer" id="contacto">
+            <p>Copyright &#169; 2022 Todos los derechos reservados</p>
+        </footer>
     </h:body>
+    <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 </html>

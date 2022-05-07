@@ -36,17 +36,21 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     
     @Override
     public Client getClient(User user) {
-        String consulta = "FROM Client c WHERE c.userid=:param1";
+        String consulta = "SELECT c FROM Client a WHERE c.name=:param1";
         Query query = em.createQuery(consulta);
 
-        query.setParameter("param1", user.getUserID());
+        query.setParameter("param1", user.getName());
+        
+        
 
         List<Client> clients = query.getResultList();
 
         if (clients.isEmpty() || clients.size() != 1) {
             return null;
         } else {
-             return clients.get(0);
+            System.out.println(clients.get(0).getUser().getUserID());
+//             return clients.get(0);
         }
+        return null;
     }
 }
