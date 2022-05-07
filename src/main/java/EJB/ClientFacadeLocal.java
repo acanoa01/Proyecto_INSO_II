@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Client;
+import modelo.User;
 
 /**
  *
@@ -29,5 +30,7 @@ public interface ClientFacadeLocal {
     List<Client> findRange(int[] range);
 
     int count();
+    
+    Client getClient(User user);
     
 }

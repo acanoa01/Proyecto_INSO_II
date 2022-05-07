@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Admin implements Serializable{
     private String adminID;
     
     @JoinColumn(name="UserID")
-    @ManyToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private User user;
 
     @Column(name="AdminCode")    

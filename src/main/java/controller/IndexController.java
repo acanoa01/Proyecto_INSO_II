@@ -6,11 +6,12 @@
 package controller;
 
 import EJB.ClientFacadeLocal;
+import EJB.RolFacadeLocal;
 import EJB.UserFacadeLocal;
-import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -30,30 +31,31 @@ public class IndexController implements Serializable {
 
     private User user;
     private Client client;
-    private  Rol rol;
 
     @EJB
     private UserFacadeLocal userEJB;
 
     @EJB
     private ClientFacadeLocal clientEJB;
+    
+    @EJB
+    private RolFacadeLocal rolEJB;
 
     @PostConstruct
     public void init() {
         user = new User();
         client = new Client();
-        rol = new Rol();
     }
 
 
     /* LOGIN IMPLEMENTATION */
     public String verificarUsuario() {
-        User checkUser = null;
-        checkUser = userEJB.verificarUsuario(this.user);
+        User checkUser = userEJB.verificarUsuario(this.user);
         if (checkUser == null) {
             return "index";
         } else {
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
+            Client cliente = clientEJB.getClient(checkUser);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
             return "privado/home";
         }
 
@@ -66,34 +68,16 @@ public class IndexController implements Serializable {
         String hashPassword = hashPassword(plainPassword);
         user.setPassword(hashPassword);
         user.setType("C");
-        rol.setDescription("Usuario registrado");
-        rol.setUserType(user.getType());
-        user.setRol(rol);
+        user.setRol(rolEJB.getRol(user.getType()));
         client.setUser(user);
-//        System.out.println("[*]/////////////////////////////////////////[*]");
-//        System.out.println(user.getUserID());
-//        System.out.println(user.getUserName());
-//        System.out.println(user.getName());
-//        System.out.println(user.getRol().getRolID());
-//        System.out.println(user.getRol().getDescription());
-//        System.out.println(user.getRol().getUserType());
-//        System.out.println(user.getEmail());
-//        System.out.println(user.getType());
-//        System.out.println(user.getPassword());
-//        System.out.println("[*]------------------------------------------[*]");
-//        System.out.println(client.getUser());
-//        System.out.println(client.getClientID());
-//        System.out.println(client.getCity());
-//        System.out.println(client.getAge());
 
         try {
             clientEJB.create(client);
-            userEJB.create(user);
-
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", user);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", client);
             return "home";
         } catch (Exception e) {
-            System.out.println("Error al insertar el usuario en la base de datos " + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al crear el usuario"));
+            System.out.println("Error: "+e.getMessage());
             return "index";
         }
 
@@ -106,6 +90,7 @@ public class IndexController implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
 
     public Client getClient() {
         return client;

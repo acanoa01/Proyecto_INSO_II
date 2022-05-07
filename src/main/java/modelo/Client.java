@@ -34,7 +34,7 @@ public class Client implements Serializable{
     private long clientID;
     
     @JoinColumn(name="UserID")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade=CascadeType.PERSIST)
     private User user;
 
     @Column(name="Age")    
@@ -77,11 +77,11 @@ public class Client implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 17 * hash + Objects.hashCode(this.clientID);
-        hash = 17 * hash + Objects.hashCode(this.user);
-        hash = 17 * hash + this.age;
-        hash = 17 * hash + Objects.hashCode(this.city);
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.clientID);
+        hash = 67 * hash + Objects.hashCode(this.user);
+        hash = 67 * hash + this.age;
+        hash = 67 * hash + Objects.hashCode(this.city);
         return hash;
     }
 

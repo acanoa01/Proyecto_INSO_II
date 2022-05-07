@@ -29,14 +29,14 @@
                 <p:fieldset legend="Descripción">
                     <h:panelGrid id="grid" columns="3" cellpadding="10">
                         <p:outputLabel for="name" value="Nombre:"/>
-                        <p:inputText id="name" required="true" maxlength="50" size="50" value="#{CreatePlanController.plan.name}"/>
+                        <p:inputText id="name" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{createPlanController.plan.name}"/>
                         <p:message for="name"/>
 
                         <p:outputLabel for="description" value="Descripción:"/>
-                        <p:inputTextarea id="description" maxlength="1000" required="true" rows="5" cols="54" value="#{CreatePlanController.plan.description}"/>
+                        <p:inputTextarea id="description" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{createPlanController.plan.description}"/>
                         <p:message for="description" display="text"/>
                         <p>Imagen</p>
-                        <p:fileUpload id="image" value="#{CreatePlanController.image}"   messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" skinSimple="true" />
+                        <p:fileUpload id="image" value="#{createPlanController.image}"   messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" skinSimple="true" />
                         <p:message for="image" display="text"/>
                     </h:panelGrid>
                 </p:fieldset>
@@ -45,52 +45,52 @@
 
 
                         <p:outputLabel for="city" value="Ciudad/Lugar"/>
-                        <p:inputText id="city"  maxlength="30" size="30" required="true" value="#{CreatePlanController.plan.city}"/>
+                        <p:inputText id="city"  maxlength="30" size="30" required="true"  requiredMessage="Lugar obligatorio" value="#{createPlanController.plan.city}"/>
                         <p:message for="city" display="text"/>
 
                         <p:outputLabel for="type" value="Tipo:"/>
-                        <h:selectOneMenu id="type" value="#{CreatePlanController.plan.type}" required="true" label="Text 3">
+                        <h:selectOneMenu id="type" value="#{createPlanController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3">
                             <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="En casa" itemValue="1"/>
-                            <f:selectItem itemLabel="Gastronómico" itemValue="2"/>
-                            <f:selectItem itemLabel="Fiesta" itemValue="3"/>
-                            <f:selectItem itemLabel="Otro" itemValue="4"/>
+                            <f:selectItem itemLabel="En casa" itemValue="En casa"/>
+                            <f:selectItem itemLabel="Gastronómico" itemValue="Gastronómico"/>
+                            <f:selectItem itemLabel="Fiesta" itemValue="Fiesta"/>
+                            <f:selectItem itemLabel="Otro" itemValue="Otro"/>
                         </h:selectOneMenu>
                         <p:message for="type" display="text"/>
 
                         <p:outputLabel for="price" value="Precio:"/>
-                        <h:selectOneMenu id="price" value="#{CreatePlanController.plan.price}" required="true" label="Text 3">
+                        <h:selectOneMenu id="price" value="#{createPlanController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
                             <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="€" itemValue="1"/>
-                            <f:selectItem itemLabel="€€" itemValue="2"/>
-                            <f:selectItem itemLabel="€€€" itemValue="3"/>
-                            <f:selectItem itemLabel="€€€€" itemValue="4"/>
+                            <f:selectItem itemLabel="€" itemValue="€"/>
+                            <f:selectItem itemLabel="€€" itemValue="€€"/>
+                            <f:selectItem itemLabel="€€€" itemValue="€€€"/>
+                            <f:selectItem itemLabel="€€€€" itemValue="€€€€"/>
                         </h:selectOneMenu>
                         <p:message for="price" display="text"/>
 
                         <p:outputLabel for="age" value="Edad:"/>
-                        <h:selectOneMenu id="age" value="#{CreatePlanController.plan.age}" required="true" label="Text 3">
+                        <h:selectOneMenu id="age" value="#{createPlanController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
                             <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="3-12 años" itemValue="1"/>
-                            <f:selectItem itemLabel="12-17 años" itemValue="2"/>
-                            <f:selectItem itemLabel="18-24 años" itemValue="3"/>
-                            <f:selectItem itemLabel="24-35 años" itemValue="4"/>
-                            <f:selectItem itemLabel="35-60 años" itemValue="2"/>
-                            <f:selectItem itemLabel="60-70 años" itemValue="3"/>
+                            <f:selectItem itemLabel="3-12 años" itemValue="3-12 años"/>
+                            <f:selectItem itemLabel="12-17 años" itemValue="12-17 años"/>
+                            <f:selectItem itemLabel="18-24 años" itemValue="18-24 años"/>
+                            <f:selectItem itemLabel="24-35 años" itemValue="24-35 años"/>
+                            <f:selectItem itemLabel="35-60 años" itemValue="35-60 años"/>
+                            <f:selectItem itemLabel="60-70 años" itemValue="60-70 años"/>
                         </h:selectOneMenu>
                         <p:message for="age" display="text"/>
 
                         <p:outputLabel for="companion" value="Compañia:"/>
-                        <h:selectOneMenu id="companion" value="#{CreatePlanController.plan.companion}" required="true" label="Text 3">
+                        <h:selectOneMenu id="companion" value="#{createPlanController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
                             <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
-                            <f:selectItem itemLabel="En familia" itemValue="1"/>
-                            <f:selectItem itemLabel="Con amigos" itemValue="2"/>
-                            <f:selectItem itemLabel="Solo" itemValue="3"/>
-                            <f:selectItem itemLabel="En pareja" itemValue="4"/>
+                            <f:selectItem itemLabel="En familia" itemValue="En familia"/>
+                            <f:selectItem itemLabel="Con amigos" itemValue="Con amigos"/>
+                            <f:selectItem itemLabel="Solo" itemValue="Solo"/>
+                            <f:selectItem itemLabel="En pareja" itemValue="En pareja"/>
                         </h:selectOneMenu>
                         <p:message for="companion" display="text"/>
                     </h:panelGrid>
-                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{CreatePlanController.insertPlan()}" styleClass="p-mt-3" />
+                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan()}" styleClass="p-mt-3" />
 
                 </p:fieldset>
             </h:form>
