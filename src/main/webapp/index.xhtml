@@ -91,27 +91,12 @@
             </div>
         </section>
 
-
-        <!--        <h:form>-->
-        <!--            <p:menubar>
-                        <p:menuitem value="Inicio" url="/INSO" icon="pi pi-home" />
-                        <p:divider layout="vertical"/>
-                        <p:menuitem value="Planes" url="" icon="pi pi-instagram" />
-                        <p:divider layout="vertical"/>
-                        <p:menuitem value="Mi Perfil" url="http://www.primefaces.org" icon="pi pi-users"  />
-                        <p:divider layout="vertical"/>
-                        <f:facet name="options">
-                            <h:panelGrid columns="2" cellpadding="7">
-                                <p:button value="Login" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
-                                <p:commandButton value="Registro" icon="pi pi-fw pi-sign-out" action="{indexController.moveToPrueba}" styleClass="ui-button-info"/>
-                            </h:panelGrid>
-                        </f:facet>
-                    </p:menubar>
-                </h:form>
-                <p:divider align="left" type="dashed">
-                    <b>Nuestros ultimos planazos</b>
-                </p:divider>
-                <p:dataTable  value="null">
+        <section>
+            <p:divider align="left" type="dashed">
+                <b>Nuestros ultimos planazos</b>
+            </p:divider>
+            
+            <p:dataTable  value="null">
                     <p:column headerText="Tipo">
                         <h:outputText value="Sexo y drogas" />
                     </p:column>
@@ -128,6 +113,11 @@
                         <h:outputText value="BangBros" />
                     </p:column>
                 </p:dataTable>
+        </section>
+        <!--        
+
+  
+                
                 <p:divider align="left" type="dashed">
                     <b>Busca Aqui Planes a tu Gusto</b>
                 </p:divider>
