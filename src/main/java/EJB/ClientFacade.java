@@ -33,24 +33,40 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     public ClientFacade() {
         super(Client.class);
     }
-    
+
     @Override
     public Client getClient(User user) {
-        String consulta = "SELECT c FROM Client a WHERE c.name=:param1";
-        Query query = em.createQuery(consulta);
+        System.out.println(user.getEmail());
 
-        query.setParameter("param1", user.getName());
-        
-        
+        //Recuperar el usuario asociado
+        String consultaUsuario = "FROM User u WHERE u.email=:param1";
+        Query queryUsuario = em.createQuery(consultaUsuario);
+        queryUsuario.setParameter("param1", user.getEmail());
 
-        List<Client> clients = query.getResultList();
-
-        if (clients.isEmpty() || clients.size() != 1) {
+        List<User> users = queryUsuario.getResultList();
+        if (users.isEmpty() || users.size() != 1) {
             return null;
         } else {
-            System.out.println(clients.get(0).getUser().getUserID());
-//             return clients.get(0);
+            User associatedUser = users.get(0);
+
+            //Recuperar el cliente
+            Client client = new Client();
+            client.setUser(associatedUser);
+            
+            return client;
+            
+//            System.out.println(associatedUser.getUserID());
+//            String consultaCliente = "FROM Client c WHERE c.user=:param1";
+//            Query queryCliente = em.createQuery(consultaCliente);
+//            queryUsuario.setParameter("param1", associatedUser);
+//
+//            List<Client> clients = queryCliente.getResultList();
+//
+//            if (clients.isEmpty() || clients.size() != 1) {
+//                return null;
+//            } else {
+//                return clients.get(0);
+//            }
         }
-        return null;
     }
 }

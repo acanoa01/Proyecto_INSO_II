@@ -34,11 +34,12 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     @Override
     public User verificarUsuario(User user) {
+
         User usuarioVerificado = null;
-        String consulta = "FROM User u WHERE u.userName=:param1";
+        String consulta = "FROM User u WHERE u.email=:param1";
         Query query = em.createQuery(consulta);
 
-        query.setParameter("param1", user.getUserName());
+        query.setParameter("param1", user.getEmail());
 
         List<User> usersFound = query.getResultList();
 
@@ -53,9 +54,6 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
                 return null;
             }
         }
-
     }
 
 }
-
-

@@ -52,11 +52,13 @@ public class IndexController implements Serializable {
 
     /* LOGIN IMPLEMENTATION */
     public String verificarUsuario() {
-        User checkUser = userEJB.verificarUsuario(this.user);
+        User checkUser = userEJB.verificarUsuario(user);
         if (checkUser == null) {
             return "index";
         } else {
             Client cliente = clientEJB.getClient(checkUser);
+            
+            System.out.println(cliente.getClientID());
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
             return "privado/home";
         }
@@ -72,11 +74,15 @@ public class IndexController implements Serializable {
         user.setType("C");
         user.setRol(rolEJB.getRol(user.getType()));
         client.setUser(user);
+        
+        System.out.println(client.getAge());
+        System.out.println(client.getCity());
+        System.out.println(client.getClientID());
 
         try {
             clientEJB.create(client);
             FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", client);
-            return "home";
+            return "privado/home";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al crear el usuario"));
             System.out.println("Error: "+e.getMessage());

@@ -31,14 +31,14 @@
                 <h:form>
                     <p:panel id="p_panelid">
                         <p:panelGrid columns="2" layout="grid">
-                            <p:outputLabel value="Nombre de usuario"/>
-                            <p:inputText value="#{indexController.user.userName}"/>
+                            <p:outputLabel value="Correo electrónico"/>
+                            <p:inputText value="#{indexController.user.email}" required="true"/>
 
-                            <p:outputLabel value="Password"/>
-                            <p:password value="#{indexController.user.password}"/>
+                            <p:outputLabel value="Contraseña"/>
+                            <p:password value="#{indexController.user.password}" required="true"/>
 
 
-                            <p:commandButton value="Acceder" ajax="false" action="#{indexController.verificarUsuario()}"/>            
+                            <p:commandButton value="Acceder"  ajax="false" action="#{indexController.verificarUsuario()}"/>            
 
                         </p:panelGrid>
                     </p:panel>
@@ -206,11 +206,11 @@
                     <span class="testimonials-card__subtitle">Traveler</span>
 
                     <div class="testimonials__stars">
-                        <a href="#" class="fas fa-star s1"></a>
-                        <a href="#" class="fas fa-star s2"></a>
-                        <a href="#" class="fas fa-star s3"></a>
-                        <a href="#" class="fas fa-star s4"></a>
-                        <a href="#" class="fas fa-star s5"></a>
+                        <a href=""  class="fas fa-star s1"></a>
+                        <a href="" class="fas fa-star s2"></a>
+                        <a href="" class="fas fa-star s3"></a>
+                        <a href="" class="fas fa-star s4"></a>
+                        <a href="" class="fas fa-star s5"></a>
                     </div>
                     <p class="testimonials-card__description">
                         "Planazzo me ayudo mucho a la hora de encontrar destinos interesantes que ni conocía!</p>
