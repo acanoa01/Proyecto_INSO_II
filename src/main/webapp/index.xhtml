@@ -1,12 +1,65 @@
+<<<<<<< Updated upstream
 <html 
     xmlns:h="http://xmlns.jcp.org/jsf/html"
     xmlns:p="http://primefaces.org/ui"
     xmlns:f="http://xmlns.jcp.org/jsf/core">
+=======
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>>>>>>> Stashed changes
 
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
+<<<<<<< Updated upstream
+=======
+        <header>
+
+            <span>Planazzo</span>
+            <nav class="header-nav">
+                <ul class="header-nav__list">
+                     <p:commandButton value="Ir a vistas Admin" icon="pi pi-user" action="#{indexController.moveToAdmin}" styleClass="ui-button-times"/>
+                    <li class="header-nav__item">Planes</li>
+                    <li class="header-nav__item">Mi perfil</li>
+                </ul>
+            </nav>
+
+            <h:panelGrid columns="2" cellpadding="7">
+                <p:commandButton value="Login" type="button" onclick="PF('login').show();"  styleClass="ui-button-info"/>
+                <p:commandButton value="Registro" type="button" onclick="PF('register').show();" styleClass="ui-button-info"/>
+            </h:panelGrid>
+
+            <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40"> 
+                <h:form>
+                    <p:panel id="p_panelid">
+                        <p:panelGrid columns="2" layout="grid">
+                            <p:outputLabel value="Nombre de usuario"/>
+                            <p:inputText value="#{indexController.user.userName}"/>
+
+                            <p:outputLabel value="Password"/>
+                            <p:password value="#{indexController.user.password}"/>
+
+
+                            <p:commandButton value="Acceder" ajax="false" action="#{indexController.verificarUsuario()}"/>            
+
+                        </p:panelGrid>
+                    </p:panel>
+                </h:form>
+
+            </p:dialog>
+
+            <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60"> 
+                <h:form>
+                    <p:panel id="p_panelid">
+                        <p:panelGrid columns="2" layout="grid">
+                            <p:outputLabel value="Nombre de usuario"/>
+                            <p:inputText value="#{indexController.user.userName}"/>
+>>>>>>> Stashed changes
 
 
         <h:form>

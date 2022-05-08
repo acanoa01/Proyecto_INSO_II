@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Crear Plan</title>
+        <style>
+            #createPlanForm{
+                padding:20px;
+                float: left;
+                width: 50%;
+            }
+            #createPlanView {
+                float: left;
+                width: 50%;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:menubar>
+                <p:menuitem value="Inicio" action="#{indexController.moveToIndexAdmin}" icon="pi pi-globe" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Verificar Planes" url="http://www.primefaces.org" icon="pi pi-check" />
+                <p:divider layout="vertical"/>
+                <p:menuitem value="Crear Plan" action="#{indexController.moveToCrearPlan}" icon="pi pi-plus"  />
+                <p:divider layout="vertical"/>
+                <f:facet name="options">
+                    <h:panelGrid columns="2" cellpadding="7">
+                        <p:commandButton value="Cerrar Sesión" action="#{indexController.moveToIndex}" icon="pi pi-user"  styleClass="ui-button-times"/>
+                    </h:panelGrid>
+                </f:facet>
+            </p:menubar>
+        </h:form>
+        <p:chart type="pie"
+                 responsive="true"
+                 model="#{jobMarketBean.model}" /> 
+
+        <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+    </h:body>
+</html>
