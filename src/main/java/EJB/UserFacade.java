@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
@@ -33,12 +34,12 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
 
     @Override
     public User verificarUsuario(User user) {
+
         User usuarioVerificado = null;
-        String consulta = "FROM User u WHERE u.userName=:param1 and u.password=:param2";
+        String consulta = "FROM User u WHERE u.email=:param1";
         Query query = em.createQuery(consulta);
 
-        query.setParameter("param1", user.getUserName());
-        query.setParameter("param2", user.getPassword());
+        query.setParameter("param1", user.getEmail());
 
         List<User> usersFound = query.getResultList();
 
@@ -46,9 +47,13 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
             return null;
         } else {
             usuarioVerificado = usersFound.get(0);
-            return usuarioVerificado;
-        }
 
+            if (BCrypt.checkpw(user.getPassword(), usuarioVerificado.getPassword())) {
+                return usuarioVerificado;
+            } else {
+                return null;
+            }
+        }
     }
 
 }

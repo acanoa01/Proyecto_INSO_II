@@ -8,6 +8,7 @@ package modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,23 +31,23 @@ public class Client implements Serializable{
       
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private String clientID;
+    private long clientID;
     
     @JoinColumn(name="UserID")
-    @ManyToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private User user;
 
     @Column(name="Age")    
     private int age;
     
     @Column(name="City")    
-    private int city;
+    private String city;
 
-    public String getClientID() {
+    public long getClientID() {
         return clientID;
     }
 
-    public void setClientID(String clientID) {
+    public void setClientID(long clientID) {
         this.clientID = clientID;
     }
 
@@ -66,11 +67,11 @@ public class Client implements Serializable{
         this.age = age;
     }
 
-    public int getCity() {
+    public String getCity() {
         return city;
     }
 
-    public void setCity(int city) {
+    public void setCity(String city) {
         this.city = city;
     }
 
@@ -80,7 +81,7 @@ public class Client implements Serializable{
         hash = 67 * hash + Objects.hashCode(this.clientID);
         hash = 67 * hash + Objects.hashCode(this.user);
         hash = 67 * hash + this.age;
-        hash = 67 * hash + this.city;
+        hash = 67 * hash + Objects.hashCode(this.city);
         return hash;
     }
 
@@ -99,10 +100,10 @@ public class Client implements Serializable{
         if (this.age != other.age) {
             return false;
         }
-        if (this.city != other.city) {
+        if (!Objects.equals(this.clientID, other.clientID)) {
             return false;
         }
-        if (!Objects.equals(this.clientID, other.clientID)) {
+        if (!Objects.equals(this.city, other.city)) {
             return false;
         }
         if (!Objects.equals(this.user, other.user)) {
@@ -110,5 +111,7 @@ public class Client implements Serializable{
         }
         return true;
     }
+
+    
 
 }

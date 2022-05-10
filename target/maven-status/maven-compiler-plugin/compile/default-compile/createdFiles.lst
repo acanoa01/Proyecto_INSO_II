@@ -2,12 +2,9 @@ controller\HomeController.class
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class
-controller\PruebaController.class
-controller\RegisterController.class
 EJB\PlanFacade.class
 EJB\ListFacade.class
 com\mycompany\planazzo\resources\JavaEE8Resource.class
-controller\LoginController.class
 EJB\RolFacade.class
 EJB\ClientplanFacade.class
 EJB\ListFacadeLocal.class

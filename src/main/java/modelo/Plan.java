@@ -7,6 +7,7 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -65,7 +66,7 @@ public class Plan implements Serializable{
     private Admin admin;
         
     @JoinColumn(name="ClientID")
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     private Client client;
 
     public String getPlanID() {
