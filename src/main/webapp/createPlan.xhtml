@@ -19,6 +19,11 @@
                 width: 50%;
             }
         </style>
+        <script>
+            update(){
+                document.getElementById("name-p").value = document.getElementById(name);
+            }
+        </script>
     </h:head>
     <h:body>
         <div id="createPlanForm">
@@ -29,7 +34,7 @@
                 <p:fieldset legend="Descripción">
                     <h:panelGrid id="grid" columns="3" cellpadding="10">
                         <p:outputLabel for="name" value="Nombre:"/>
-                        <p:inputText id="name" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{createPlanController.plan.name}"/>
+                        <p:inputText id="name" onchange="update()" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{createPlanController.plan.name}"/>
                         <p:message for="name"/>
 
                         <p:outputLabel for="description" value="Descripción:"/>
@@ -95,22 +100,25 @@
                 </p:fieldset>
             </h:form>
         </div>
-        <div id="createPlanView" style="margin-bottom:20px">
-            <h1>Previsualización</h1>
-            <h2 id='planName'>Nombre</h2>
-            <div id='planI' style="float:left;width:50%">
-                <img src="./placeholder.png"  width="400" />
-            </div>
-            <div id='planD' style="float:left;width:50%">
-                <p id='planDescription'>Por la sierra</p>
-            </div>
+        <h:form>
+            <div id="createPlanView" style="margin-bottom:20px">
+
+                <h1 id="name-p">#{createPlanController.plan.name}</h1>
+                <h2 id='planName'>Nombre</h2>
+                <div id='planI' style="float:left;width:50%">
+                    <img src="./placeholder.png"  width="400" />
+                </div>
+                <div id='planD' style="float:left;width:50%">
+                    <p id='planDescription'>Por la sierra</p>
+                </div>
 
 
-        </div>
-        <div style="padding-top:20px;padding-bottom:20px">Ubicación: León</div>
-        <span  style="padding-right:20px"><b>Tipo:</b><span>En casa</span></span>
-        <span  style="padding-right:20px"><b>Precio:</b><span>€</span></span>
-        <span  style="padding-right:20px"><b>Edad:</b><span>3-12 años</span></span>
-        <span  style="padding-right:20px"><b>Compañía:</b><span>En familia</span></span>
+            </div>
+            <div style="padding-top:20px;padding-bottom:20px">Ubicación: León</div>
+            <span  style="padding-right:20px"><b>Tipo:</b><span>En casa</span></span>
+            <span  style="padding-right:20px"><b>Precio:</b><span>€</span></span>
+            <span  style="padding-right:20px"><b>Edad:</b><span>3-12 años</span></span>
+            <span  style="padding-right:20px"><b>Compañía:</b><span>En familia</span></span>
+        </h:form>
     </h:body>
 </html>

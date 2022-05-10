@@ -16,7 +16,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Client;
-import modelo.Rol;
 import modelo.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -43,26 +42,25 @@ public class IndexController implements Serializable {
 
     @PostConstruct
     public void init() {
-        user = new User();
-        user.setType("U");
-        
-        client = new Client();
+        this.user = new User();
+        this.user.setType("U");
+        this.client = new Client();
     }
 
 
     /* LOGIN IMPLEMENTATION */
-    public String verificarUsuario() {
-        User checkUser = userEJB.verificarUsuario(user);
+    public void verificarUsuario() {
+        
+        User checkUser = this.userEJB.verificarUsuario(this.user);
         if (checkUser == null) {
-            return "index";
-        } else {
-            Client cliente = clientEJB.getClient(checkUser);
             
-            System.out.println(cliente.getClientID());
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", cliente);
-            return "privado/home";
+        } else {
+            int i = 1;//Lo pongo por ver una cosa
+            this.client = clientEJB.getClient(checkUser);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", this.client);
+            //quitar de pantalla el login
+         
         }
-
     }
 
     /* REGISTER IMPLEMENTATION */
@@ -92,7 +90,7 @@ public class IndexController implements Serializable {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {
@@ -101,7 +99,7 @@ public class IndexController implements Serializable {
 
 
     public Client getClient() {
-        return client;
+        return this.client;
     }
 
     public void setClient(Client client) {

@@ -1,9 +1,7 @@
-<html 
-    xmlns:h="http://xmlns.jcp.org/jsf/html"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:f="http://xmlns.jcp.org/jsf/core"
-    >
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>Planazzo</title>
@@ -29,16 +27,18 @@
 
             <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40"> 
                 <h:form>
+                   
                     <p:panel id="p_panelid">
+                        
                         <p:panelGrid columns="2" layout="grid">
-                            <p:outputLabel value="Correo electrónico"/>
-                            <p:inputText value="#{indexController.user.email}" required="true"/>
+                            <p:outputLabel value="Nombre de usuario"/>
+                            <p:inputText value="#{indexController.user.userName}" required="true"/>
 
                             <p:outputLabel value="Contraseña"/>
                             <p:password value="#{indexController.user.password}" required="true"/>
 
 
-                            <p:commandButton value="Acceder"  ajax="false" action="#{indexController.verificarUsuario()}"/>            
+                            <p:commandButton value="Acceder"  ajax="false" actionListener="#{indexController.verificarUsuario()}"/>            
 
                         </p:panelGrid>
                     </p:panel>
@@ -48,7 +48,9 @@
 
             <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60"> 
                 <h:form>
+                   
                     <p:panel id="p_panelid">
+                        
                         <p:panelGrid columns="2" layout="grid">
                             <p:outputLabel value="Nombre de usuario"/>
                             <p:inputText value="#{indexController.user.userName}"/>

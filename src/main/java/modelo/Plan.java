@@ -66,7 +66,7 @@ public class Plan implements Serializable{
     private Admin admin;
         
     @JoinColumn(name="ClientID")
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne
     private Client client;
 
     public String getPlanID() {
