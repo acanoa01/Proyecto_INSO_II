@@ -10,7 +10,6 @@ import EJB.RolFacadeLocal;
 import java.nio.file.Files;
 import java.io.InputStream;
 import java.io.Serializable;
-import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -18,9 +17,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;   
 import modelo.Client;
 import modelo.Plan;
 import org.primefaces.event.FileUploadEvent;
@@ -79,15 +79,16 @@ public class CreatePlanController implements Serializable{
        
         UploadedFile uploadedFile = event.getFile();
         
-        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-        String directory = externalContext.getInitParameter("uploadDirectory");
-        Path folder = Paths.get(directory);
-        String filename = FilenameUtils.getBaseName(uploadedFile.getFileName()); 
+        Path folder = Paths.get("C:\\Users\\santy\\Documents\\NetBeansProjects\\planazzo\\src\\main\\webapp\\resources\\images");
+        
         String extension = FilenameUtils.getExtension(uploadedFile.getFileName());
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");  
+        LocalDateTime now = LocalDateTime.now(); 
+        String filename = dtf.format(now);
         try (InputStream input = uploadedFile.getInputStream()) {
-            File file = File.createTempFile(filename + "-","." + extension, new File(directory));
-            Files.copy(input, file.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Uploaded file successfully saved in " + file.toPath());
+            Path filee = Files.createTempFile(folder, filename + "-", "." + extension);
+            Files.copy(input, filee, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Uploaded file successfully saved in " + file);
         }catch(Exception e){
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al cargar la imagen"+e.getMessage()));
              System.out.println(e.getMessage());
