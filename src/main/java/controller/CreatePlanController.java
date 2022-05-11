@@ -38,7 +38,7 @@ import org.primefaces.shaded.commons.io.FilenameUtils;
 public class CreatePlanController implements Serializable{
     private Plan plan;
     private Client client;
-    private UploadedFile file;
+
     
     @EJB
     private PlanFacadeLocal planEJB;
@@ -79,7 +79,7 @@ public class CreatePlanController implements Serializable{
        
         UploadedFile uploadedFile = event.getFile();
         
-        Path folder = Paths.get("C:\\Users\\santy\\Documents\\NetBeansProjects\\planazzo\\src\\main\\webapp\\resources\\images");
+        Path folder = Paths.get("D:\\images");
         
         String extension = FilenameUtils.getExtension(uploadedFile.getFileName());
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");  
@@ -88,7 +88,7 @@ public class CreatePlanController implements Serializable{
         try (InputStream input = uploadedFile.getInputStream()) {
             Path filee = Files.createTempFile(folder, filename + "-", "." + extension);
             Files.copy(input, filee, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Uploaded file successfully saved in " + file);
+            this.plan.setImage(filee.toString());
         }catch(Exception e){
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al cargar la imagen"+e.getMessage()));
              System.out.println(e.getMessage());
