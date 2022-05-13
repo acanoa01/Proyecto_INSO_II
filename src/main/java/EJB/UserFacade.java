@@ -38,10 +38,10 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         User usuarioVerificado = null;
         String consulta = "FROM User u WHERE u.userName=:param1";
         Query query = em.createQuery(consulta);
-
         query.setParameter("param1", user.getUserName());
-
         List<User> usersFound = query.getResultList();
+
+       
 
         if (usersFound.isEmpty()) {
             return null;
@@ -49,6 +49,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
             usuarioVerificado = usersFound.get(0);
 
             if (BCrypt.checkpw(user.getPassword(), usuarioVerificado.getPassword())) {
+//                usuarioVerificado.setRol(rol);
                 return usuarioVerificado;
             } else {
                 return null;

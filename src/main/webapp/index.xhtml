@@ -7,6 +7,7 @@
         <title>Planazzo</title>
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
         <h:outputStylesheet name="index.css" />
+        
     </h:head>
     <h:body>
         <header class="header">
@@ -19,17 +20,23 @@
 
                 </ul>
             </nav>
+            <h:form>
+                <h:panelGrid columns="2" cellpadding="7">
+                    <p:commandButton value="Login" type="button" onclick="PF('login').show();"  styleClass="ui-button-info"/>
+                    <p:commandButton value="Registro" type="button" onclick="PF('register').show();" styleClass="ui-button-info"/>
+                    <p:commandButton value="Ir a vistas Admin" icon="pi pi-user" action="#{indexController.moveToAdmin}" styleClass="ui-button-times"/>
 
-            <h:panelGrid columns="2" cellpadding="7">
-                <p:commandButton value="Login" type="button" onclick="PF('login').show();"  styleClass="ui-button-info"/>
-                <p:commandButton value="Registro" type="button" onclick="PF('register').show();" styleClass="ui-button-info"/>
-            </h:panelGrid>
+
+                </h:panelGrid>
+            </h:form>
+
+
 
             <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40"> 
                 <h:form>
-                   
+
                     <p:panel id="p_panelid">
-                        
+
                         <p:panelGrid columns="2" layout="grid">
                             <p:outputLabel value="Nombre de usuario"/>
                             <p:inputText value="#{indexController.user.userName}" required="true"/>
@@ -48,9 +55,9 @@
 
             <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60"> 
                 <h:form>
-                   
+
                     <p:panel id="p_panelid">
-                        
+
                         <p:panelGrid columns="2" layout="grid">
                             <p:outputLabel value="Nombre de usuario"/>
                             <p:inputText value="#{indexController.user.userName}"/>
@@ -152,15 +159,26 @@
                 <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
                 <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
                 <p:commandButton  value="Buscar" action="{messagesView.warn}" styleClass="rounded-button" />
-                <div class="card">
-                    
-                    <h:graphicImage name="images/adventureClouds.jpg" width="100"/>
-                </div>
+
+
+
+
                 <h:panelGrid columns="2" cellpadding="7">
                     <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
                     <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
                 </h:panelGrid>
+                
+                <h:form>
+                <p:commandButton  value="Obtener plan aleatorio"  action="#{indexController.generateRandomPlan()}" styleClass="rounded-button"/>
 
+                    
+                <p:dataTable id="table"  value="#{indexController.generateRandomPlan()}" var="plan" lazy="true" paginator="true">
+                            <p:column>
+                                <h:outputText value="#{plan.name}" />
+                            </p:column>
+                        </p:dataTable>
+
+                </h:form>
             </article>
         </section>
 
