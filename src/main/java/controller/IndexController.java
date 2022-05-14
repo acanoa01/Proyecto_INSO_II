@@ -18,6 +18,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import modelo.Admin;
 import modelo.Client;
 import modelo.Plan;
 import modelo.Rol;
@@ -35,6 +36,7 @@ public class IndexController implements Serializable {
 
     private User user;
     private Client client;
+    private Admin admin;
 
     private Rol rol;
     private List<Rol> roles;
@@ -49,7 +51,7 @@ public class IndexController implements Serializable {
 
     @EJB
     private RolFacadeLocal rolEJB;
-    
+
     @EJB
     private PlanFacadeLocal planEJB;
 
@@ -60,6 +62,7 @@ public class IndexController implements Serializable {
         this.client = new Client();
         this.roles = rolEJB.findAll();
         this.plan = new Plan();
+        this.admin = new Admin();
     }
 
     /*GESTION DE ROLES */
@@ -75,20 +78,20 @@ public class IndexController implements Serializable {
     public void verificarUsuario() {
 
         User checkUser = this.userEJB.verificarUsuario(this.user);
-        checkUser.setRol(roles.get(3));
 
         if (checkUser == null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "error", "Usuario o contraseña incorrectos"));
             doRedirect("index.xhtml");
         } else {
-            this.user = checkUser;
-            System.out.println("CORREO DEL USUARIO EN VERIFICARUSUARIO: " + user.getEmail());
-            this.client = clientEJB.getClient(checkUser);
-
-            System.out.println("HOLA, estamos aqui");
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", this.client);
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", this.user);
-            doRedirect("privado/cliente/home.xhtml");
-            //quitar de pantalla el login
+            System.out.println("ROL DE USUARIO QUE HA INICIADO SESIÓN: " + checkUser.getRol().getDescription());
+            if (checkUser.getRol().getUserType().equals("A")) {
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
+                doRedirect("privado/administrador/index.xhtml");
+            } else {
+                this.client = clientEJB.getClient(checkUser);
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", this.client);
+                doRedirect("privado/cliente/home.xhtml");
+            }
 
         }
     }
@@ -167,7 +170,7 @@ public class IndexController implements Serializable {
 
     public void verifyLogin() {
         this.user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        if (this.user == null || !(this.user.getRol().getUserType().equals("L"))) {
+        if (this.user == null || !(this.user.getRol().getUserType().equals("C"))) {
             doRedirect("index.xhtml");
         }
 
@@ -186,11 +189,9 @@ public class IndexController implements Serializable {
         List<Plan> randomPlan = planEJB.findAll();
         Random random = new Random();
         int randomNumber = random.nextInt(randomPlan.size());
-        
+
         this.plan = randomPlan.get(randomNumber);
-        
-           
-        
+
     }
 
 }

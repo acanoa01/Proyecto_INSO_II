@@ -16,6 +16,7 @@ controller\CreatePlanController.class
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class
+controller\AdminController.class
 EJB\ReviewFacade.class
 modelo\Rol.class
 EJB\MenuFacade.class

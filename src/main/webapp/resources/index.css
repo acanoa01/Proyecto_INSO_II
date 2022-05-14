@@ -1,20 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600;700&family=Yellowtail&display=swap');
+
 *,*::after, *::before {
     box-sizing: border-box;
     margin: 0;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+.wrapper {
+    width: 75%;
 }
 .header {
     width: 100%;
     height: 60px;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: 2px solid blue;
+
     position: sticky;
     top: 0;
     z-index: 10;
     background-color: white;
+    margin-bottom: 2rem;
+    border-bottom: .6px solid black;
+    padding-top: 10px;
 }
-
+.header__logo{
+    font-family: 'Yellowtail';
+    font-size: 2.3em;
+}
 nav {
     width: 30%;
     display: flex;
@@ -27,10 +42,54 @@ nav {
     align-items: center;
     justify-content: space-between;
     list-style: none;
+    font-family: 'Space Grotesk';
+}
+
+.header-nav__item > a{
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.header-nav__item > a:hover{
+
+    background-color: #05d5d530;
+    border-radius: 50%;
+
 }
 .header-menu{
     display: flex;
 }
+
+button.ui-button {
+    border-radius: 12px;
+    width: 6em;
+    margin-left: 10px;
+}
+
+button.ui-button.loginBtn{
+    color: black;
+    background-color: white;
+    border: 1px solid #2894d3;
+}
+
+button.ui-button.loginBtn:hover{
+    color: white;
+    background-color: #2894d3;
+    border: 1px solid white;
+}
+
+button.ui-button.registerBtn{
+    color: white;
+    background-color: #2894d3;
+    border: 1px solid white;
+}
+
+button.ui-button.registerBtn:hover{
+    color: black;
+    background-color: white;
+    border: 1px solid #2894d3;
+}
+
 
 /*CAROUSEL STYLES */
 .slider {
@@ -87,17 +146,9 @@ nav {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 3rem 0;
+    margin-top: 4rem;
 }
 
-
-.plan, .footer {
-   background-color: rgb(190, 243, 203);
-}
-
-.about, .testimonials{
-    background-color:rgb(217, 248, 247);
-}
 
 .about__title, .plan__title, .testimonials__title{
     margin-top: 2rem;
@@ -109,7 +160,8 @@ nav {
 .about__description, .plan__description, .testimonials__description {
     color: gray;
     font-size: 2rem;
-    max-width: 800px;
+    text-align: center;
+    /*    max-width: 800px;*/
 }
 
 .about__cards {
@@ -149,15 +201,26 @@ nav {
     background-color: white;
 }
 
+/*PLANES */
+.plan__trending{
+    display: flex;
+    justify-content: center;
+    margin-top:2rem;
+}
+
+th.ui-state-default {
+    border-bottom: 1px solid black;
+}
+
 /* TESTIMONIALS */
 .testimonials-cards {
-    width: 50%;
-
+    width: 70%;
     display: flex; 
     justify-content: space-between;
     align-items: center;
 }
 .testimonials-card{
+    margin-top: 2rem;
     padding: 10px;
     height: 300px;
     width: 300px;
@@ -168,6 +231,9 @@ nav {
     background-color: white;
     border-radius: 12px;
     position: relative;
+    -webkit-box-shadow: 2px 11px 7px -2px rgba(179,170,179,1);
+    -moz-box-shadow: 2px 11px 7px -2px rgba(179,170,179,1);
+    box-shadow: 2px 11px 7px -2px rgba(179,170,179,1);
 }
 .testimonials-card__image {
     width: 100px;
@@ -186,7 +252,7 @@ nav {
     left: 228px;
     font-size: 6rem;
     color: #1ec28b;
-    
+
 }
 
 .testimonials__stars {
@@ -230,4 +296,11 @@ nav {
 
 .no-star {
     color: rgb(208, 211, 208);
+}
+
+/* FOOTER */
+
+.footer {
+    padding: 10px 0;
+    border-top: 1px solid black;
 }

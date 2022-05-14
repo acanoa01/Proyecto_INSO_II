@@ -41,15 +41,12 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         query.setParameter("param1", user.getUserName());
         List<User> usersFound = query.getResultList();
 
-       
-
         if (usersFound.isEmpty()) {
             return null;
         } else {
             usuarioVerificado = usersFound.get(0);
 
             if (BCrypt.checkpw(user.getPassword(), usuarioVerificado.getPassword())) {
-//                usuarioVerificado.setRol(rol);
                 return usuarioVerificado;
             } else {
                 return null;
