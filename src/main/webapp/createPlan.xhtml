@@ -19,12 +19,14 @@
                 width: 50%;
             }
         </style>
-        <h:outputScript library="js" name="functions.js"></h:outputScript>
+        <h:outputStylesheet library="css" name="template.css" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+        <h:outputScript name="js/functions.js"></h:outputScript>
     </h:head>
     <h:body>
         <div id="createPlanForm">
             <h:form id="form" enctype="multipart/form-data">
-                <p:messages id="messages" showDetail="true" closable="true">
+                <p:messages id="messages" for="submitButton" showDetail="true" closable="true" >
                     <p:autoUpdate/>
                 </p:messages>            
                 <p:fieldset legend="Descripción">
@@ -37,7 +39,7 @@
                         <p:inputTextarea id="description" onkeyup="actualizar()" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{createPlanController.plan.description}"/>
                         <p:message for="description" display="text"/>
                         <p>Imagen</p>
-                        <p:fileUpload id="image" listener="#{createPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="1000000" skinSimple="true" />
+                        <p:fileUpload id="image" update="formm:imageID" listener="#{createPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="10000000" skinSimple="true" />
                         <p:message for="image" display="text"/>
                     </h:panelGrid>
                 </p:fieldset>
@@ -91,27 +93,28 @@
                         </h:selectOneMenu>
                         <p:message for="companion" display="text"/>
                     </h:panelGrid>
-                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan()}" styleClass="p-mt-3" />
-
+                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan()}" update="form" styleClass="p-mt-3" />
+                    
                 </p:fieldset>
+                
             </h:form>
         </div>
         <h:form id="formm">
-            <div id="createPlanView" style="margin-bottom:20px">
+            <div id="createPlanView" style="margin-bottom:20px;margin-top:120px;padding-left:20px">
                 
-                <h1>ASÍ SE VERÁ TU PLAN!!</h1>
+                <h1 style="padding-top:20px;padding-bottom:15px;">¡¡MIRA QUE BIEN QUEDA!!</h1>
                 
-                <h2 id="planName"></h2>
-                <div id='planI' style="float:left;width:50%">
-                    <p:graphicImage width="400" value="#{createPlanController.plan.image}"/>
+                <h2 id="planName" style="padding-bottom:15px;"></h2>
+                <div id='planI' style="float:left;">
+                    <p:graphicImage id="imageID" width="400"  library="images" name="#{createPlanController.getImage()}"/>
                 </div>
-                <div id='planD' style="float:left;width:50%">
-                    <p id='planDescription'></p>
+                <div id='planD' style="float:left;width:50%;min-width: 50%;position:relative">
+                    <p id='planDescription' style="margin-left:50px;margin-right:50px"></p>
                 </div>
 
 
             </div>
-            <div style="padding-top:20px;padding-bottom:20px">Ubicación: <span id="planUbicacion"></span></div>
+            <div style="padding-top:20px;padding-bottom:20px"><b>Ubicación: </b><span id="planUbicacion"></span></div>
             <span  style="padding-right:20px"><b>Tipo: </b><span id="planTipo"></span></span>
             <span  style="padding-right:20px"><b>Precio: </b><span id="planPrecio"></span></span>
             <span  style="padding-right:20px"><b>Edad: </b><span id="planEdad"></span></span>

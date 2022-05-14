@@ -10,19 +10,21 @@ import EJB.RolFacadeLocal;
 import java.nio.file.Files;
 import java.io.InputStream;
 import java.io.Serializable;
+import static java.lang.Thread.sleep;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;   
+import javax.faces.view.ViewScoped;
 import modelo.Client;
 import modelo.Plan;
+import org.primefaces.PrimeFaces;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.file.UploadedFile;
 import org.primefaces.shaded.commons.io.FilenameUtils;
@@ -31,7 +33,7 @@ import org.primefaces.shaded.commons.io.FilenameUtils;
  * @author sergi
  */
 @Named
-@RequestScoped
+@ViewScoped
 
 
 
@@ -79,7 +81,10 @@ public class CreatePlanController implements Serializable{
        
         UploadedFile uploadedFile = event.getFile();
         
-        Path folder = Paths.get("D:\\images");
+        String aux = FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/images").replace("\\", "\\\\");
+        
+        String src = aux.replace("\\\\target\\\\INSO-1.0-SNAPSHOT", "\\\\src\\\\main\\\\webapp");
+        Path folder = Paths.get(src);
         
         String extension = FilenameUtils.getExtension(uploadedFile.getFileName());
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");  
@@ -88,10 +93,23 @@ public class CreatePlanController implements Serializable{
         try (InputStream input = uploadedFile.getInputStream()) {
             Path filee = Files.createTempFile(folder, filename + "-", "." + extension);
             Files.copy(input, filee, StandardCopyOption.REPLACE_EXISTING);
-            this.plan.setImage(filee.toString());
+            this.plan.setImage(filee.getFileName().toString());
         }catch(Exception e){
              FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al cargar la imagen"+e.getMessage()));
              System.out.println(e.getMessage());
+        }
+    }
+    
+    public String getImage(){
+        
+        if(plan.getImage() == null){
+            return "placeHolder.png";
+        }else{
+            try{
+                sleep(2000);
+            }catch(Exception e){
+            }
+            return plan.getImage();
         }
     }
    
