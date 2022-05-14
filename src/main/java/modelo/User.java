@@ -49,6 +49,7 @@ public class User implements Serializable {
     @JoinColumn(name = "RolID")
     @ManyToOne
     private Rol rol;
+    
 
     public long getUserID() {
         return userID;
@@ -109,13 +110,13 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.userID);
-        hash = 61 * hash + Objects.hashCode(this.userName);
-        hash = 61 * hash + Objects.hashCode(this.email);
-        hash = 61 * hash + Objects.hashCode(this.password);
-        hash = 61 * hash + Objects.hashCode(this.name);
-        hash = 61 * hash + Objects.hashCode(this.type);
-        hash = 61 * hash + Objects.hashCode(this.rol);
+        hash = 67 * hash + (int) (this.userID ^ (this.userID >>> 32));
+        hash = 67 * hash + Objects.hashCode(this.userName);
+        hash = 67 * hash + Objects.hashCode(this.email);
+        hash = 67 * hash + Objects.hashCode(this.password);
+        hash = 67 * hash + Objects.hashCode(this.name);
+        hash = 67 * hash + Objects.hashCode(this.type);
+        hash = 67 * hash + Objects.hashCode(this.rol);
         return hash;
     }
 
@@ -131,7 +132,7 @@ public class User implements Serializable {
             return false;
         }
         final User other = (User) obj;
-        if (!Objects.equals(this.userID, other.userID)) {
+        if (this.userID != other.userID) {
             return false;
         }
         if (!Objects.equals(this.userName, other.userName)) {
@@ -155,4 +156,6 @@ public class User implements Serializable {
         return true;
     }
 
+    
+    
 }

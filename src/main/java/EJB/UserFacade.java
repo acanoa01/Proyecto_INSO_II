@@ -38,9 +38,7 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         User usuarioVerificado = null;
         String consulta = "FROM User u WHERE u.userName=:param1";
         Query query = em.createQuery(consulta);
-
         query.setParameter("param1", user.getUserName());
-
         List<User> usersFound = query.getResultList();
 
         if (usersFound.isEmpty()) {

@@ -16,6 +16,7 @@ controller\CreatePlanController.class
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class
+controller\AdminController.class
 EJB\ReviewFacade.class
 modelo\Rol.class
 EJB\MenuFacade.class
@@ -24,6 +25,7 @@ EJB\RolFacadeLocal.class
 controller\MessagesView.class
 modelo\Review.class
 EJB\ReviewFacadeLocal.class
+modelo\ChartView.class
 EJB\ClientFacade.class
 EJB\ListplanFacade.class
 EJB\UserFacade.class
@@ -31,6 +33,7 @@ modelo\Listplan.class
 controller\IndexController.class
 modelo\Plan.class
 modelo\Clientplan.class
+modelo\JobMarketBean.class
 modelo\List.class
 com\mycompany\planazzo\JAXRSConfiguration.class
 EJB\AdminFacade.class

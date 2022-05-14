@@ -1,7 +1,3 @@
-<<<<<<< HEAD
 target
 src/main/java/resources/META-INF/persistance.xml
-=======
-target/
-src\main\java\resources\META-INF\persistance.xml
->>>>>>> origin/albert
+
