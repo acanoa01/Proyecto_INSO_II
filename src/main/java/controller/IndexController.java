@@ -90,7 +90,7 @@ public class IndexController implements Serializable {
             } else {
                 this.client = clientEJB.getClient(checkUser);
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", this.client);
-                doRedirect("privado/cliente/home.xhtml");
+                doRedirect("privado/cliente/index.xhtml");
             }
 
         }
