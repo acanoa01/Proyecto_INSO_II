@@ -69,81 +69,146 @@
             </section>
 
             <section class="section plan">
-<!--                <h2 class="plan__title">Nuestros últimos planazos!</h2>
+                <h2 class="plan__title">Nuestros últimos planazos!</h2>
                 <p class="plan__description">Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!</p>
-                <article>
-                    <div class="plan__trending">
-                        TODO: Traer de la base de datos
-                        <h:form>
-                            <p:dataTable  value="null">
-                                <f:facet name="header">
-                                    Nuestros planes más populares
-                                </f:facet>
+                <article class="plan-trending"></article>
+                <article class="plan-generator">
+                    <h4>Busca Aqui Planes a tu Gusto</h4>
+                    <h:form class="plan-generator-form">
+                        <div>
+                        <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
+                        <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
+                        <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
+                        <p:tooltip for="Edad" value="Introduce tu edad" position="top"/>
+                        <p:inputText id="Ciudad" type="text" style="margin-right: 10px;" placeholder="Ciudad" />
+                        <p:tooltip for="Ciudad" value="Introduce la Ciudad" position="top"/>
+                        <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
+                        <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
+                            
+                        </div>
+                        <div>
+                            <p:commandButton  value="Buscar" action="{messagesView.warn}" styleClass="rounded-button" />
+                            <p:commandButton value="Generar" id="inputName" action="#{indexController.generateRandomPlan()}" styleClass="rounded-button">
+                                <f:ajax execute = "inputName" render = "outputMessage"  />
+                            </p:commandButton>
 
-                                <p:column headerText="Tipo">
-                                    <h:outputText value="Sexo y drogas" />
+                        </div>
 
-                                </p:column>                               
-
-                                <p:column headerText="Edad">
-                                    <h:outputText value="18" />
-
-                                </p:column>
-
-                                <p:column headerText="Ciudad">
-                                    <h:outputText value="Ibiza" />
-
-
-                                </p:column>
-
-                                <p:column headerText="Compañia">
-                                    <h:outputText value="BangBros" />
-
-                                </p:column>
-
-                            </p:dataTable>
-                        </h:form>
-
-                    </div>
-                    <p:divider align="left" type="dashed">
-                        <b>Busca Aqui Planes a tu Gusto</b>
-                    </p:divider>
-
-                    <h:form>
-                        <p:commandButton  value="Obtener plan aleatorio"  action="#{indexController.generateRandomPlan()}" styleClass="rounded-button"/>
                     </h:form>
-                                   
-                    
-                    
-                                        <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
-                                        <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
-                                        <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
-                                        <p:tooltip for="Edad" value="Introduce tu edad" position="top"/>
-                                        <p:inputText id="Ciudad" type="text" style="margin-right: 10px;" placeholder="Ciudad" />
-                                        <p:tooltip for="Ciudad" value="Introduce la Ciudad" position="top"/>
-                                        <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
-                                        <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
-                                        <p:commandButton  value="Buscar" action="{messagesView.warn}" styleClass="rounded-button" />
-                    
-                    
-                    
-                    
-                                        <h:panelGrid columns="2" cellpadding="7">
-                                            <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
-                                            <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
-                                        </h:panelGrid>
-                    
-                                        
-                    
-                    
-                                            <p:dataTable id="table"  value="#{indexController.generateRandomPlan()}" var="plan" lazy="true">
-                                                <p:column>
-                                                    <h:outputText value="#{plan.name}" />
+                </article>
+                <article class="plan-visual" id="visual"  >
+                    <h:dataTable value="#{indexController.plan}" var="plan" id="outputMessage" 
+                                 headerClass="planTableHeader"
+                                 styleClass = "planTable"
+                                 rowClasses = "planData"
+                                 >
+                        <h:column>
+
+                            <f:facet name="header" rendered="false" >Nombre</f:facet>
+                                #{indexController.plan.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripción</f:facet>
+                                #{indexController.plan.description}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Tipo</f:facet>
+                                #{indexController.plan.type}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Precio</f:facet>
+                                #{indexController.plan.price}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Ciudad</f:facet>
+                                #{indexController.plan.city}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Edad</f:facet>
+                                #{indexController.plan.age}
+
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Compañia</f:facet>
+                                #{indexController.plan.companion}
+                        </h:column>
+                    </h:dataTable>
+                </article>
+
+
+                <!--                    <h:form>
+                                        <h:commandButton value = "Obtener plan aleatorio">
+                                            <f:ajax resetValues="true" render = "outputPlan" />
+                                        </h:commandButton>
+                                    </h:form>
+                                </article>
+                               
+                                <article>
+                                    <div class="plan__trending">
+                                        TODO: Traer de la base de datos
+                                        <h:form>
+                                            <p:dataTable  value="null">
+                                                <f:facet name="header">
+                                                    Nuestros planes más populares
+                                                </f:facet>
+                
+                                                <p:column headerText="Tipo">
+                                                    <h:outputText value="Sexo y drogas" />
+                
+                                                </p:column>                               
+                
+                                                <p:column headerText="Edad">
+                                                    <h:outputText value="18" />
+                
                                                 </p:column>
+                
+                                                <p:column headerText="Ciudad">
+                                                    <h:outputText value="Ibiza" />
+                
+                
+                                                </p:column>
+                
+                                                <p:column headerText="Compañia">
+                                                    <h:outputText value="BangBros" />
+                
+                                                </p:column>
+                
                                             </p:dataTable>
-                    
-                          
-                </article>-->
+                                        </h:form>
+                
+                                    </div>
+                        
+                
+                              
+                                                   
+                                    
+                                    
+                                                        
+                                    
+                                    
+                                    
+                                    
+                                                        <h:panelGrid columns="2" cellpadding="7">
+                                                            <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
+                                                            <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
+                                                        </h:panelGrid>
+                                    
+                                                        
+                                    
+                                    
+                                                            <p:dataTable id="table"  value="#{indexController.generateRandomPlan()}" var="plan" lazy="true">
+                                                                <p:column>
+                                                                    <h:outputText value="#{plan.name}" />
+                                                                </p:column>
+                                                            </p:dataTable>
+                                    
+                                          
+                                </article>
+                -->
             </section>
             <section class="section testimonials" id="about">
                 <h2 class="testimonials__title">Qué dicen nuestros clientes?</h2>

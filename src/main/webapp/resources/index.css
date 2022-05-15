@@ -207,9 +207,45 @@ button.ui-button.registerBtn:hover{
     justify-content: center;
     margin-top:2rem;
 }
+.plan-generator{
+    width: 100%;
+}
+.plan-generator-form {
+    max-width: 100%;
+    display: flex;
+    justify-content: space-between;
 
-th.ui-state-default {
-    border-bottom: 1px solid black;
+}
+button.ui-button {
+    background-color: white;
+    color: black;
+
+    /*    width: 100px;*/
+    height: 40px;
+}
+
+input.ui-inputfield {
+    margin-right: 10px !important;
+}
+.plan-visual {
+    margin-top: 2rem;
+    width:100%;
+
+}
+.planTableHeader {
+    padding: 10px;
+    
+}
+.planTable {
+    width: 100%;
+    box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 5px -2px rgba(0,0,0,0.75);
+}
+.planData {
+    margin-top:5px;
+    text-align: center;
+    padding: 10px;
 }
 
 /* TESTIMONIALS */
