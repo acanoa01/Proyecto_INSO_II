@@ -83,14 +83,15 @@ public class IndexController implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "error", "Usuario o contraseña incorrectos"));
             doRedirect("index.xhtml");
         } else {
-            System.out.println("ROL DE USUARIO QUE HA INICIADO SESIÓN: " + checkUser.getRol().getDescription());
-            if (checkUser.getRol().getUserType().equals("A")) {
+            System.out.println("ROL DE USUARIO QUE HA INICIADO SESIÓN: " + checkUser.getRol().getUserType());
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
-                doRedirect("privado/administrador/index.xhtml");
+            if (checkUser.getRol().getUserType().equals("A")) {
+//                doRedirect("privado/administrador/index.xhtml");
             } else {
                 this.client = clientEJB.getClient(checkUser);
+                System.out.println("CLIENTE OBTENIDO: " + this.client.getUser().getUserName());
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("cliente", this.client);
-                doRedirect("privado/cliente/home.xhtml");
+                doRedirect("privado/cliente/index.xhtml");
             }
 
         }
@@ -169,14 +170,18 @@ public class IndexController implements Serializable {
     }
 
     public void verifyLogin() {
-        this.user = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-        if (this.user == null || !(this.user.getRol().getUserType().equals("C"))) {
+        System.out.println("VERIFICANDO SI EL CLIENTE "  + this.client.getClientID() + " HA INICIADO SESIÓN...");
+        
+        if (this.client == null || !(this.client.getUser().getRol().getUserType().equals("C")) || !(this.client.getUser().getRol().getUserType().equals("A"))) {
             doRedirect("index.xhtml");
+        }else{
+            System.out.println("EL CLIENTE "  + this.client.getUser().getUserName() + " HA INICIADO SESIÓN...");
         }
 
     }
 
     private void doRedirect(String url) {
+        System.out.println("URL RECIBIDA: " + url);
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().redirect(url);
