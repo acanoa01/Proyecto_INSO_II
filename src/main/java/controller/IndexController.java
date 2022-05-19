@@ -86,7 +86,7 @@ public class IndexController implements Serializable {
             System.out.println("ROL DE USUARIO QUE HA INICIADO SESIÓN: " + checkUser.getRol().getUserType());
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
             if (checkUser.getRol().getUserType().equals("A")) {
-//                doRedirect("privado/administrador/index.xhtml");
+                doRedirect("privado/administrador/index.xhtml");
             } else {
                 this.client = clientEJB.getClient(checkUser);
                 System.out.println("CLIENTE OBTENIDO: " + this.client.getUser().getUserName());

@@ -10,6 +10,8 @@ import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 import modelo.Admin;
 import modelo.Client;
 import modelo.Plan;
@@ -19,6 +21,9 @@ import modelo.User;
  *
  * @author Alberto
  */
+@Named
+@ViewScoped
+
 public class AdminController implements Serializable {
 
     private Admin admin;
@@ -26,6 +31,7 @@ public class AdminController implements Serializable {
 
     @EJB
     private AdminFacadeLocal adminEJB;
+
 
     @PostConstruct
     public void init() {
@@ -56,4 +62,5 @@ public class AdminController implements Serializable {
         this.user = user;
     }
 
+    
 }
