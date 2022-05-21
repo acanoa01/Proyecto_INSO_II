@@ -10,6 +10,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="adminTemplate.css" />
         <title>Facelets Template</title>
+        <f:metadata>
+            <f:event listener="#{adminController.verifyLoginAdmin()}" type="preRenderView"></f:event>
+        </f:metadata>
 
     </h:head>
 
@@ -54,14 +57,18 @@
                     </nav>
                     <footer class="profile">
                         <span class="profile__title">PERFIL</span>
-                        <img />
-                        <div class="profile_content">
-                            <span>#{adminController.user.name}</span>
+                        <div class="profile-container">
+                            <img class="profile__img" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile image"/>
+                            <div class="profile-content">
+                                <span class="profile-content__title">#{adminController.user.name}</span>
+                                <span class="profile-content__subtitle">Administrador</span>
+                            </div>
+
                         </div>
                         <h:form>
 
                             <h:panelGrid columns="2" cellpadding="7">
-                                <p:commandButton value="Cerrar Sesión" icon="pi pi-user"  styleClass="ui-button-times"/>
+                                <p:commandButton value="Cerrar Sesión" action="#{adminController.cerrarSesion()}" icon="pi pi-user"  styleClass="ui-button-times"/>
                             </h:panelGrid>
 
                         </h:form>
@@ -70,8 +77,10 @@
                 </aside>
             </ui:insert>
         </div>
-        <div id="content" class="left_content">
-            <ui:insert name="content"></ui:insert>
+        <div id="content" class="admin-content">
+            <ui:insert name="content">
+                
+            </ui:insert>
         </div>
 
     </h:body>

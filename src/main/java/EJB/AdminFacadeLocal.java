@@ -8,6 +8,7 @@ package EJB;
 import java.util.List;
 import javax.ejb.Local;
 import modelo.Admin;
+import modelo.User;
 
 /**
  *
@@ -29,5 +30,7 @@ public interface AdminFacadeLocal {
     List<Admin> findRange(int[] range);
 
     int count();
+    
+    Admin getAdmin(User user);
     
 }

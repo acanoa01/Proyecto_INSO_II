@@ -107,7 +107,7 @@ public class CreatePlanController implements Serializable{
         }else{
             try{
                 sleep(2000);
-            }catch(Exception e){
+            }catch(InterruptedException e){
             }
             return plan.getImage();
         }

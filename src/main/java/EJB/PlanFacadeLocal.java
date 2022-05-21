@@ -30,4 +30,6 @@ public interface PlanFacadeLocal {
 
     int count();
     
+    void validatePlan(Plan plan);
+    
 }

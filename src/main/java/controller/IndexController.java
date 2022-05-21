@@ -5,10 +5,12 @@
  */
 package controller;
 
+import EJB.AdminFacadeLocal;
 import EJB.ClientFacadeLocal;
 import EJB.PlanFacadeLocal;
 import EJB.RolFacadeLocal;
 import EJB.UserFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
@@ -48,6 +50,9 @@ public class IndexController implements Serializable {
 
     @EJB
     private ClientFacadeLocal clientEJB;
+    
+    @EJB
+    private AdminFacadeLocal adminEJB;
 
     @EJB
     private RolFacadeLocal rolEJB;
@@ -86,6 +91,9 @@ public class IndexController implements Serializable {
             System.out.println("ROL DE USUARIO QUE HA INICIADO SESIÓN: " + checkUser.getRol().getUserType());
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", checkUser);
             if (checkUser.getRol().getUserType().equals("A")) {
+                this.admin = adminEJB.getAdmin(checkUser);
+                System.out.println("ADMINISTRADOR OBTENIDO: " + this.admin.getUser().getUserName());
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("admin", this.admin);
                 doRedirect("privado/administrador/index.xhtml");
             } else {
                 this.client = clientEJB.getClient(checkUser);
@@ -172,7 +180,7 @@ public class IndexController implements Serializable {
     public void verifyLogin() {
         System.out.println("VERIFICANDO SI EL CLIENTE "  + this.client.getClientID() + " HA INICIADO SESIÓN...");
         
-        if (this.client == null || !(this.client.getUser().getRol().getUserType().equals("C")) || !(this.client.getUser().getRol().getUserType().equals("A"))) {
+        if (this.client == null || !(this.client.getUser().getRol().getUserType().equals("C")) ) {
             doRedirect("index.xhtml");
         }else{
             System.out.println("EL CLIENTE "  + this.client.getUser().getUserName() + " HA INICIADO SESIÓN...");
@@ -180,12 +188,13 @@ public class IndexController implements Serializable {
 
     }
 
+
     private void doRedirect(String url) {
         System.out.println("URL RECIBIDA: " + url);
         try {
             FacesContext fc = FacesContext.getCurrentInstance();
             fc.getExternalContext().redirect(url);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -198,5 +207,7 @@ public class IndexController implements Serializable {
         this.plan = randomPlan.get(randomNumber);
 
     }
+    
+    
 
 }
