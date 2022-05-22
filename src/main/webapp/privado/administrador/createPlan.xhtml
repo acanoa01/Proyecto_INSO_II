@@ -7,27 +7,18 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
-        <title>Crear Plan</title>
-        <style>
-            #createPlanForm{
-                padding:20px;
-                float: left;
-                width: 50%;
-            }
-            #createPlanView {
-                float: left;
-                width: 50%;
-            }
-        </style>
+        <title>Planazzo Dashboard | crear plan</title>
+
     </h:head>
     <h:body>
-
+        <!--TODO: QUITAR PROPIEDADES HARDCODEADAS -->    
         <ui:composition template="./../../WEB-INF/template/adminTemplate.xhtml">
 
             <ui:define name="content">
-                
-                <div id="createPlanForm">
-                    <h:form>
+
+                <section class="create-plan">
+                    <span class="create-plan__title">CREAR PLAN</span>
+                    <h:form class="plan-form">
                         <p:messages id="messages" showDetail="true" closable="true">
                             <p:autoUpdate/>
                         </p:messages>            
@@ -46,6 +37,7 @@
                             </h:panelGrid>
                         </p:fieldset>
                         <p:divider layout="horizontal"/>
+
                         <p:fieldset legend="Características">
                             <h:panelGrid id="grid2" columns="3" cellpadding="10">
 
@@ -100,24 +92,31 @@
 
                         </p:fieldset>
                     </h:form>
-                </div>
-                <div id="createPlanView" style="margin-bottom:20px">
-                    <h1>Previsualización</h1>
-                    <h2 id='planName'>Nombre</h2>
-                    <div id='planI' style="float:left;width:50%">
-                        <img src="./placeholder.png"  width="400" />
-                    </div>
-                    <div id='planD' style="float:left;width:50%">
-                        <p id='planDescription'>Por la sierra</p>
-                    </div>
+                </section>
+                <section class="view-plan">
+                    <span class="view-plan__title">PREVISUALIZACIÓN</span>
+                    <article class="view-plan-card">
+                        <header class="view-plan-card-header">
+                            <span class="view-plan-card-header__title">Ciudad</span>
+                        </header>
+                        <img src="https://www.clubvillamar.com/blog/wp-content/uploads/2018/01/shutterstock_639796432-3.jpg" class="view-plan-card__img"/>
+                        
+                        <footer class="view-plan-card-footer">
+                            <div class="view-plan-card-footer-info">
+                                <span>Edad</span>
+                                <span>Compañia</span>
+                                <span>Precio</span>
+                                <span>Tipo</span>
+                            </div>
+                            <div class="view-plan-card-footer-info">
+                                <span class="view-plan-card__title">#{createPlanController.plan.name} Nombre</span>
+                                <span class="view-plan-card__description">#{createPlanController.plan.description} Descripción</span>
+                            </div>
+                        </footer>
+                    </article>
 
 
-                </div>
-                <div style="padding-top:20px;padding-bottom:20px">Ubicación: León</div>
-                <span  style="padding-right:20px"><b>Tipo:</b><span>En casa</span></span>
-                <span  style="padding-right:20px"><b>Precio:</b><span>€</span></span>
-                <span  style="padding-right:20px"><b>Edad:</b><span>3-12 años</span></span>
-                <span  style="padding-right:20px"><b>Compañía:</b><span>En familia</span></span>
+                </section>
             </ui:define>
 
         </ui:composition>

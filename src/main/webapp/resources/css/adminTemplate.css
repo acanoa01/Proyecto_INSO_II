@@ -17,6 +17,10 @@ body {
 .left-container {
     display: flex;
 }
+
+.admin-content {
+    width: 100%;
+}
 .dashboard-navigation {
     height: 100vh;
     padding: 10px;
@@ -27,7 +31,7 @@ body {
     align-items: center;
     position: relative;
     width: 15em;
-    
+
 }
 
 
@@ -41,7 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     margin-top: 4rem;
-      width: 100%;
+    width: 100%;
 }
 
 .menu__title, .profile__title{
@@ -64,11 +68,6 @@ body {
 
 }
 
-.menu__list{
-
-}
-
-
 .menu__link {
     margin-bottom: 2rem;
     list-style: none;
@@ -84,7 +83,7 @@ body {
     text-decoration: none;
 }
 
-.menu__link:hover {
+.menu__link:hover{
     background-color: gray;
 }
 
@@ -122,11 +121,93 @@ body {
 }
 
 .admin-content {
-/*    background-color: red;*/
+    /*    background-color: red;*/
     display: flex;
     justify-content: center;
 }
 
 .ui-paginator-top{
     display: none;
+}
+
+
+/* CREATE PLAN STYLES */
+.create-plan, .view-plan {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-plan__title, .view-plan__title {
+    font-size: larger;
+    position: relative;
+}
+
+.create-plan__title::before, .view-plan__title::before{
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 291px;
+    top: 11px;
+    left: -295px;
+    background-color: black;
+}
+
+.create-plan__title::after, .view-plan__title::after{
+    position: absolute;
+    content: "";
+    height: 2px;
+    top: 11px;
+
+    background-color: black;
+}
+.create-plan__title::after {
+    width: 291px;
+    left: 115px;
+}
+.view-plan__title::after {
+    width: 275px;
+    left: 174px;
+}
+
+.plan-form {
+
+    border-radius: 12px;
+}
+
+body .ui-fieldset {
+    border: 1px solid #c6cfd9;
+    background: #ffffff;
+    color: #495057;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* VIEW PLAN CARD STYLES */
+.view-plan-card {
+    border: 2px solid #e3e1e1;
+    border-radius: 11px 11px 11px 11px;
+    padding: 5px;
+}
+
+.view-plan-card-header__title{
+    font-size: 2em;
+}
+.view-plan-card__img{
+    width: 100%;
+    padding: 10px;
+}
+
+.view-plan-card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-plan-card-footer-info {
+    display: flex;
+    flex-direction: column;
 }
