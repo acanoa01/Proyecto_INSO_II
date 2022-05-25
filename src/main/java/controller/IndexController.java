@@ -188,7 +188,6 @@ public class IndexController implements Serializable {
 
     }
 
-
     private void doRedirect(String url) {
         System.out.println("URL RECIBIDA: " + url);
         try {
@@ -202,9 +201,10 @@ public class IndexController implements Serializable {
     public void generateRandomPlan() {
         List<Plan> randomPlan = planEJB.findAll();
         Random random = new Random();
-        int randomNumber = random.nextInt(randomPlan.size());
-
-        this.plan = randomPlan.get(randomNumber);
+        if(!randomPlan.isEmpty()) {
+            int randomNumber = random.nextInt(randomPlan.size());
+            this.plan = randomPlan.get(randomNumber);
+        }
 
     }
     

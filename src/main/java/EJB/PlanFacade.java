@@ -49,4 +49,16 @@ public class PlanFacade extends AbstractFacade<Plan> implements PlanFacadeLocal 
 
     }
     
+    @Override
+    public List<Plan> getPlanesPopulares(){
+        
+        String consultaPlan = "FROM Plan p WHERE p.verified=1 order by p.likes desc";
+        Query queryCliente = em.createQuery(consultaPlan);
+
+        queryCliente.setMaxResults(5);
+        
+        List<Plan> plans = queryCliente.getResultList();
+        return plans;
+    }
+    
 }

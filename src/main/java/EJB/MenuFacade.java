@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Menu;
+import modelo.Rol;
 import modelo.User;
 
 /**
@@ -44,4 +45,19 @@ public class MenuFacade extends AbstractFacade<Menu> implements MenuFacadeLocal 
 
         return(menus);
     }
+    
+    @Override
+    public List<Menu> obtenerMenusUsuariosNoRegistrado(){
+        Rol rol = new Rol();
+        rol.setRolID(1);
+        String consulta = "FROM Menu m WHERE m.rol=:param1";
+        Query query = em.createQuery(consulta);
+
+        query.setParameter("param1", rol);
+
+        List<Menu> menus = query.getResultList();
+
+        return(menus);
+    }
+    
 }

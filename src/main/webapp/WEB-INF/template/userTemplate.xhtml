@@ -8,39 +8,23 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="template.css" />
-        <title>Facelets Template</title>
-        <f:metadata>
-            <f:event listener="#{indexController.verifyLogin()}" type="preRenderView"></f:event>
-        </f:metadata>
+        
     </h:head>
 
     <h:body>
-
-
-        <div id="top" class="top">
             <ui:insert name="top">
-                <header class="header">
-                    <span class="header__logo">Planazzo</span>
-
-                    <div class="header__intro"><span>Bienvenido #{homeController.user.name}!</span></div>
-                    <div class="header__logout">
-                        <h:form>
-                            <p:commandButton value="Cerrar sesión"  ajax="false" actionListener="#{homeController.cerrarSesion()}"/> 
-                        </h:form>
-                    </div>
-                </header>
-
-            </ui:insert>
-        </div>
-        <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
-            <div id="content" class="left_content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
-        </div>
+                <h:form>
+                    <h:commandLink action="/faces/privado/cliente/index.xhtml">
+                        <p:graphicImage name="logo.png" library="images" width="130px" style="margin-top:20px;margin-right: 75px;margin-left:30px; float: left"/>
+                    </h:commandLink>
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:menubar model="#{menuController.obtenerMenu()}" style="position: inherit;top:0px;left:150px;padding-top: 20px;padding-right:50px">
+                        <f:facet name="options">
+                            <p:commandButton id="cerrarSesion" value="Cerrar sesion" action="#{menuController.cerrarSesion()}" style="min-width: 150px" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+            </ui:insert>  
     </h:body>
 
 </html>

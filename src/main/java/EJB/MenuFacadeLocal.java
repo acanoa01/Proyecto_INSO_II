@@ -32,4 +32,7 @@ public interface MenuFacadeLocal {
     int count();
     
     List<Menu> obtenerMenusUsuarios(User us);
+    
+    List<Menu> obtenerMenusUsuariosNoRegistrado();
+    
 }

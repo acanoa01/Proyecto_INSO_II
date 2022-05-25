@@ -6,28 +6,23 @@
     <h:head>
         <title>Planazzo</title>
         <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
-        <h:outputStylesheet name="index.css" />
+        <h:outputStylesheet name="index.css" library="css"/>
 
     </h:head>
     <h:body>
         <div class="wrapper">
-            <header class="header">
-                <span class="header__logo">Planazzo</span>
-                <nav class="header-nav">
-                    <ul class="header-nav__list">
-                        <li class="header-nav__item"><a href="#home">Inicio</a></li>
-                        <li class="header-nav__item"><a href="#about">Sobre nosotros</a></li>
-                        <li class="header-nav__item"><a href="#contacto">Contacto</a></li>
-
-                    </ul>
-                </nav>
                 <h:form>
-                    <h:panelGrid columns="2">
-                        <p:commandButton value="Login" type="button" onclick="PF('login').show();" class="loginBtn"/>
-                        <p:commandButton value="Registro" type="button" onclick="PF('register').show();" class="registerBtn"/>
-                    </h:panelGrid>
+                    <h:commandLink action="/faces/privado/cliente/index.xhtml">
+                        <p:graphicImage name="logo.png" library="images" width="130px" style="margin-top:20px;margin-right: 75px;margin-left:30px; float: left"/>
+                    </h:commandLink>
+                    <p:growl id="messages" showDetail="true"/>
+                    <p:menubar model="#{menuController.obtenerMenu()}" style="position: inherit;top:0px;left:150px;padding-top: 20px;padding-right:50px">
+                        <f:facet name="options">
+                            <p:commandButton value="Login" type="button" onclick="PF('login').show();" class="loginBtn" style="min-width: 100px"/>
+                            <p:commandButton value="Registro" type="button" onclick="PF('register').show();" class="registerBtn" style="min-width: 100px"/>                        </f:facet>
+                    </p:menubar>
                 </h:form>
-            </header>
+
 
             <section class="slider" id="home">
                 <div class="slide-track">
@@ -96,7 +91,7 @@
 
                     </h:form>
                 </article>
-                <article class="plan-visual" id="visual"  >
+                <article class="plan-visual" id="plan"  >
                     <h:dataTable value="#{indexController.plan}" var="plan" id="outputMessage" 
                                  headerClass="planTableHeader"
                                  styleClass = "planTable"

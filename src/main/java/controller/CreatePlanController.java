@@ -63,16 +63,21 @@ public class CreatePlanController implements Serializable{
         this.plan = plan;
     }
     
-    public String insertPlan(){
+    public void insertPlan()throws Exception{
         this.client = (Client)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente");
         if(this.client != null){
             this.plan.setVerified(false);
             this.plan.setClient(this.client);
-            planEJB.create(plan);
+            if(this.plan.getImage() == null){
+                this.plan.setImage("placeHolder.png");
+            }
+            planEJB.create(plan);     
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/planazzo/faces/privado/cliente/index.xhtml");
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "PLAN CREADO CORRECTAMENTE"));
-            return "faces/createPlan.xhtml";
         }else{
-            return "faces/.";
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/planazzo/faces/index.xhtml");
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error, el usuario no esta registrado"));
+
         }
         
     }

@@ -1,4 +1,3 @@
-controller\HomeController.class
 modelo\Menu.class
 modelo\User.class
 EJB\AbstractFacade.class

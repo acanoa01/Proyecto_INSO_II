@@ -49,7 +49,10 @@ public class Menu implements Serializable{
     
     @Column(name="Url")
     private String url;
-
+    
+    @Column(name="Icon")
+    private String icon;
+    
     public int getMenuID() {
         return menuID;
     }
@@ -106,16 +109,25 @@ public class Menu implements Serializable{
         this.url = url;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.menuID;
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.type);
-        hash = 97 * hash + Objects.hashCode(this.state);
-        hash = 97 * hash + Objects.hashCode(this.rol);
-        hash = 97 * hash + Objects.hashCode(this.menu);
-        hash = 97 * hash + Objects.hashCode(this.url);
+        int hash = 7;
+        hash = 53 * hash + this.menuID;
+        hash = 53 * hash + Objects.hashCode(this.name);
+        hash = 53 * hash + Objects.hashCode(this.type);
+        hash = 53 * hash + Objects.hashCode(this.state);
+        hash = 53 * hash + Objects.hashCode(this.rol);
+        hash = 53 * hash + Objects.hashCode(this.menu);
+        hash = 53 * hash + Objects.hashCode(this.url);
+        hash = 53 * hash + Objects.hashCode(this.icon);
         return hash;
     }
 
@@ -143,6 +155,9 @@ public class Menu implements Serializable{
         if (!Objects.equals(this.url, other.url)) {
             return false;
         }
+        if (!Objects.equals(this.icon, other.icon)) {
+            return false;
+        }
         if (!Objects.equals(this.state, other.state)) {
             return false;
         }
@@ -154,6 +169,8 @@ public class Menu implements Serializable{
         }
         return true;
     }
+
+    
 
     
     
