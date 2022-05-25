@@ -8,10 +8,10 @@
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet library="css" name="template.css" />
-        <title>Facelets Template</title>
+        <h:outputStylesheet library="css" name="clientTemplate.css" />
+        <title>Planazzo | Home</title>
         <f:metadata>
-            <f:event listener="#{indexController.verifyLogin()}" type="preRenderView"></f:event>
+            <f:event listener="#{clientController.verifyLogin()}" type="preRenderView"></f:event>
         </f:metadata>
     </h:head>
 
@@ -23,10 +23,18 @@
                 <header class="header">
                     <span class="header__logo">Planazzo</span>
 
-                    <div class="header__intro"><span>Bienvenido #{homeController.user.name}!</span></div>
-                    <div class="header__logout">
+                    <div class="header__intro"><span>Bienvenido #{clientController.user.name}!</span></div>
+                    <div class="header__profile">
+                        <img src="https://sm.askmen.com/t/askmen_in/article/f/facebook-p/facebook-profile-picture-affects-chances-of-gettin_fr3n.1200.jpg" width="100px" />
                         <h:form>
-                            <p:commandButton value="Cerrar sesión"  ajax="false" actionListener="#{homeController.cerrarSesion()}"/> 
+                            <p:growl id="messages" showDetail="true"/>
+                            <p:contextMenu>
+                                <p:menuitem value="Save"  update="messages" icon="pi pi-save"/>
+                                <p:menuitem value="Update"  update="messages" icon="pi pi-refresh"/>
+                                <p:menuitem value="Delete"  ajax="false" icon="pi pi-times"/>
+                                <p:menuitem value="Homepage" url="https://www.primefaces.org" icon="pi pi-home"/>
+                            </p:contextMenu>
+                            <p:commandButton value="Cerrar sesión"  ajax="false" actionListener="#{clientController.cerrarSesion()}"/> 
                         </h:form>
                     </div>
                 </header>
@@ -34,9 +42,7 @@
             </ui:insert>
         </div>
         <div>
-            <div id="left">
-                <ui:insert name="left">Left</ui:insert>
-            </div>
+
             <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>

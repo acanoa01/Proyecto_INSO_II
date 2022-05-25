@@ -160,34 +160,6 @@ public class IndexController implements Serializable {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
-    public String moveToIndexAdmin() {
-        return "indexAdmin";
-    }
-
-    public String moveToCrearPlan() {
-        return "createPlanAdmin";
-    }
-
-    public String moveToAdmin() {
-        System.out.println("menuda mierda");
-        return "privado/administrador/createPlan";
-    }
-
-    public String moveToIndex() {
-        return "index";
-    }
-
-    public void verifyLogin() {
-        System.out.println("VERIFICANDO SI EL CLIENTE "  + this.client.getClientID() + " HA INICIADO SESIÓN...");
-        
-        if (this.client == null || !(this.client.getUser().getRol().getUserType().equals("C")) ) {
-            doRedirect("index.xhtml");
-        }else{
-            System.out.println("EL CLIENTE "  + this.client.getUser().getUserName() + " HA INICIADO SESIÓN...");
-        }
-
-    }
-
 
     private void doRedirect(String url) {
         System.out.println("URL RECIBIDA: " + url);

@@ -40,6 +40,7 @@ import org.primefaces.shaded.commons.io.FilenameUtils;
 public class CreatePlanController implements Serializable{
     private Plan plan;
     private Client client;
+    
 
     
     @EJB
