@@ -33,4 +33,6 @@ public interface PlanFacadeLocal {
     void validatePlan(Plan plan);
     
     List<Plan> getPlanesPopulares();
+    
+    Plan getRandomPlan(Plan plan);
 }

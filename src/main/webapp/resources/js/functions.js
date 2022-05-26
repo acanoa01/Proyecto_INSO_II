@@ -15,3 +15,12 @@ function actualizar(){
     document.getElementById("planPrecio").innerHTML  = document.getElementById("form:price").value;
     
 }
+
+function showPlan(){
+    if(document.getElementById("planName").innerHTML !== ""){
+            document.getElementById("planSho").style.display = "block";
+
+    }else{
+        document.getElementById("planSho").style.display = "none";
+    }
+}

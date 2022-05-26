@@ -12,6 +12,7 @@ import EJB.RolFacadeLocal;
 import EJB.UserFacadeLocal;
 import java.io.IOException;
 import java.io.Serializable;
+import static java.lang.Thread.sleep;
 import java.util.List;
 import java.util.Random;
 import javax.annotation.PostConstruct;
@@ -44,7 +45,8 @@ public class IndexController implements Serializable {
     private List<Rol> roles;
 
     private Plan plan;
-
+    private Plan randomPlan;
+    
     @EJB
     private UserFacadeLocal userEJB;
 
@@ -155,7 +157,15 @@ public class IndexController implements Serializable {
     public void setPlan(Plan plan) {
         this.plan = plan;
     }
+  
+    public Plan getRandomPlan() {
+        return randomPlan;
+    }
 
+    public void setRandomPlan(Plan plan) {
+        this.randomPlan = plan;
+    }
+    
     private String hashPassword(String plainTextPassword) {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
@@ -198,16 +208,26 @@ public class IndexController implements Serializable {
         }
     }
 
-    public void generateRandomPlan() {
-        List<Plan> randomPlan = planEJB.findAll();
-        Random random = new Random();
-        if(!randomPlan.isEmpty()) {
-            int randomNumber = random.nextInt(randomPlan.size());
-            this.plan = randomPlan.get(randomNumber);
+    public void searchRandomPlan() {
+        if(this.plan != null && this.plan.getCity() != null){
+            this.plan.setCity(this.plan.getCity().toUpperCase());
         }
-
+        this.randomPlan = planEJB.getRandomPlan(this.plan);
+        if(this.randomPlan == null){
+            FacesContext.getCurrentInstance().addMessage("planMsg", new FacesMessage(FacesMessage.SEVERITY_INFO, "Lo sentimos, no hemos encontrado ningun plan para ti =(", ""));
+        }
     }
     
-    
+    public String getImage(){
+        
+        if(randomPlan == null){
+            return "placeHolder.png";
+        }else{
+            return randomPlan.getImage();
+        }
+    }
 
+    public void aceptarPlan(){
+        
+    }
 }

@@ -6,8 +6,9 @@
 
     <h:head>
         <title>Planazzo</title>
-        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
+        
         <h:outputStylesheet name="index.css" library="css"/>
+        <h:outputScript name="functions.js" library="js"/>
         <style type="text/css">
             .product-item .product-item-content {
                 border: 1px solid var(--surface-d);
@@ -22,13 +23,21 @@
                 box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
             }
             
-            
+            .selectOne{
+                min-width: 150px;
+                min-height: 30px;
+                font-size: 20px;
+                margin-left:20px;
+                margin-right: 30px;
+             }
         </style>
     </h:head>
     <h:body>
         <div class="wrapper">
             <ui:include src="../../WEB-INF/template/userTemplate.xhtml"></ui:include>
-
+            <p:growl id="growl" showDetail="true" life="3000">
+                <p:autoUpdate />
+            </p:growl>
             <section class="slider" id="home" style="z-index: 1">
                 <div class="slide-track">
                     <div class="slide">
@@ -52,6 +61,7 @@
             </section>
             <section  style="">
                 <div class="card">
+                    <h:form>
                     <p:carousel value="#{carouselController.plans}" var="plan" circular="true" autoplayInterval="6000"
                                 responsiveOptions="#{carouselController.responsiveOptions}" numVisible="4" numScroll="1">
                         <f:facet name="header">
@@ -80,153 +90,93 @@
                                 </div>
                             </div>
                         </div>
-                    </p:carousel>
+                    </p:carousel></h:form>
                 </div>
             </section>
-            <section class="section plan">
-                <h2 class="plan__title">Nuestros últimos planazos!</h2>
-                <p class="plan__description">Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!</p>
-                <article class="plan-trending"></article>
-                <article class="plan-generator">
-                    <h4>Busca Aqui Planes a tu Gusto</h4>
+            <section class="section plan" id="plan" style="background-color: grey">
+                <h2 class="plan__title">Obten tu plan aleatorio</h2>
+                <p class="plan__description">¡Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!</p>
+        
+                <article class="plan-generator" style="margin-top:30px;">
+                    
                     <h:form class="plan-generator-form">
                         <div>
-                        <p:inputText id="Tipo" type="text" style="margin-right: 10px;" placeholder="Tipo" />
-                        <p:tooltip for="Tipo" value="Introduce el tipo de plan que buscas" position="top"/>
-                        <p:inputText id="Edad" style="margin-right:  10px;" type="text" placeholder="Edad" />
-                        <p:tooltip for="Edad" value="Introduce tu edad" position="top"/>
-                        <p:inputText id="Ciudad" type="text" style="margin-right: 10px;" placeholder="Ciudad" />
-                        <p:tooltip for="Ciudad" value="Introduce la Ciudad" position="top"/>
-                        <p:inputText id="Compañia" type="text" style="margin-right: 575px;" placeholder="Compañia" />
-                        <p:tooltip for="Compañia" value="Introduce la compañia" position="top"/>
-                            
-                        </div>
-                        <div>
-                            <p:commandButton  value="Buscar" action="{messagesView.warn}" styleClass="rounded-button" />
-                            <p:commandButton value="Generar" id="inputName" action="#{indexController.generateRandomPlan()}" styleClass="rounded-button">
-                                <f:ajax execute = "inputName" render = "outputMessage"  />
-                            </p:commandButton>
+                        <p:tooltip for="city" value="Introduce la Ciudad" position="top"/>
+                        <p:inputText id="city" maxlength="30" size="30" placeholder="¿Dónde?" required="true"  requiredMessage="Lugar obligatorio" value="#{indexController.plan.city}" style="margin-left:100px"/>
 
-                        </div>
+                        <p:tooltip for="type" value="Selecciona el tipo de plan que buscas" position="top"/>
+                        <h:selectOneMenu id="type" class="selectOne" value="#{indexController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3" >
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En casa" itemValue="En casa"/>
+                            <f:selectItem itemLabel="Gastronómico" itemValue="Gastronómico"/>
+                            <f:selectItem itemLabel="Fiesta" itemValue="Fiesta"/>
+                            <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                        </h:selectOneMenu>
 
+                        <p:tooltip for="price" value="Selecciona el precio" position="top"/>
+                        <h:selectOneMenu id="price" class="selectOne" value="#{indexController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="€" itemValue="€"/>
+                            <f:selectItem itemLabel="€€" itemValue="€€"/>
+                            <f:selectItem itemLabel="€€€" itemValue="€€€"/>
+                            <f:selectItem itemLabel="€€€€" itemValue="€€€€"/>
+                        </h:selectOneMenu>
+
+                        <p:tooltip for="age" value="Selecciona tu edad" position="top"/>
+                        <h:selectOneMenu id="age" class="selectOne" value="#{indexController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="3-12 años" itemValue="3-12 años"/>
+                            <f:selectItem itemLabel="12-17 años" itemValue="12-17 años"/>
+                            <f:selectItem itemLabel="18-24 años" itemValue="18-24 años"/>
+                            <f:selectItem itemLabel="24-35 años" itemValue="24-35 años"/>
+                            <f:selectItem itemLabel="35-60 años" itemValue="35-60 años"/>
+                            <f:selectItem itemLabel="60-70 años" itemValue="60-70 años"/>
+                        </h:selectOneMenu>
+
+                        <p:tooltip for="companion" value="Selecciona la compañia" position="top"/>
+                        <h:selectOneMenu id="companion" class="selectOne" value="#{indexController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En familia" itemValue="En familia"/>
+                            <f:selectItem itemLabel="Con amigos" itemValue="Con amigos"/>
+                            <f:selectItem itemLabel="Solo" itemValue="Solo"/>
+                            <f:selectItem itemLabel="En pareja" itemValue="En pareja"/>
+                        </h:selectOneMenu>
+                        <span style="padding-left:50px">
+                            <p:commandButton value="Buscar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" styleClass="rounded-button" />
+                        </span>
+                         
+                        </div>
                     </h:form>
                 </article>
-                <article class="plan-visual" id="plan"  >
-                    <h:dataTable value="#{indexController.plan}" var="plan" id="outputMessage" 
-                                 headerClass="planTableHeader"
-                                 styleClass = "planTable"
-                                 rowClasses = "planData"
-                                 >
-                        <h:column>
+                <article id="planView" >
+                    <h:form id="formm">
+                        <p:messages for="planMsg" style=" min-width: 600px"/>
+                        <div id="planSho">
+                            <div id="createPlanView">
+                                <h2 id="planName" style="padding-bottom:15px;">#{indexController.randomPlan.name}</h2>
+                                <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{indexController.getImage()}"/>
+                            </div>
+                            <div style="float:left;width:50%">
+                                <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px">#{indexController.randomPlan.description}</p>
 
-                            <f:facet name="header" rendered="false" >Nombre</f:facet>
-                                #{indexController.plan.name}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Descripción</f:facet>
-                                #{indexController.plan.description}
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Tipo</f:facet>
-                                #{indexController.plan.type}
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Precio</f:facet>
-                                #{indexController.plan.price}
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Ciudad</f:facet>
-                                #{indexController.plan.city}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">Edad</f:facet>
-                                #{indexController.plan.age}
-
-                        </h:column>
-
-                        <h:column>
-                            <f:facet name="header">Compañia</f:facet>
-                                #{indexController.plan.companion}
-                        </h:column>
-                    </h:dataTable>
-                </article>
-
-
-                <!--                    <h:form>
-                                        <h:commandButton value = "Obtener plan aleatorio">
-                                            <f:ajax resetValues="true" render = "outputPlan" />
-                                        </h:commandButton>
-                                    </h:form>
-                                </article>
-                               
-                                <article>
-                                    <div class="plan__trending">
-                                        TODO: Traer de la base de datos
-                                        <h:form>
-                                            <p:dataTable  value="null">
-                                                <f:facet name="header">
-                                                    Nuestros planes más populares
-                                                </f:facet>
-                
-                                                <p:column headerText="Tipo">
-                                                    <h:outputText value="Sexo y drogas" />
-                
-                                                </p:column>                               
-                
-                                                <p:column headerText="Edad">
-                                                    <h:outputText value="18" />
-                
-                                                </p:column>
-                
-                                                <p:column headerText="Ciudad">
-                                                    <h:outputText value="Ibiza" />
-                
-                
-                                                </p:column>
-                
-                                                <p:column headerText="Compañia">
-                                                    <h:outputText value="BangBros" />
-                
-                                                </p:column>
-                
-                                            </p:dataTable>
-                                        </h:form>
-                
-                                    </div>
+                            </div>
+                            <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{indexController.randomPlan.city}</div>
+                            <span  style="padding-right:20px"><b>Tipo: </b>#{indexController.randomPlan.type}</span>
+                            <span  style="padding-right:20px"><b>Precio: </b>#{indexController.randomPlan.price}</span>
+                            <span  style="padding-right:20px"><b>Edad: </b>#{indexController.randomPlan.age}</span>
+                            <span  style="padding-right:20px"><b>Compañía: </b>#{indexController.randomPlan.companion}</span>
+                            <script>showPlan();</script>
+                            <div style="text-aling_left">
+                                <p:commandButton value="Aceptar" onclick="showPlan()" action="#{indexController.aceptarPlan}" styleClass="rounded-button ui-button-success" />
+                                <p:commandButton value="Rechazar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" style="margin:40px;" styleClass="rounded-button ui-button-danger" />
+                            </div>
+                        </div>
                         
-                
-                              
-                                                   
-                                    
-                                    
-                                                        
-                                    
-                                    
-                                    
-                                    
-                                                        <h:panelGrid columns="2" cellpadding="7">
-                                                            <p:button value="Aceptar" styleClass="rounded-button ui-button-success" />
-                                                            <p:button value="Rechazar" styleClass="rounded-button ui-button-danger" />
-                                                        </h:panelGrid>
-                                    
-                                                        
-                                    
-                                    
-                                                            <p:dataTable id="table"  value="#{indexController.generateRandomPlan()}" var="plan" lazy="true">
-                                                                <p:column>
-                                                                    <h:outputText value="#{plan.name}" />
-                                                                </p:column>
-                                                            </p:dataTable>
-                                    
-                                          
-                                </article>
-                -->
+                    </h:form>
+                </article>
             </section>
             <section class="section testimonials" id="about">
-                <h2 class="testimonials__title">Qué dicen nuestros clientes?</h2>
+                
                 <p class="testimonials__description">Algunos testimonios de aquellos que han usado nuestros servicios</p>
 
                 <section class="testimonials-cards">

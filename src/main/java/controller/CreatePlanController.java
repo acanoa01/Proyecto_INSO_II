@@ -67,6 +67,7 @@ public class CreatePlanController implements Serializable{
         this.client = (Client)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente");
         if(this.client != null){
             this.plan.setVerified(false);
+            this.plan.setCity(this.plan.getCity().toUpperCase());
             this.plan.setClient(this.client);
             if(this.plan.getImage() == null){
                 this.plan.setImage("placeHolder.png");
