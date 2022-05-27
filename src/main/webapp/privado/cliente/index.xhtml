@@ -1,0 +1,294 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Planazzo</title>
+        
+        <h:outputStylesheet name="index.css" library="css"/>
+        <h:outputScript name="functions.js" library="js"/>
+        <style type="text/css">
+            .product-item .product-item-content {
+                border: 1px solid var(--surface-d);
+                border-radius: 3px;
+                margin: .3rem;
+                text-align: center;
+                padding: 2rem 0;
+            }
+
+            .product-item .product-image {
+                width: 50%;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+            }
+            
+            .selectOne{
+                min-width: 150px;
+                min-height: 30px;
+                font-size: 20px;
+                margin-left:20px;
+                margin-right: 30px;
+             }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="wrapper">
+            <ui:include src="../../WEB-INF/template/userTemplate.xhtml"></ui:include>
+            <p:growl id="growl" showDetail="true" life="3000">
+                <p:autoUpdate />
+            </p:growl>
+            <section class="slider" id="home" style="z-index: 1">
+                <div class="slide-track">
+                    <div class="slide">
+                        <h:graphicImage value = "https://www.refinery29.com/images/8644007.jpg?crop=40:21" width="100%"/> 
+                    </div> 
+                    <div class="slide">
+                        <h:graphicImage class="carousel__img" value = "http://www.bestdesertsafariindubai.com/blog/wp-content/uploads/2015/04/burj-al-arab-e1574079941869.jpeg"  width="100%"/> 
+                    </div>
+                    <div class="slide">
+                        <h:graphicImage class="carousel__img" value = "http://media2.popsugar-assets.com/files/thumbor/OS81vOwzdZ9NZBYiS8ZPrs4jz5Q=/fit-in/1024x1024/2014/02/17/843/n/1922441/188193e9a2917c8e_thumb_temp_image215902961329390326.jpg" width="100%"/>
+                    </div>
+                    <div class="slide">
+                        <h:graphicImage class="carousel__img" value = "https://www.tourist-destinations.com/wp-content/uploads/2011/06/Malaysia-1024x683.jpg" width="100%"/>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section about" >
+                <h2 class="about__title">¿No sabes qué hacer?</h2>
+                <p class="about__description">Obten un plan aleatorio o descubre nuestros planes más populares.</p>
+            </section>
+            <section  style="">
+                <div class="card">
+                    <h:form>
+                    <p:carousel value="#{carouselController.plans}" var="plan" circular="true" autoplayInterval="6000"
+                                responsiveOptions="#{carouselController.responsiveOptions}" numVisible="4" numScroll="1">
+                        <f:facet name="header">
+                            <h4>Planes populares</h4>
+                        </f:facet>
+
+                        <div class="product-item">
+                            <div class="product-item-content">
+                                <div class="p-mb-3">
+                                    <p:graphicImage library="images" name="#{plan.image}" styleClass="product-image"/>
+                                </div>
+                                <div>
+                                    <h4 class="p-mb-1">#{plan.name}</h4>
+                                    
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px"><b>Ubicación: </b>#{plan.city}</div>
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px">
+                                        <b>Precio </b>#{plan.price}
+                                        <span style="text-align:right;padding-left: 200px;">
+                                            <i  class=" pi pi-thumbs-up">#{plan.likes}</i>
+                                        </span>
+                                    </div>
+                                    <div class="p-mt-5" >
+                                        <p:commandButton id="searchButton" type="button" icon="pi pi-search" styleClass="rounded-button p-mr-2" style="margin-right:20px" />
+                                        <p:commandButton id="likeButton" type="button" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2" style="background-color:red;border-color: white;"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p:carousel></h:form>
+                </div>
+            </section>
+            <section class="section plan" id="plan" style="background-color: grey">
+                <h2 class="plan__title">Obten tu plan aleatorio</h2>
+                <p class="plan__description">¡Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!</p>
+        
+                <article class="plan-generator" style="margin-top:30px;">
+                    
+                    <h:form class="plan-generator-form">
+                        <div>
+                        <p:tooltip for="city" value="Introduce la Ciudad" position="top"/>
+                        <p:inputText id="city" maxlength="30" size="30" placeholder="¿Dónde?" required="true"  requiredMessage="Lugar obligatorio" value="#{indexController.plan.city}" style="margin-left:100px"/>
+
+                        <p:tooltip for="type" value="Selecciona el tipo de plan que buscas" position="top"/>
+                        <h:selectOneMenu id="type" class="selectOne" value="#{indexController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3" >
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En casa" itemValue="En casa"/>
+                            <f:selectItem itemLabel="Gastronómico" itemValue="Gastronómico"/>
+                            <f:selectItem itemLabel="Fiesta" itemValue="Fiesta"/>
+                            <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                        </h:selectOneMenu>
+
+                        <p:tooltip for="price" value="Selecciona el precio" position="top"/>
+                        <h:selectOneMenu id="price" class="selectOne" value="#{indexController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="€" itemValue="€"/>
+                            <f:selectItem itemLabel="€€" itemValue="€€"/>
+                            <f:selectItem itemLabel="€€€" itemValue="€€€"/>
+                            <f:selectItem itemLabel="€€€€" itemValue="€€€€"/>
+                        </h:selectOneMenu>
+
+                        <p:tooltip for="age" value="Selecciona tu edad" position="top"/>
+                        <h:selectOneMenu id="age" class="selectOne" value="#{indexController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="3-12 años" itemValue="3-12 años"/>
+                            <f:selectItem itemLabel="12-17 años" itemValue="12-17 años"/>
+                            <f:selectItem itemLabel="18-24 años" itemValue="18-24 años"/>
+                            <f:selectItem itemLabel="24-35 años" itemValue="24-35 años"/>
+                            <f:selectItem itemLabel="35-60 años" itemValue="35-60 años"/>
+                            <f:selectItem itemLabel="60-70 años" itemValue="60-70 años"/>
+                        </h:selectOneMenu>
+
+                        <p:tooltip for="companion" value="Selecciona la compañia" position="top"/>
+                        <h:selectOneMenu id="companion" class="selectOne" value="#{indexController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En familia" itemValue="En familia"/>
+                            <f:selectItem itemLabel="Con amigos" itemValue="Con amigos"/>
+                            <f:selectItem itemLabel="Solo" itemValue="Solo"/>
+                            <f:selectItem itemLabel="En pareja" itemValue="En pareja"/>
+                        </h:selectOneMenu>
+                        <span style="padding-left:50px">
+                            <p:commandButton value="Buscar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" styleClass="rounded-button" />
+                        </span>
+                         
+                        </div>
+                    </h:form>
+                </article>
+                <article id="planView" >
+                    <h:form id="formm">
+                        <p:messages for="planMsg" style=" min-width: 600px"/>
+                        <div id="planSho">
+                            <div id="createPlanView">
+                                <h2 id="planName" style="padding-bottom:15px;">#{indexController.randomPlan.name}</h2>
+                                <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{indexController.getImage()}"/>
+                            </div>
+                            <div style="float:left;width:50%">
+                                <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px">#{indexController.randomPlan.description}</p>
+
+                            </div>
+                            <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{indexController.randomPlan.city}</div>
+                            <span  style="padding-right:20px"><b>Tipo: </b>#{indexController.randomPlan.type}</span>
+                            <span  style="padding-right:20px"><b>Precio: </b>#{indexController.randomPlan.price}</span>
+                            <span  style="padding-right:20px"><b>Edad: </b>#{indexController.randomPlan.age}</span>
+                            <span  style="padding-right:20px"><b>Compañía: </b>#{indexController.randomPlan.companion}</span>
+                            <script>showPlan();</script>
+                            <div style="text-aling_left">
+                                <p:commandButton value="Aceptar" onclick="showPlan()" action="#{indexController.aceptarPlan}" styleClass="rounded-button ui-button-success" />
+                                <p:commandButton value="Rechazar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" style="margin:40px;" styleClass="rounded-button ui-button-danger" />
+                            </div>
+                        </div>
+                        
+                    </h:form>
+                </article>
+            </section>
+            <section class="section testimonials" id="about">
+                
+                <p class="testimonials__description">Algunos testimonios de aquellos que han usado nuestros servicios</p>
+
+                <section class="testimonials-cards">
+
+                    <article class="testimonials-card ">
+                        <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                        <span class="testimonials-card__title">Theresa Jordan</span>
+                        <span class="testimonials-card__subtitle">Traveler</span>
+
+                        <div class="testimonials__stars">
+                            <a href="" class="fas fa-star s1"></a>
+                            <a href="" class="fas fa-star s2"></a>
+                            <a href="" class="fas fa-star s3"></a>
+                            <a href="" class="fas fa-star s4"></a>
+                            <a href="" class="fas fa-star s5"></a>
+                        </div>
+                        <p class="testimonials-card__description">"Considero que es el mejor servicio de viajes que he probado. Altamente recomendado!</p>
+                    </article>
+
+                    <article class="testimonials-card ">
+                        <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                        <span class="testimonials-card__title">Wade Warren</span>
+                        <span class="testimonials-card__subtitle">Photographer</span>
+
+                        <div class="testimonials__stars">
+                            <a href="" class="fas fa-star s1"></a>
+                            <a href="" class="fas fa-star s2"></a>
+                            <a href="" class="fas fa-star s3"></a>
+                            <a href="" class="fas fa-star s4"></a>
+                            <a href="" class="fas fa-star s5 no-star"></a>
+                        </div>
+                        <p class="testimonials-card__description">
+                            "Gracias a Planazzo ahora puedo complir mi sueño de dar la vuelta al mundo!
+                        </p>
+                    </article>
+
+                    <article class="testimonials-card ">
+                        <img class="testimonials-card__image" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile pic" />
+                        <span class="testimonials-card__title">Jenny Wilson</span>
+                        <span class="testimonials-card__subtitle">Traveler</span>
+
+                        <div class="testimonials__stars">
+                            <a href=""  class="fas fa-star s1"></a>
+                            <a href="" class="fas fa-star s2"></a>
+                            <a href="" class="fas fa-star s3"></a>
+                            <a href="" class="fas fa-star s4"></a>
+                            <a href="" class="fas fa-star s5"></a>
+                        </div>
+                        <p class="testimonials-card__description">
+                            "Planazzo me ayudo mucho a la hora de encontrar destinos interesantes que ni conocía!</p>
+                    </article>
+
+                </section>
+            </section>
+
+            <footer class="section footer" id="contacto">
+                <p>Copyright &#169; 2022 Todos los derechos reservados</p>
+            </footer>
+        </div>
+
+        <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40"> 
+            <h:form>
+
+                <p:panel id="p_panelid">
+
+                    <p:panelGrid columns="2" layout="grid">
+                        <p:outputLabel value="Nombre de usuario"/>
+                        <p:inputText value="#{indexController.user.userName}" required="true"/>
+
+                        <p:outputLabel value="Contraseña"/>
+                        <p:password value="#{indexController.user.password}" required="true"/>
+
+
+                        <p:commandButton value="Acceder"  ajax="false" actionListener="#{indexController.verificarUsuario()}"/>            
+
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+
+        </p:dialog>
+
+        <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60"> 
+            <h:form>
+
+                <p:panel id="p_panelid">
+
+                    <p:panelGrid columns="2" layout="grid">
+                        <p:outputLabel value="Nombre de usuario"/>
+                        <p:inputText value="#{indexController.user.userName}"/>
+
+                        <p:outputLabel value="Correo electrónico"/>
+                        <p:inputText value="#{indexController.user.email}"/>
+
+                        <p:outputLabel value="Contraseña"/>
+                        <p:password value="#{indexController.user.password}"/>
+
+                        <p:outputLabel value="Nombre completo"/>
+                        <p:inputText value="#{indexController.user.name}"/>
+
+                        <p:outputLabel value="Ciudad"/>
+                        <p:inputText value="#{indexController.client.city}"/>
+
+                        <p:outputLabel value="Edad"/>
+                        <p:inputText value="#{indexController.client.age}"/>
+
+                        <p:commandButton value="Crear cuenta" ajax="false" action="#{indexController.insertarUsuario()}"/>            
+
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+
+        </p:dialog>
+    </h:body>
+    <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
+</html>

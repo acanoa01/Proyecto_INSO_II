@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Crear Plan</title>
+        <style>
+            #createPlanForm{
+                padding:20px;
+                float: left;
+                width: 50%;
+            }
+            #createPlanView {
+                float: left;
+                width: 50%;
+            }
+            #preview{
+                padding:20px;
+                float: left;
+                width: 50%;
+                border: 2px solid #000000; 
+                margin-top: 75px;
+              
+            }
+        </style>
+        <h:outputStylesheet library="css" name="template.css" />
+        <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Arvo" />
+        <h:outputScript name="js/functions.js"></h:outputScript>
+    </h:head>
+    <h:body>
+         <ui:include src="../../WEB-INF/template/userTemplate.xhtml"></ui:include>
+        
+        <div id="createPlanForm">
+            <h:form id="form" enctype="multipart/form-data">
+                <p:messages id="messages" for="submitButton" showDetail="true" closable="true" >
+                    <p:autoUpdate/>
+                </p:messages>            
+                <p:fieldset legend="Descripción">
+                    <h:panelGrid id="grid" columns="3" cellpadding="10">
+                        <p:outputLabel for="name" value="Nombre:"/>
+                        <p:inputText id="name" onkeyup="actualizar()" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{createPlanController.plan.name}"/>
+                        <p:message for="name"/>
+
+                        <p:outputLabel for="description" value="Descripción:"/>
+                        <p:inputTextarea id="description" onkeyup="actualizar()" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{createPlanController.plan.description}"/>
+                        <p:message for="description" display="text"/>
+                        <p>Imagen</p>
+                        <p:fileUpload id="image" update="formm:imageID" listener="#{createPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="10000000" skinSimple="true" />
+                        <p:message for="image" display="text"/>
+                    </h:panelGrid>
+                </p:fieldset>
+                <p:fieldset legend="Características">
+                    <h:panelGrid id="grid2" columns="3" cellpadding="10">
+
+
+                        <p:outputLabel for="city" value="Ciudad/Lugar"/>
+                        <p:inputText id="city" onkeyup="actualizar()" maxlength="30" size="30" required="true"  requiredMessage="Lugar obligatorio" value="#{createPlanController.plan.city}"/>
+                        <p:message for="city" display="text"/>
+
+                        <p:outputLabel for="type" value="Tipo:"/>
+                        <h:selectOneMenu id="type" onchange="actualizar()" value="#{createPlanController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En casa" itemValue="En casa"/>
+                            <f:selectItem itemLabel="Gastronómico" itemValue="Gastronómico"/>
+                            <f:selectItem itemLabel="Fiesta" itemValue="Fiesta"/>
+                            <f:selectItem itemLabel="Otro" itemValue="Otro"/>
+                        </h:selectOneMenu>
+                        <p:message for="type" display="text"/>
+
+                        <p:outputLabel for="price" value="Precio:"/>
+                        <h:selectOneMenu id="price" onchange="actualizar()" value="#{createPlanController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="€" itemValue="€"/>
+                            <f:selectItem itemLabel="€€" itemValue="€€"/>
+                            <f:selectItem itemLabel="€€€" itemValue="€€€"/>
+                            <f:selectItem itemLabel="€€€€" itemValue="€€€€"/>
+                        </h:selectOneMenu>
+                        <p:message for="price" display="text"/>
+
+                        <p:outputLabel for="age" value="Edad:"/>
+                        <h:selectOneMenu id="age" onchange="actualizar()" value="#{createPlanController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="3-12 años" itemValue="3-12 años"/>
+                            <f:selectItem itemLabel="12-17 años" itemValue="12-17 años"/>
+                            <f:selectItem itemLabel="18-24 años" itemValue="18-24 años"/>
+                            <f:selectItem itemLabel="24-35 años" itemValue="24-35 años"/>
+                            <f:selectItem itemLabel="35-60 años" itemValue="35-60 años"/>
+                            <f:selectItem itemLabel="60-70 años" itemValue="60-70 años"/>
+                        </h:selectOneMenu>
+                        <p:message for="age" display="text"/>
+
+                        <p:outputLabel for="companion" value="Compañia:"/>
+                        <h:selectOneMenu id="companion" onchange="actualizar()" value="#{createPlanController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
+                            <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
+                            <f:selectItem itemLabel="En familia" itemValue="En familia"/>
+                            <f:selectItem itemLabel="Con amigos" itemValue="Con amigos"/>
+                            <f:selectItem itemLabel="Solo" itemValue="Solo"/>
+                            <f:selectItem itemLabel="En pareja" itemValue="En pareja"/>
+                        </h:selectOneMenu>
+                        <p:message for="companion" display="text"/>
+                    </h:panelGrid>
+                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan()}" update="form" styleClass="p-mt-3" />
+                    
+                </p:fieldset>
+                
+            </h:form>
+        </div>
+        <h1 style="padding-top:20px;padding-bottom:15px;">¡¡MIRA QUE BIEN QUEDA!!</h1>
+        <div id="preview">
+            <h:form id="formm">
+                
+                <div id="createPlanView">
+                    <h2 id="planName" style="padding-bottom:15px;"></h2>
+                    <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{createPlanController.getImage()}"/>
+                </div>
+                <div style="float:left;width:50%">
+                    <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px"></p>
+                   
+                </div>
+                <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b><span id="planUbicacion"></span></div>
+                <span  style="padding-right:20px"><b>Tipo: </b><span id="planTipo"></span></span>
+                <span  style="padding-right:20px"><b>Precio: </b><span id="planPrecio"></span></span>
+                <span  style="padding-right:20px"><b>Edad: </b><span id="planEdad"></span></span>
+                <span  style="padding-right:20px"><b>Compañía: </b><span id="planCompania"></span></span>
+            </h:form>
+        </div>
+         
+    </h:body>
+</html>

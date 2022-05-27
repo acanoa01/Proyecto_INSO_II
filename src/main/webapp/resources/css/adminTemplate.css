@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600;700&family=Yellowtail&display=swap');
+
+*,*::after, *::begore {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    display: flex;
+    font-family: 'Space Grotesk';
+}
+
+.left-container {
+    display: flex;
+}
+
+.admin-content {
+    width: 100%;
+}
+.dashboard-navigation {
+    height: 100vh;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 15em;
+
+}
+
+
+.header__logo{
+    font-family: 'Yellowtail';
+    font-size: 2.3em;
+    margin-right: 5px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    width: 100%;
+}
+
+.menu__title, .profile__title{
+    margin-left: 5px;
+    color: dimgray;
+    font-size: medium;
+}
+
+
+
+.menu__list, .menu__form {
+    padding:0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+
+}
+
+.menu__link {
+    margin-bottom: 2rem;
+    list-style: none;
+    width: 100%;
+    height: 40px;
+
+
+    border-radius: 8px;
+    display: flex;
+    color: inherit;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.menu__link:hover{
+    background-color: gray;
+}
+
+
+.profile {
+    position: absolute;
+    bottom: 2em;
+    width: 100%;
+    height: 11em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 3em;
+}
+
+.profile__img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+
+.profile-container {
+    display: flex;
+}
+.profile-content {
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.profile-content__subtitle {
+    color: #AFAFAF;
+}
+
+.admin-content {
+    /*    background-color: red;*/
+    display: flex;
+    justify-content: center;
+}
+
+.ui-paginator-top{
+    display: none;
+}
+
+
+/* CREATE PLAN STYLES */
+.create-plan, .view-plan {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-plan__title, .view-plan__title {
+    font-size: larger;
+    position: relative;
+}
+
+.create-plan__title::before, .view-plan__title::before{
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 291px;
+    top: 11px;
+    left: -295px;
+    background-color: black;
+}
+
+.create-plan__title::after, .view-plan__title::after{
+    position: absolute;
+    content: "";
+    height: 2px;
+    top: 11px;
+
+    background-color: black;
+}
+.create-plan__title::after {
+    width: 291px;
+    left: 115px;
+}
+.view-plan__title::after {
+    width: 275px;
+    left: 174px;
+}
+
+.plan-form {
+
+    border-radius: 12px;
+}
+
+body .ui-fieldset {
+    border: 1px solid #c6cfd9;
+    background: #ffffff;
+    color: #495057;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* VIEW PLAN CARD STYLES */
+.view-plan-card {
+    border: 2px solid #e3e1e1;
+    border-radius: 11px 11px 11px 11px;
+    padding: 5px;
+}
+
+.view-plan-card-header__title{
+    font-size: 2em;
+}
+.view-plan-card__img{
+    width: 100%;
+    padding: 10px;
+}
+
+.view-plan-card-footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-plan-card-footer-info {
+    display: flex;
+    flex-direction: column;
+}

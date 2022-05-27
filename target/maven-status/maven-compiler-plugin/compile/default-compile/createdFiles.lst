@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 controller\HomeController.class
@@ -10,6 +11,14 @@ EJB\PlanFacade.class
 EJB\ListFacade.class
 com\mycompany\planazzo\resources\JavaEE8Resource.class
 controller\LoginController.class
+=======
+modelo\Menu.class
+modelo\User.class
+EJB\AbstractFacade.class
+EJB\PlanFacade.class
+EJB\ListFacade.class
+com\mycompany\planazzo\resources\JavaEE8Resource.class
+>>>>>>> santi
 EJB\RolFacade.class
 EJB\ClientplanFacade.class
 EJB\ListFacadeLocal.class
@@ -21,6 +30,10 @@ controller\CreatePlanController.class
 EJB\ClientplanFacadeLocal.class
 EJB\ListplanFacadeLocal.class
 EJB\PlanFacadeLocal.class
+<<<<<<< HEAD
+=======
+controller\AdminController.class
+>>>>>>> santi
 EJB\ReviewFacade.class
 modelo\Rol.class
 EJB\MenuFacade.class
@@ -42,4 +55,7 @@ modelo\List.class
 com\mycompany\planazzo\JAXRSConfiguration.class
 EJB\AdminFacade.class
 modelo\Client.class
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> santi
