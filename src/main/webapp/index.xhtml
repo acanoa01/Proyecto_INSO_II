@@ -6,7 +6,7 @@
 
     <h:head>
         <title>Planazzo</title>
-        <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
+        
         <h:outputStylesheet name="index.css" library="css"/>
         <h:outputScript name="functions.js" library="js"/>
         <style type="text/css">
@@ -25,28 +25,30 @@
             
             .selectOne{
                 min-width: 150px;
-                min-height: 20px;
+                min-height: 30px;
                 font-size: 20px;
-                padding-right: 10px;
+                margin-left:20px;
+                margin-right: 30px;
              }
         </style>
     </h:head>
     <h:body>
         <div class="wrapper">
-                <h:form>
-                    <h:commandLink action="/faces/privado/cliente/index.xhtml">
-                        <p:graphicImage name="logo.png" library="images" width="130px" style="margin-top:20px;margin-right: 75px;margin-left:30px; float: left"/>
-                    </h:commandLink>
-                    <p:growl id="messages" showDetail="true"/>
-                    <p:menubar model="#{menuController.obtenerMenu()}" style="position: inherit;top:0px;left:150px;padding-top: 20px;padding-right:50px">
-                        <f:facet name="options">
-                            <p:commandButton value="Login" type="button" onclick="PF('login').show();" class="loginBtn" style="min-width: 100px"/>
-                            <p:commandButton value="Registro" type="button" onclick="PF('register').show();" class="registerBtn" style="min-width: 100px"/>                        </f:facet>
-                    </p:menubar>
-                </h:form>
-
-
-                    <section class="slider" id="home" style="z-index: 1">
+            <h:form>
+                <h:commandLink action="/faces/privado/cliente/index.xhtml">
+                    <p:graphicImage name="logo.png" library="images" width="130px" style="margin-top:20px;margin-right: 75px;margin-left:30px; float: left"/>
+                </h:commandLink>
+                <p:growl id="messages" showDetail="true"/>
+                <p:menubar model="#{menuController.obtenerMenu()}" style="position: inherit;top:0px;left:150px;padding-top: 20px;padding-right:50px">
+                    <f:facet name="options">
+                        <p:commandButton value="Login" type="button" onclick="PF('login').show();" class="loginBtn" style="min-width: 100px"/>
+                        <p:commandButton value="Registro" type="button" onclick="PF('register').show();" class="registerBtn" style="min-width: 100px"/>                        </f:facet>
+                </p:menubar>
+            </h:form>
+            <p:growl id="growl" showDetail="true" life="3000">
+            <p:autoUpdate />
+            </p:growl>
+            <section class="slider" id="home" style="z-index: 1">
                 <div class="slide-track">
                     <div class="slide">
                         <h:graphicImage value = "https://www.refinery29.com/images/8644007.jpg?crop=40:21" width="100%"/> 
@@ -92,16 +94,18 @@
                                         </span>
                                     </div>
                                     <div class="p-mt-5" >
-                                        <p:commandButton id="searchButton" type="button" icon="pi pi-search" styleClass="rounded-button p-mr-2" style="margin-right:20px" />
-                                        <p:commandButton id="likeButton" type="button" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2" style="background-color:red;border-color: white;"/>
+                                        <p:commandButton id="searchButton" action="#{indexController.alertarRegistro()}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
+                                        <p:commandButton id="likeButton" action="#{indexController.alertarRegistro()}" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2" style="background-color:red;border-color: white;"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </p:carousel></h:form>
+                    </p:carousel>
+                    <p:messages for="carouselAlert" style=" min-width: 600px"/></h:form>
                 </div>
             </section>
-            <section class="section plan" id="plan" style="background-color: grey">
+            <hr style="margin-top:70px;margin-bottom: 70px"/>
+            <section class="section plan" id="plan">
                 <h2 class="plan__title">Obten tu plan aleatorio</h2>
                 <p class="plan__description">¡Solo por ser visitante de nuestra web obtén un plan totalmente gratuito!</p>
         
@@ -111,7 +115,6 @@
                         <div>
                         <p:tooltip for="city" value="Introduce la Ciudad" position="top"/>
                         <p:inputText id="city" maxlength="30" size="30" placeholder="¿Dónde?" required="true"  requiredMessage="Lugar obligatorio" value="#{indexController.plan.city}" style="margin-left:100px"/>
-                        <p:message for="city" display="text"/>
 
                         <p:tooltip for="type" value="Selecciona el tipo de plan que buscas" position="top"/>
                         <h:selectOneMenu id="type" class="selectOne" value="#{indexController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3" >
@@ -121,7 +124,6 @@
                             <f:selectItem itemLabel="Fiesta" itemValue="Fiesta"/>
                             <f:selectItem itemLabel="Otro" itemValue="Otro"/>
                         </h:selectOneMenu>
-                        <p:message for="type" display="text"/>
 
                         <p:tooltip for="price" value="Selecciona el precio" position="top"/>
                         <h:selectOneMenu id="price" class="selectOne" value="#{indexController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
@@ -131,7 +133,6 @@
                             <f:selectItem itemLabel="€€€" itemValue="€€€"/>
                             <f:selectItem itemLabel="€€€€" itemValue="€€€€"/>
                         </h:selectOneMenu>
-                        <p:message for="price" display="text"/>
 
                         <p:tooltip for="age" value="Selecciona tu edad" position="top"/>
                         <h:selectOneMenu id="age" class="selectOne" value="#{indexController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
@@ -143,7 +144,6 @@
                             <f:selectItem itemLabel="35-60 años" itemValue="35-60 años"/>
                             <f:selectItem itemLabel="60-70 años" itemValue="60-70 años"/>
                         </h:selectOneMenu>
-                        <p:message for="age" display="text"/>
 
                         <p:tooltip for="companion" value="Selecciona la compañia" position="top"/>
                         <h:selectOneMenu id="companion" class="selectOne" value="#{indexController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
@@ -154,33 +154,42 @@
                             <f:selectItem itemLabel="En pareja" itemValue="En pareja"/>
                         </h:selectOneMenu>
                         <span style="padding-left:50px">
-                            <p:commandButton value="Buscar" update="formm" onclick="showPlan()" id="inputName" actionListener="#{indexController.getRandomPlan()}" styleClass="rounded-button" />      
+                            <p:commandButton value="Buscar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" styleClass="rounded-button" />
                         </span>
                          
                         </div>
                     </h:form>
                 </article>
+                
                 <article id="planView" >
                     <h:form id="formm">
-                        <p:messages for="planMsg" style=" min-width: 500px"/>
-                        <div id="planSho" style="display:none">
+                        <p:messages for="planMsg" style=" min-width: 600px"/>
+                        <div id="planSho">
                             <div id="createPlanView">
-                                <h2 id="planName" style="padding-bottom:15px;"></h2>
-                                <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{createPlanController.getImage()}"/>
+                                <h2 id="planName" style="padding-bottom:15px;">#{indexController.randomPlan.name}</h2>
+                                <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{indexController.getImage()}"/>
                             </div>
                             <div style="float:left;width:50%">
-                                <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px"></p>
+                                <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px">#{indexController.randomPlan.description}</p>
 
                             </div>
-                            <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{indexController.plan.city}</div>
-                            <span  style="padding-right:20px"><b>Tipo: </b>#{indexController.plan.type}</span>
-                            <span  style="padding-right:20px"><b>Precio: </b>#{indexController.plan.price}</span>
-                            <span  style="padding-right:20px"><b>Edad: </b>#{indexController.plan.age}</span>
-                            <span  style="padding-right:20px"><b>Compañía: </b>#{indexController.plan.companion}</span>
+                            <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{indexController.randomPlan.city}</div>
+                            <span  style="padding-right:20px"><b>Tipo: </b>#{indexController.randomPlan.type}</span>
+                            <span  style="padding-right:20px"><b>Precio: </b>#{indexController.randomPlan.price}</span>
+                            <span  style="padding-right:20px"><b>Edad: </b>#{indexController.randomPlan.age}</span>
+                            <span  style="padding-right:20px"><b>Compañía: </b>#{indexController.randomPlan.companion}</span>
+                            <script>showPlan();</script>
+                            <div style="text-aling_left">
+                                <p:staticMessage severity="warn" summary="LIMITE DE PLANES" detail="Para aceptar o rechazar el plan debe registrarse"/>
+                                <p:commandButton value="Aceptar"  disabled="True" onclick="showPlan()" action="#{indexController.aceptarPlan}" styleClass="rounded-button ui-button-success disabled" />
+                                <p:commandButton value="Rechazar" update="formm" disabled="True" onclick="showPlan()" action="#{indexController.searchRandomPlan}" style="margin:40px;" styleClass="rounded-button ui-button-danger disabled" />
+                            </div>
                         </div>
+                        
                     </h:form>
                 </article>
             </section>
+            <hr style="margin-top:70px;margin-bottom: 70px"/>
             <section class="section testimonials" id="about">
                 
                 <p class="testimonials__description">Algunos testimonios de aquellos que han usado nuestros servicios</p>

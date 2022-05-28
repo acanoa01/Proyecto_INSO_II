@@ -5,15 +5,12 @@
  */
 package EJB;
 
-import static java.lang.Long.max;
-import static java.lang.Long.min;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import modelo.Admin;
 import modelo.Plan;
 
 /**

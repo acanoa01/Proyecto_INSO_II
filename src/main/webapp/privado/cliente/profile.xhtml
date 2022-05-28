@@ -1,16 +1,118 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <title>Planazzo</title>
+
+        <h:outputStylesheet name="index.css" library="css"/>
+        <h:outputScript name="functions.js" library="js"/>
+        <style type="text/css">
+            .product-item .product-item-content {
+                border: 1px solid var(--surface-d);
+                border-radius: 3px;
+                margin: .3rem;
+                text-align: center;
+                padding: 2rem 0;
+            }
+
+            .product-item .product-image {
+                width: 50%;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+            }
+
+            .selectOne{
+                min-width: 150px;
+                min-height: 30px;
+                font-size: 20px;
+                margin-left:20px;
+                margin-right: 30px;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="wrapper">
+            <ui:include src="../../WEB-INF/template/userTemplate.xhtml"></ui:include>
+            <h:form id="form">
+                <p:tabMenu activeIndex="#{param.i}">
+                    <p:menuitem value="Favoritos"   update="form" onclick="mostrar('favourites')"  icon="pi pi-heart">
+                        <f:param name="i" value="0"/>
+                    </p:menuitem>
+                    <p:menuitem value="Mis planes" update="form" onclick="mostrar('plans')" icon="pi pi-file">
+                        <f:param name="i" value="1"/>
+                    </p:menuitem>
+                </p:tabMenu>
+            </h:form>
+
+            <p:growl id="growl" showDetail="true" life="3000">
+                <p:autoUpdate />
+            </p:growl>
+            <div id="favourites" style="margin-top:75px">
+                <section>
+                <div class="card">
+                    <h:form>
+                    <p:carousel value="#{profileController.favourites}" var="plan" circular="true" autoplayInterval="6000"
+                                responsiveOptions="#{profileController.responsiveOptions}" numVisible="4" numScroll="1">
+
+                        <div class="product-item">
+                            <div class="product-item-content">
+                                <h4 class="p-mb-1" style="margin-bottom:20px;">#{plan.name}</h4>
+                                <div class="p-mb-3">
+                                    <p:graphicImage library="images" name="#{plan.image}" styleClass="product-image"/>
+                                </div>
+                                <div style="margin-top:10px">
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px"><b>Ubicación: </b>#{plan.city}</div>
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px">
+                                        <b>Precio </b>#{plan.price}
+                                        <span style="text-align:right;padding-left: 200px;">
+                                            <i  class=" pi pi-thumbs-up">#{plan.likes}</i>
+                                        </span>
+                                    </div>
+                                    <div class="p-mt-5" >
+                                        <p:commandButton id="searchButton" action="#{profileController.verPlan(plan)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p:carousel></h:form>
+                </div>
+            </section>
+            </div>
+            <div id="plans" style="display:none;margin-top:75px">
+                <section  style="">
+                <div class="card">
+                    <h:form>
+                        <p:carousel id="carousel2" value="#{profileController.plans}" var="plan2"  circular="true" 
+                                responsiveOptions="#{profileController.responsiveOptions}" numVisible="5" numScroll="1">
+
+                        <div class="product-item">
+                            <div class="product-item-content">
+                                <h4 class="p-mb-1" style="margin-bottom:20px;">#{plan2.name}</h4>
+                                <div class="p-mb-3">
+                                    <p:graphicImage library="images" name="#{plan2.image}" styleClass="product-image"/>
+                                </div>
+                                <div style="margin-top:10px">
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px"><b>Ubicación: </b>#{plan2.city}</div>
+                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px">
+                                        <b>Precio </b>#{plan2.price}
+                                        <span style="text-align:right;padding-left: 200px;">
+                                            <i  class=" pi pi-thumbs-up">#{plan2.likes}</i>
+                                        </span>
+                                    </div>
+                                    <div class="p-mt-5" >
+                                        <p:commandButton id="searchButton" action="#{profileController.verPlan(plan2)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p:carousel></h:form>
+                </div>
+            </section>
+            </div>
+
+        </div>
+    </h:body>
+    <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>
 </html>

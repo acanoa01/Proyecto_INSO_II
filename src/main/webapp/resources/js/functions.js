@@ -24,3 +24,12 @@ function showPlan(){
         document.getElementById("planSho").style.display = "none";
     }
 }
+
+function mostrar(id){
+    if(id === 'favourites'){
+        document.getElementById("favourites").style.display = "block";
+        document.getElementById("plans").style.display = "none";
+    }else{
+        document.getElementById("favourites").style.display = "none";
+        document.getElementById("plans").style.display = "block";    }
+}

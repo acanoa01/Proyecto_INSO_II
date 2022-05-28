@@ -7,7 +7,10 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Client;
 import modelo.Clientplan;
+import modelo.Favourite;
+import modelo.Plan;
 
 /**
  *
@@ -29,5 +32,9 @@ public interface ClientplanFacadeLocal {
     List<Clientplan> findRange(int[] range);
 
     int count();
+    
+    boolean clientplanExists(Clientplan clientplan);
+    
+    List<Plan> getPlanes(Client cliente);
     
 }

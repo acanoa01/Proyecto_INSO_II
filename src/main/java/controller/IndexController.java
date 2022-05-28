@@ -7,6 +7,8 @@ package controller;
 
 import EJB.AdminFacadeLocal;
 import EJB.ClientFacadeLocal;
+import EJB.ClientplanFacadeLocal;
+import EJB.FavouriteFacadeLocal;
 import EJB.PlanFacadeLocal;
 import EJB.RolFacadeLocal;
 import EJB.UserFacadeLocal;
@@ -23,6 +25,8 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Admin;
 import modelo.Client;
+import modelo.Clientplan;
+import modelo.Favourite;
 import modelo.Plan;
 import modelo.Rol;
 import modelo.User;
@@ -61,6 +65,12 @@ public class IndexController implements Serializable {
 
     @EJB
     private PlanFacadeLocal planEJB;
+    
+    @EJB
+    private ClientplanFacadeLocal clientPlanEJB;
+    
+    @EJB
+    private FavouriteFacadeLocal favouriteEJB;
 
     @PostConstruct
     public void init() {
@@ -227,7 +237,39 @@ public class IndexController implements Serializable {
         }
     }
 
+    public void alertarRegistro(){
+        FacesContext.getCurrentInstance().addMessage("carouselAlert", new FacesMessage(FacesMessage.SEVERITY_WARN, "Registrate para acceder a todas las funciones", ""));
+    }
+    
     public void aceptarPlan(){
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("plan", this.randomPlan);
+        Clientplan clientPlan = new Clientplan();
+        Client cliente = (Client)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente"); 
+        clientPlan.setClient(cliente);
+        clientPlan.setPlan(this.randomPlan);
+        if(!clientPlanEJB.clientplanExists(clientPlan)){
+            clientPlanEJB.create(clientPlan);
+        }
+        doRedirect("/planazzo/faces/privado/cliente/planView.xhtml");
+    }
+    
+    public void verPlan(Plan plan){
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("plan", plan);   
+        doRedirect("/planazzo/faces/privado/cliente/planView.xhtml");
+    }
+    
+   public void agregarFavoritos(Plan plan){  
+        Favourite favourite = new Favourite();
+        Client cliente = (Client)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("cliente"); 
+        favourite.setClient(cliente);
+        favourite.setPlan(plan);
+        if(!favouriteEJB.favouriteExists(favourite)){
+            favouriteEJB.create(favourite);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EL PLAN HA SIDO AGREGADO A FAVORITOS", ""));
+
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "ESTE PLAN YA ESTA EN TUS FAVORITOS", ""));
+        }
         
     }
 }

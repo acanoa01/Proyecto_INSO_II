@@ -12,7 +12,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import modelo.Client;
-import modelo.Clientplan;
 import modelo.Favourite;
 import modelo.Plan;
 
@@ -21,7 +20,7 @@ import modelo.Plan;
  * @author santy
  */
 @Stateless
-public class ClientplanFacade extends AbstractFacade<Clientplan> implements ClientplanFacadeLocal {
+public class FavouriteFacade extends AbstractFacade<Favourite> implements FavouriteFacadeLocal {
 
     @PersistenceContext(unitName = "PlanazzoPU")
     private EntityManager em;
@@ -31,31 +30,32 @@ public class ClientplanFacade extends AbstractFacade<Clientplan> implements Clie
         return em;
     }
 
-    public ClientplanFacade() {
-        super(Clientplan.class);
+    public FavouriteFacade() {
+        super(Favourite.class);
     }
     
     @Override
-    public boolean clientplanExists(Clientplan clientplan){
-        String consulta = "FROM Clientplan c WHERE c.client=:param1 and c.plan=:param2";
+    public boolean favouriteExists(Favourite favourite){
+        String consulta = "FROM Favourite f WHERE f.client=:param1 and f.plan=:param2";
         Query query = em.createQuery(consulta);
-        query.setParameter("param1", clientplan.getClient());
-        query.setParameter("param2", clientplan.getPlan());
+        query.setParameter("param1", favourite.getClient());
+        query.setParameter("param2", favourite.getPlan());
         List<Favourite> favourites = query.getResultList();
 
         return !favourites.isEmpty();
     }
     
     @Override
-    public List<Plan> getPlanes(Client cliente){
-        String consulta = "FROM Clientplan c WHERE c.client=:param1";
+    public List<Plan> getFavoritos(Client cliente){
+        String consulta = "FROM Favourite f WHERE f.client=:param1";
         Query query = em.createQuery(consulta);
         query.setParameter("param1", cliente);
-        List<Clientplan> plans = query.getResultList();
-        List<Plan> planes = new ArrayList<Plan>();
-        for(int i =0; i<plans.size(); i++){
-            planes.add(plans.get(i).getPlan());
+        List<Favourite> favourites = query.getResultList();
+        List<Plan> favoritos = new ArrayList<Plan>();
+        for(int i =0; i<favourites.size(); i++){
+            favoritos.add(favourites.get(i).getPlan());
         }
-        return planes;
+        return favoritos;
     }
+   
 }
