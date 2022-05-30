@@ -7,6 +7,7 @@ package EJB;
 
 import java.util.List;
 import javax.ejb.Local;
+import modelo.Plan;
 import modelo.Review;
 
 /**
@@ -29,5 +30,7 @@ public interface ReviewFacadeLocal {
     List<Review> findRange(int[] range);
 
     int count();
+    
+    List<Review> getReviews(Plan plan);
     
 }

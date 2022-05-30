@@ -265,6 +265,8 @@ public class IndexController implements Serializable {
         favourite.setPlan(plan);
         if(!favouriteEJB.favouriteExists(favourite)){
             favouriteEJB.create(favourite);
+            plan.setLikes(plan.getLikes() + 1);
+            planEJB.edit(plan);
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "EL PLAN HA SIDO AGREGADO A FAVORITOS", ""));
 
         }else{

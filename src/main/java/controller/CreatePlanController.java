@@ -44,9 +44,6 @@ public class CreatePlanController implements Serializable{
     
     @EJB
     private PlanFacadeLocal planEJB;
-    
-    @EJB
-    RolFacadeLocal rolEJB;
 
     
     @PostConstruct

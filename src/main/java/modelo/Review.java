@@ -6,7 +6,6 @@
 package modelo;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,10 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -42,9 +38,6 @@ public class Review implements Serializable{
         
     @Column(name="Comment")
     private String comment;
-    
-    @Column(name="Image")
-    private String image;
     
     @Column(name="Title")
     private String title;
@@ -84,14 +77,6 @@ public class Review implements Serializable{
         this.comment = comment;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -111,13 +96,12 @@ public class Review implements Serializable{
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.reviewID);
-        hash = 89 * hash + Objects.hashCode(this.client);
-        hash = 89 * hash + Objects.hashCode(this.plan);
-        hash = 89 * hash + Objects.hashCode(this.comment);
-        hash = 89 * hash + Objects.hashCode(this.image);
-        hash = 89 * hash + Objects.hashCode(this.title);
-        hash = 89 * hash + this.valoration;
+        hash = 71 * hash + Objects.hashCode(this.reviewID);
+        hash = 71 * hash + Objects.hashCode(this.client);
+        hash = 71 * hash + Objects.hashCode(this.plan);
+        hash = 71 * hash + Objects.hashCode(this.comment);
+        hash = 71 * hash + Objects.hashCode(this.title);
+        hash = 71 * hash + this.valoration;
         return hash;
     }
 
@@ -142,9 +126,6 @@ public class Review implements Serializable{
         if (!Objects.equals(this.comment, other.comment)) {
             return false;
         }
-        if (!Objects.equals(this.image, other.image)) {
-            return false;
-        }
         if (!Objects.equals(this.title, other.title)) {
             return false;
         }
@@ -156,6 +137,8 @@ public class Review implements Serializable{
         }
         return true;
     }
+
+    
 
 
 

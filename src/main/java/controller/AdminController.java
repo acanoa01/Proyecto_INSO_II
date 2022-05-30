@@ -136,15 +136,12 @@ public class AdminController implements Serializable {
     }
 
     public void getAllPlans() {
-        System.out.println("HOLAAAAA");
         this.planes = planEJB.findAll();
         for (int i = 0; i < this.planes.size(); i++) {
             if (!this.planes.get(i).isVerified()) {
                 this.notVerifyPlanes.add(this.planes.get(i));
             }
         }
-
-        System.out.println(this.planes.size());
 
     }
 

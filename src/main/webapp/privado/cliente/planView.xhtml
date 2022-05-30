@@ -1,3 +1,5 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
@@ -35,12 +37,12 @@
     <h:body>
         <div class="wrapper">
             <ui:include src="../../WEB-INF/template/userTemplate.xhtml"></ui:include>
-            <p:growl id="growl" showDetail="true" life="3000">
+            <p:growl  showDetail="true" life="3000">
                 <p:autoUpdate />
             </p:growl>
             <section class="section plan" id="plan" style="background-color: grey">
                 <article id="planView" >
-                    <h:form id="formm">
+                    <h:form>
                         <div id="createPlanView">
                             <h2 id="planName" style="padding-bottom:15px;">#{planViewController.plan.name}</h2>
                             <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{planViewController.getImage()}"/>
@@ -54,12 +56,58 @@
                         <span  style="padding-right:20px"><b>Precio: </b>#{planViewController.plan.price}</span>
                         <span  style="padding-right:20px"><b>Edad: </b>#{planViewController.plan.age}</span>
                         <span  style="padding-right:20px"><b>Compañía: </b>#{planViewController.plan.companion}</span>
+                        <p:commandButton id="likeButton" value="favoritos" action="#{planViewController.agregarFavoritos}" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2" style="background-color:red;border-color: white;"/>
 
 
                     </h:form>
                 </article>
             </section>
 
+            <h:form id="form" enctype="multipart/form-data">
+                <section>
+                    <p:fieldset legend="Escribe una reseña">
+                        <h:panelGrid id="grid" columns="3" cellpadding="10">
+                            <p:outputLabel for="name" value="Titulo:"/>
+                            <p:inputText id="name" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{planViewController.review.title}"/>
+                            <p:message for="name"/>
+
+                            <p:outputLabel for="description" value="Descripción:"/>
+                            <p:inputTextarea id="description" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{planViewController.review.comment}"/>
+                            <p:message for="description" display="text"/>
+
+                            <p:outputLabel for="rating" value="Puntuación"/>
+                            <p:rating id="rating"   required="true" requiredMessage="Puntuación obligatoria" value="#{planViewController.review.valoration}"/>
+                            <p:message for="rating" display="text"/>
+
+                        </h:panelGrid>
+                        <p:commandButton value="ENVIAR"  action="#{planViewController.insertarResena()}" update="form"  styleClass="p-mt-3" />
+
+                    </p:fieldset>              
+
+                </section>
+            </h:form>
+            <h:form>
+                <section>
+                    <h1>Reseñas</h1>
+
+                    <p:dataTable  disabledSelection="true" disableContextMenuIfEmpty="true" emptyMessage="No hay reseñas aún" id="checkboxDT" var="review" value="#{planViewController.getReviews()}"
+                                  rowKey="#{plan.planID}"
+                                  style="margin-bottom:0" paginator="true"  paginatorPosition="bottom" rows="8" selectionPageOnly="false">
+
+                        <p:column headerText="Titulo">
+                            <h:outputText value="#{review.title}" />
+                        </p:column>
+
+                        <p:column headerText="Comentario">
+                            <h:outputText value="#{review.comment}" />
+                        </p:column>
+
+                        <p:column headerText="Valoración">
+                            <p:rating id="rating" readonly="true" value="#{review.valoration}"/>
+                        </p:column>
+                    </p:dataTable>
+                </section>
+            </h:form>
         </div>
     </h:body>
     <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>

@@ -5,9 +5,12 @@
  */
 package EJB;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import modelo.Plan;
 import modelo.Review;
 
 /**
@@ -27,6 +30,17 @@ public class ReviewFacade extends AbstractFacade<Review> implements ReviewFacade
 
     public ReviewFacade() {
         super(Review.class);
+    }
+    
+    @Override
+    public List<Review> getReviews(Plan plan) {
+        String consulta = "FROM Review r WHERE r.plan=:param1";
+        
+        Query query = em.createQuery(consulta);
+        query.setParameter("param1", plan);
+        List<Review> reviews = query.getResultList();
+
+        return reviews;
     }
     
 }
