@@ -16,8 +16,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 import modelo.Admin;
+import modelo.Client;
 import modelo.Plan;
-import org.primefaces.event.CellEditEvent;
 
 /**
  *
@@ -111,5 +111,25 @@ public class AdminController implements Serializable {
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "DEBE SELECCIONAR UN PLAN"));
         }
+    }
+    
+    public void generarPlanAleatorio(int inicio, int fin, String tipo){
+        Admin admin = (Admin)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("admin");
+        
+        if(inicio > fin){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR", "INICIO DESPUES DE FIN"));
+        }
+        while(inicio < fin){
+            Plan newPlan = this.selectedPlanes.get(inicio);
+            newPlan.setVerified(true);
+            inicio += 1;
+            if(tipo.equals("admin") && fin <= 10){
+                newPlan.setAdmin(admin);
+                newPlan.setLikes(fin);
+            }else{
+                newPlan.setLikes(0);
+            }
+        }
+
     }
 }
