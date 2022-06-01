@@ -1,5 +1,6 @@
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Clientplan.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Favourite.java
+C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\EditPlanController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\FavouriteFacade.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\FavouriteFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\JAXRSConfiguration.java
@@ -13,7 +14,6 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AdminFacade
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\com\mycompany\planazzo\resources\JavaEE8Resource.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\Rol.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\NavigationController.java
-C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\ChartView.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\modelo\User.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\MenuController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\CarouselController.java
@@ -33,7 +33,7 @@ C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\Prof
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\RolFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\CreatePlanController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\MenuFacadeLocal.java
-C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\MessagesView.java
+C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\PlantillaController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\controller\AdminController.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\ClientFacadeLocal.java
 C:\Users\santy\Documents\NetBeansProjects\planazzo\src\main\java\EJB\AbstractFacade.java

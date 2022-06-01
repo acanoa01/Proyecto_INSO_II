@@ -43,14 +43,14 @@
             <p:fieldset legend="Descripción">
                 <h:panelGrid id="grid" columns="3" cellpadding="10">
                     <p:outputLabel for="name" value="Nombre:"/>
-                    <p:inputText id="name" onkeyup="actualizar()" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{createPlanController.plan.name}"/>
+                    <p:inputText id="name" onkeyup="actualizar()" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{editPlanController.plan.name}"/>
                     <p:message for="name"/>
 
                     <p:outputLabel for="description" value="Descripción:"/>
-                    <p:inputTextarea id="description" maxlength="1000" onkeyup="actualizar()" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{createPlanController.plan.description}"/>
+                    <p:inputTextarea id="description" maxlength="1000" onkeyup="actualizar()" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{editPlanController.plan.description}"/>
                     <p:message for="description" display="text"/>
 
-                    <p:fileUpload id="image" update="formm:imageID" listener="#{createPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Cambiar imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="10000000" skinSimple="true" />
+                    <p:fileUpload id="image" update="formm:imageID" listener="#{editPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Cambiar imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="10000000" skinSimple="true" />
                     <p:message for="image" display="text"/>
                 </h:panelGrid>
             </p:fieldset>
@@ -61,11 +61,11 @@
 
 
                     <p:outputLabel for="city" value="Ciudad/Lugar"/>
-                    <p:inputText id="city" maxlength="30" onkeyup="actualizar()" size="30" required="true"  requiredMessage="Lugar obligatorio" value="#{createPlanController.plan.city}"/>
+                    <p:inputText id="city" maxlength="30" onkeyup="actualizar()" size="30" required="true"  requiredMessage="Lugar obligatorio" value="#{editPlanController.plan.city}"/>
                     <p:message for="city" display="text"/>
 
                     <p:outputLabel for="type" value="Tipo:"/>
-                    <h:selectOneMenu id="type" onchange="actualizar()" value="#{createPlanController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3">
+                    <h:selectOneMenu id="type" onchange="actualizar()" value="#{editPlanController.plan.type}" required="true" requiredMessage="Tipo obligatorio" label="Text 3">
                         <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
                         <f:selectItem itemLabel="En casa" itemValue="En casa"/>
                         <f:selectItem itemLabel="Gastronómico" itemValue="Gastronómico"/>
@@ -75,7 +75,7 @@
                     <p:message for="type" display="text"/>
 
                     <p:outputLabel for="price" value="Precio:"/>
-                    <h:selectOneMenu id="price" onchange="actualizar()" value="#{createPlanController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
+                    <h:selectOneMenu id="price" onchange="actualizar()" value="#{editPlanController.plan.price}" required="true" requiredMessage="Precio obligatorio" label="Text 3">
                         <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
                         <f:selectItem itemLabel="€" itemValue="€"/>
                         <f:selectItem itemLabel="€€" itemValue="€€"/>
@@ -85,7 +85,7 @@
                     <p:message for="price" display="text"/>
 
                     <p:outputLabel for="age" value="Edad:"/>
-                    <h:selectOneMenu id="age" onchange="actualizar()" value="#{createPlanController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
+                    <h:selectOneMenu id="age" onchange="actualizar()" value="#{editPlanController.plan.age}" required="true" requiredMessage="Edad obligatoria" label="Text 3">
                         <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
                         <f:selectItem itemLabel="3-12 años" itemValue="3-12 años"/>
                         <f:selectItem itemLabel="12-17 años" itemValue="12-17 años"/>
@@ -97,7 +97,7 @@
                     <p:message for="age" display="text"/>
 
                     <p:outputLabel for="companion" value="Compañia:"/>
-                    <h:selectOneMenu id="companion" onchange="actualizar()" value="#{createPlanController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
+                    <h:selectOneMenu id="companion" onchange="actualizar()" value="#{editPlanController.plan.companion}" required="true" requiredMessage="Compañía obligatoria" label="Text 3">
                         <f:selectItem itemLabel="---" itemValue="" noSelectionOption="true"/>
                         <f:selectItem itemLabel="En familia" itemValue="En familia"/>
                         <f:selectItem itemLabel="Con amigos" itemValue="Con amigos"/>
@@ -106,7 +106,7 @@
                     </h:selectOneMenu>
                     <p:message for="companion" display="text"/>
                 </h:panelGrid>
-                <p:commandButton id="submitButton" value="Crear Plan" action="#{createPlanController.insertPlan(true)}" icon="pi pi-plus" styleClass="p-mt-3"  style="margin-top:30px"/>
+                <p:commandButton id="submitButton" value="Editar Plan" action="#{editPlanController.editPlan()}" icon="pi pi-pencil" styleClass="p-mt-3" />
 
             </p:fieldset>
         </h:form>
@@ -118,7 +118,7 @@
             <h:form id="formm">
                 <div id="createPlanView">
                     <h2 id="planName" style="padding-bottom:15px;"></h2>
-                    <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{createPlanController.getImage()}"/>
+                    <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{editPlanController.getImage()}"/>
                 </div>
                 <div style="float:left;width:50%">
                     <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px"></p>

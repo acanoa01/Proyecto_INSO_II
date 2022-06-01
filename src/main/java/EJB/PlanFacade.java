@@ -33,23 +33,6 @@ public class PlanFacade extends AbstractFacade<Plan> implements PlanFacadeLocal 
     }
     
     @Override
-    public void validatePlan(Plan plan){
-//        String consultaPlan = "FROM Admin a WHERE a.user=:param1";
-//        Query queryCliente = em.createQuery(consultaAdmin);
-//        queryCliente.setParameter("param1", user);
-//
-//        List<Admin> admins = queryCliente.getResultList();
-//
-//        if (admins.isEmpty() || admins.size() != 1) {
-//            return null;
-//        } else {
-//            System.out.println("ESTOY EN GETADMIN CON EL ADMIN: " + admins.get(0).getUser().getUserName());
-//            return admins.get(0);
-//        }
-
-    }
-    
-    @Override
     public List<Plan> getPlanesPopulares(){
         
         String consultaPlan = "FROM Plan p WHERE p.verified=1 order by p.likes desc";
@@ -80,4 +63,12 @@ public class PlanFacade extends AbstractFacade<Plan> implements PlanFacadeLocal 
         }
     }
     
+    @Override
+    public List<Plan> getNotValidated(){
+        String consultaPlan = "FROM Plan p WHERE p.verified=0";
+        Query queryPlan = em.createQuery(consultaPlan);
+        
+        List<Plan> plans = queryPlan.getResultList();
+        return plans;
+    }
 }

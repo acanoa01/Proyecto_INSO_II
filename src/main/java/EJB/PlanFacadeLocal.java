@@ -30,9 +30,9 @@ public interface PlanFacadeLocal {
 
     int count();
     
-    void validatePlan(Plan plan);
-    
     List<Plan> getPlanesPopulares();
     
     Plan getRandomPlan(Plan plan);
+    
+    List<Plan> getNotValidated();
 }

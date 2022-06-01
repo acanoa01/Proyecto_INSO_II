@@ -8,7 +8,7 @@
 
     <h:head>
         <title>Planazzo</title>
-
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar('C')}"/>
         <h:outputStylesheet name="index.css" library="css"/>
         <h:outputScript name="functions.js" library="js"/>
         <style type="text/css">

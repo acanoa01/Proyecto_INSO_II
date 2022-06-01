@@ -9,80 +9,43 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet library="css" name="adminTemplate.css" />
-<!--        <title>Facelets Template</title>-->
-        <f:metadata>
-            <f:event listener="#{adminController.verifyLoginAdmin()}" type="preRenderView"></f:event>
-        </f:metadata>
-
     </h:head>
-
     <h:body>
-
         <div id="left" class="left-container">
             <ui:insert name="left">
                 <aside class="dashboard-navigation">
-                    <header>
-                        <p><span class="header__logo">Planazzo</span> Dashboard</p>
-                    </header>
-                    <nav class="menu">
-                        <span class="menu__title">MENU</span>
-                        <ul class="menu__list">
-                            <h:form class="menu__form">
-
-                                <h:commandLink action = "#{navigationController.goToverifyPlanAdmin()}"  styleClass="menu__link">
-                                    <f:param name = "pageId" value = "verify" />
-                                    <li class="menu__item">
-                                        Verificar plan
-                                    </li>
-                                </h:commandLink>
-
-
-                                <h:commandLink action = "#{navigationController.goToEditPlanAdmin()}" styleClass="menu__link">
-                                    <f:param name = "pageId" value = "edit" />
-                                    <li class="menu__item">
-                                        Editar planes
-                                    </li>
-                                </h:commandLink>
-
-
-                                <h:commandLink action = "#{navigationController.goToCreatePlanAdmin()}" styleClass="menu__link">
-                                    <f:param name = "pageId" value = "create" />
-                                    <li class="menu__item">
-                                        Crear plan
-                                    </li>
-                                </h:commandLink>
-                            </h:form>
-                        </ul>
-
-                    </nav>
-                    <footer class="profile">
-                        <span class="profile__title">PERFIL</span>
-                        <div class="profile-container">
-                            <img class="profile__img" src="https://d2qp0siotla746.cloudfront.net/img/use-cases/profile-picture/template_3.jpg" alt="profile image"/>
-                            <div class="profile-content">
-                                <span class="profile-content__title">#{adminController.user.name}</span>
-                                <span class="profile-content__subtitle">Administrador</span>
+                    <h:form>
+                        <header>
+                            <h:commandLink action="/faces/privado/administrador/index.xhtml">
+                                <p:graphicImage name="logo.png" library="images" width="170px" style="margin-top:20px;margin-right: 75px;margin-left:50px; float: left"/>
+                            </h:commandLink>
+                        </header>
+                        <nav class="menu" style="color:white">
+                            <ul class="menu__list" style="color:white">
+                                <p:menu style="background-color: black;text-align:center;color:white;border: none;">
+                                    <p:menuitem class="menuItem" value="Verificar plan" url="/planazzo/faces/privado/administrador/index.xhtml" icon="pi pi-check" style="background-color: black;color:white !important;text-align:center;border: none;font-size: 18px;margin-bottom: 30px;"/>
+                                    <p:menuitem class="menuItem" value="Editar plan" url="/planazzo/faces/privado/administrador/editPlan.xhtml" icon="pi pi-pencil" style="background-color: black;color:white !important;text-align:center;border: none;font-size: 18px;margin-bottom: 30px;"/>
+                                    <p:menuitem class="menuItem" value="Crear plan" url="/planazzo/faces/privado/administrador/createPlan.xhtml" icon="pi pi-plus-circle " style="background-color: black;color:white !important;text-align:center;border: none;font-size: 18px;margin-bottom: 30px;"/>
+                                </p:menu>
+                            </ul>
+                        </nav>
+                        <footer class="profile">
+                            <span class="profile__title">PERFIL</span>
+                            <div class="profile-container">
+                                <p:graphicImage  name="profile.png" library="images" class="profile__img" alt="profile image"/>
+                                <div class="profile-content">
+                                    <span class="profile-content__title">#{adminController.admin.user.name}</span>
+                                    <span class="profile-content__subtitle">Administrador</span>
+                                </div>
                             </div>
-
-                        </div>
-                        <h:form>
-
                             <h:panelGrid columns="2" cellpadding="7">
-                                <p:commandButton value="Cerrar Sesión" action="#{adminController.cerrarSesion()}" icon="pi pi-user"  styleClass="ui-button-times"/>
+                                    <p:commandButton id="cerrarSesion" value="Cerrar sesion" action="#{menuController.cerrarSesion()}" style="min-width: 150px" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
                             </h:panelGrid>
-
-                        </h:form>
-
-                    </footer>
+                        </footer>
+                    </h:form>
                 </aside>
             </ui:insert>
         </div>
-        <div id="content" class="admin-content">
-            <ui:insert name="content">
-                
-            </ui:insert>
-        </div>
-
     </h:body>
 
 </html>

@@ -53,7 +53,7 @@ public class PlanViewController implements Serializable {
     public String getImage() {
 
         if (this.plan.getImage() == null) {
-            return "placeHolder.png";
+            return "adventureClouds.jpg";
         } else {
             return this.plan.getImage();
         }

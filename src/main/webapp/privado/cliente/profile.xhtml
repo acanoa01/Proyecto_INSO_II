@@ -6,7 +6,7 @@
 
     <h:head>
         <title>Planazzo</title>
-
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar('C')}"/>
         <h:outputStylesheet name="index.css" library="css"/>
         <h:outputScript name="functions.js" library="js"/>
         <style type="text/css">
@@ -49,65 +49,77 @@
             <p:growl id="growl" showDetail="true" life="3000">
                 <p:autoUpdate />
             </p:growl>
-            <div id="favourites" style="margin-top:75px">
+            <div id="favourites">
                 <section>
                 <div class="card">
                     <h:form>
-                    <p:carousel value="#{profileController.favourites}" var="plan" circular="true" autoplayInterval="6000"
-                                responsiveOptions="#{profileController.responsiveOptions}" numVisible="4" numScroll="1">
+                        <p:dataTable id="planes" var="plan" value="#{profileController.favourites}" widgetVar="cellProducts" rowKey="#{plan.planID}"  selectionMode="single"
+                                  style="margin-bottom:0" paginator="true" rows="6" paginatorPosition="bottom" selectionPageOnly="false"  rowSelectMode="new">
 
-                        <div class="product-item">
-                            <div class="product-item-content">
-                                <h4 class="p-mb-1" style="margin-bottom:20px;">#{plan.name}</h4>
-                                <div class="p-mb-3">
-                                    <p:graphicImage library="images" name="#{plan.image}" styleClass="product-image"/>
-                                </div>
-                                <div style="margin-top:10px">
-                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px"><b>Ubicación: </b>#{plan.city}</div>
-                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px">
-                                        <b>Precio </b>#{plan.price}
-                                        <span style="text-align:right;padding-left: 200px;">
-                                            <i  class=" pi pi-thumbs-up">#{plan.likes}</i>
-                                        </span>
-                                    </div>
-                                    <div class="p-mt-5" >
-                                        <p:commandButton id="searchButton" action="#{profileController.verPlan(plan)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </p:carousel></h:form>
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{plan.name}" />
+                        </p:column>
+                        <p:column headerText="Descripcion" width="200" >
+                            <h:outputText value="#{plan.description}"  />
+                        </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{plan.type}" />
+                        </p:column>
+                        <p:column headerText="Ciudad">
+                            <h:outputText value="#{plan.city}" />
+                        </p:column>
+                        <p:column headerText="Precio">
+                            <h:outputText value="#{plan.price}" />
+                        </p:column>
+                        <p:column headerText="Compañia">
+                            <h:outputText value="#{plan.companion}" />
+                        </p:column>
+                        <p:column headerText="Imagen">
+                            <p:graphicImage library="images" name="#{plan.image}" style="width: 100px;"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="searchButton" action="#{profileController.verPlan(plan)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
+                        </p:column>
+                    </p:dataTable>
+                    </h:form>
                 </div>
             </section>
             </div>
-            <div id="plans" style="display:none;margin-top:75px">
+            <div id="plans" style="display:none;">
                 <section  style="">
                 <div class="card">
                     <h:form>
-                        <p:carousel id="carousel2" value="#{profileController.plans}" var="plan2"  circular="true" 
-                                responsiveOptions="#{profileController.responsiveOptions}" numVisible="5" numScroll="1">
+                        <p:dataTable id="planes" var="plan" value="#{profileController.plans}" widgetVar="cellProducts" rowKey="#{plan.planID}"  selectionMode="single"
+                                     style="margin-bottom:0" paginator="true" rows="6" selectionPageOnly="false"  paginatorPosition="bottom" rowSelectMode="new">
 
-                        <div class="product-item">
-                            <div class="product-item-content">
-                                <h4 class="p-mb-1" style="margin-bottom:20px;">#{plan2.name}</h4>
-                                <div class="p-mb-3">
-                                    <p:graphicImage library="images" name="#{plan2.image}" styleClass="product-image"/>
-                                </div>
-                                <div style="margin-top:10px">
-                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px"><b>Ubicación: </b>#{plan2.city}</div>
-                                    <div style="text-align:left;padding-top: 7px;padding-left:20px; font-size: 14px">
-                                        <b>Precio </b>#{plan2.price}
-                                        <span style="text-align:right;padding-left: 200px;">
-                                            <i  class=" pi pi-thumbs-up">#{plan2.likes}</i>
-                                        </span>
-                                    </div>
-                                    <div class="p-mt-5" >
-                                        <p:commandButton id="searchButton" action="#{profileController.verPlan(plan2)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </p:carousel></h:form>
+                        <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{plan.name}" />
+                        </p:column>
+                        <p:column headerText="Descripcion" width="200" >
+                            <h:outputText value="#{plan.description}"  />
+                        </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{plan.type}" />
+                        </p:column>
+                        <p:column headerText="Ciudad">
+                            <h:outputText value="#{plan.city}" />
+                        </p:column>
+                        <p:column headerText="Precio">
+                            <h:outputText value="#{plan.price}" />
+                        </p:column>
+                        <p:column headerText="Compañia">
+                            <h:outputText value="#{plan.companion}" />
+                        </p:column>
+                        <p:column headerText="Imagen">
+                            <p:graphicImage library="images" name="#{plan.image}" style="width: 100px;"/>
+                        </p:column>
+                        <p:column>
+                            <p:commandButton id="searchButton" action="#{profileController.verPlan(plan)}" icon="pi pi-eye" styleClass="ui-button-info rounded-button p-mr-2" style="margin-right:20px" />
+                        </p:column>
+                    </p:dataTable>
+                    </h:form>
                 </div>
             </section>
             </div>

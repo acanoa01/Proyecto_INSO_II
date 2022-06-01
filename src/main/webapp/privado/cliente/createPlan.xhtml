@@ -8,7 +8,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
-        <title>Crear Plan</title>
+        <title>Planazzo</title>
+        <f:event type="preRenderView" listener="#{plantillaController.verificarYMostrar('C')}"/>
         <style>
             #createPlanForm{
                 padding:20px;
@@ -51,7 +52,7 @@
                         <p:message for="description" display="text"/>
                         <p>Imagen</p>
                         <p:fileUpload id="image" update="formm:imageID" listener="#{createPlanController.saveImage}" auto="true"  messageTemplate="Ok" label="Subir imagen" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" sizeLimit="10000000" skinSimple="true" />
-                        <p:message for="image" display="text"/>
+                        <p:message  for="image" display="text"/>
                     </h:panelGrid>
                 </p:fieldset>
                 <p:fieldset legend="Características">
@@ -104,7 +105,7 @@
                         </h:selectOneMenu>
                         <p:message for="companion" display="text"/>
                     </h:panelGrid>
-                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan()}" update="form" styleClass="p-mt-3" />
+                    <p:commandButton id="submitButton" value="CREAR PLAN" action="#{createPlanController.insertPlan(false)}" update="form" styleClass="p-mt-3" />
                     
                 </p:fieldset>
                 
