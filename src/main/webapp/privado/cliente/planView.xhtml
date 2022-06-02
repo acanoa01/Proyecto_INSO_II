@@ -40,74 +40,86 @@
             <p:growl  showDetail="true" life="3000">
                 <p:autoUpdate />
             </p:growl>
-            <section class="section plan" id="plan" style="background-color: grey">
-                <article id="planView" >
-                    <h:form>
-                        <div id="createPlanView">
-                            <h2 id="planName" style="padding-bottom:15px;">#{planViewController.plan.name}</h2>
-                            <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{planViewController.getImage()}"/>
-                        </div>
-                        <div style="float:left;width:50%">
-                            <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px">#{planViewController.plan.description}</p>
+            <section class="preview">
+                <section class="section plan" id="plan">
+                    <article id="planView" >
+                        <h:form>
+                            <article class="plan-detail" id="createPlanView">
+                                <p:graphicImage id="imageID" width="100%" style='border-radius: 13px 13px 0 0' library="images" name="#{planViewController.getImage()}"/>
+                                <div class="plan-detail__info">
+                                    <div class="plan-detail__info-primary">
+                                        <h2 class="plan-detail__info-name">#{planViewController.plan.name}</h2>
+                                        <p class='plan-detail__info-description'>#{planViewController.plan.description}</p>
+                                    </div>
 
-                        </div>
-                        <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{planViewController.plan.city}</div>
-                        <span  style="padding-right:20px"><b>Tipo: </b>#{planViewController.plan.type}</span>
-                        <span  style="padding-right:20px"><b>Precio: </b>#{planViewController.plan.price}</span>
-                        <span  style="padding-right:20px"><b>Edad: </b>#{planViewController.plan.age}</span>
-                        <span  style="padding-right:20px"><b>Compañía: </b>#{planViewController.plan.companion}</span>
-                        <p:commandButton id="likeButton" value="favoritos" action="#{planViewController.agregarFavoritos}" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2" style="background-color:red;border-color: white;"/>
+                                    <div class="plan-detail__info-items">
+                                        <span class="plan-detail__info-items__item"><b>Ubicación </b>#{planViewController.plan.city}</span>
+                                        <span class="plan-detail__info-items__item"><b>Tipo </b>#{planViewController.plan.type}</span>
+                                        <span class="plan-detail__info-items__item"><b>Precio </b>#{planViewController.plan.price}</span>
+                                        <span class="plan-detail__info-items__item"><b>Edad </b>#{planViewController.plan.age}</span>
+                                        <span class="plan-detail__info-items__item"><b>Compañía </b>#{planViewController.plan.companion}</span>
+                                    </div>
 
+                                    <p:commandButton id="likeButton" value="favoritos" action="#{planViewController.agregarFavoritos}" icon="pi pi-heart" styleClass="ui-button-success rounded-button p-mr-2 plan-detail__favouriteBtn" />
+                                </div>
+                            </article>
+                        </h:form>
+                    </article>
+                </section>
 
+                <div class="review-form">
+                    <h:form id="form" enctype="multipart/form-data">
+                        <section>
+                            <p:fieldset legend="Escribe una reseña">
+                                <h:panelGrid id="grid" columns="3" cellpadding="10">
+                                    <p:outputLabel for="name" value="Titulo:"/>
+                                    <p:inputText id="name" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{planViewController.review.title}"/>
+                                    <p:message for="name"/>
+
+                                    <p:outputLabel for="description" value="Descripción:"/>
+                                    <p:inputTextarea id="description" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{planViewController.review.comment}"/>
+                                    <p:message for="description" display="text"/>
+
+                                    <p:outputLabel for="rating" value="Puntuación"/>
+                                    <p:rating id="rating"   required="true" requiredMessage="Puntuación obligatoria" value="#{planViewController.review.valoration}"/>
+                                    <p:message for="rating" display="text"/>
+
+                                </h:panelGrid>
+                                <p:commandButton value="ENVIAR"  action="#{planViewController.insertarResena()}" update="form"  styleClass="p-mt-3" />
+
+                            </p:fieldset>
+
+                        </section>
                     </h:form>
-                </article>
+                </div>
             </section>
 
-            <h:form id="form" enctype="multipart/form-data">
-                <section>
-                    <p:fieldset legend="Escribe una reseña">
-                        <h:panelGrid id="grid" columns="3" cellpadding="10">
-                            <p:outputLabel for="name" value="Titulo:"/>
-                            <p:inputText id="name" required="true" requiredMessage="Nombre obligatorio" maxlength="50" size="50" value="#{planViewController.review.title}"/>
-                            <p:message for="name"/>
 
-                            <p:outputLabel for="description" value="Descripción:"/>
-                            <p:inputTextarea id="description" maxlength="1000" required="true" requiredMessage="Descripción obligatoria" rows="5" cols="54" value="#{planViewController.review.comment}"/>
-                            <p:message for="description" display="text"/>
+            <div class="review">
+                <h:form>
+                    <section>
+                        <h1>Reseñas</h1>
 
-                            <p:outputLabel for="rating" value="Puntuación"/>
-                            <p:rating id="rating"   required="true" requiredMessage="Puntuación obligatoria" value="#{planViewController.review.valoration}"/>
-                            <p:message for="rating" display="text"/>
+                        <p:dataTable  disabledSelection="true" disableContextMenuIfEmpty="true" emptyMessage="No hay reseñas aún" id="checkboxDT" var="review" value="#{planViewController.getReviews()}"
+                                      rowKey="#{plan.planID}"
+                                      style="margin-bottom:0" paginator="true"  paginatorPosition="bottom" rows="8" selectionPageOnly="false">
 
-                        </h:panelGrid>
-                        <p:commandButton value="ENVIAR"  action="#{planViewController.insertarResena()}" update="form"  styleClass="p-mt-3" />
+                            <p:column headerText="Titulo">
+                                <h:outputText value="#{review.title}" />
+                            </p:column>
 
-                    </p:fieldset>              
+                            <p:column headerText="Comentario">
+                                <h:outputText value="#{review.comment}" />
+                            </p:column>
 
-                </section>
-            </h:form>
-            <h:form>
-                <section>
-                    <h1>Reseñas</h1>
+                            <p:column headerText="Valoración">
+                                <p:rating id="rating" readonly="true" value="#{review.valoration}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </section>
+                </h:form>
+            </div>
 
-                    <p:dataTable  disabledSelection="true" disableContextMenuIfEmpty="true" emptyMessage="No hay reseñas aún" id="checkboxDT" var="review" value="#{planViewController.getReviews()}"
-                                  rowKey="#{plan.planID}"
-                                  style="margin-bottom:0" paginator="true"  paginatorPosition="bottom" rows="8" selectionPageOnly="false">
-
-                        <p:column headerText="Titulo">
-                            <h:outputText value="#{review.title}" />
-                        </p:column>
-
-                        <p:column headerText="Comentario">
-                            <h:outputText value="#{review.comment}" />
-                        </p:column>
-
-                        <p:column headerText="Valoración">
-                            <p:rating id="rating" readonly="true" value="#{review.valoration}"/>
-                        </p:column>
-                    </p:dataTable>
-                </section>
-            </h:form>
         </div>
     </h:body>
     <script src="https://kit.fontawesome.com/5ea815c1d0.js"></script>

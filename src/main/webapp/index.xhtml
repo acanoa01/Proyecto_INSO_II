@@ -9,28 +9,6 @@
 
         <h:outputStylesheet name="index.css" library="css"/>
         <h:outputScript name="functions.js" library="js"/>
-        <style type="text/css">
-            .product-item .product-item-content {
-                border: 1px solid var(--surface-d);
-                border-radius: 3px;
-                margin: .3rem;
-                text-align: center;
-                padding: 2rem 0;
-            }
-
-            .product-item .product-image {
-                width: 50%;
-                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
-            }
-
-            .selectOne{
-                min-width: 150px;
-                min-height: 30px;
-                font-size: 20px;
-                margin-left:20px;
-                margin-right: 30px;
-            }
-        </style>
     </h:head>
     <h:body>
         <div class="wrapper">
@@ -51,10 +29,10 @@
             <section class="slider" id="home" style="z-index: 1">
                 <div class="slide-track">
                     <div class="slide">
-                        <h:graphicImage value = "https://www.refinery29.com/images/8644007.jpg?crop=40:21" width="100%"/> 
-                    </div> 
+                        <h:graphicImage value = "https://www.refinery29.com/images/8644007.jpg?crop=40:21" width="100%"/>
+                    </div>
                     <div class="slide">
-                        <h:graphicImage class="carousel__img" value = "http://www.bestdesertsafariindubai.com/blog/wp-content/uploads/2015/04/burj-al-arab-e1574079941869.jpeg"  width="100%"/> 
+                        <h:graphicImage class="carousel__img" value = "http://www.bestdesertsafariindubai.com/blog/wp-content/uploads/2015/04/burj-al-arab-e1574079941869.jpeg"  width="100%"/>
                     </div>
                     <div class="slide">
                         <h:graphicImage class="carousel__img" value = "http://media2.popsugar-assets.com/files/thumbor/OS81vOwzdZ9NZBYiS8ZPrs4jz5Q=/fit-in/1024x1024/2014/02/17/843/n/1922441/188193e9a2917c8e_thumb_temp_image215902961329390326.jpg" width="100%"/>
@@ -69,7 +47,7 @@
                 <h2 class="about__title">¿No sabes qué hacer?</h2>
                 <p class="about__description">Obten un plan aleatorio o descubre nuestros planes más populares.</p>
             </section>
-            <section  style="">
+            <section>
                 <div class="card">
                     <h:form>
                         <p:carousel value="#{carouselController.plans}" var="plan" circular="true" autoplayInterval="6000"
@@ -165,19 +143,30 @@
                     <h:form id="formm">
                         <p:messages for="planMsg" style=" min-width: 600px"/>
                         <div id="planSho">
-                            <div id="createPlanView">
-                                <h2 id="planName" style="padding-bottom:15px;">#{indexController.randomPlan.name}</h2>
-                                <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{indexController.getImage()}"/>
-                            </div>
-                            <div style="float:left;width:50%">
-                                <p id='planDescription' style="margin-right:50px;margin-top:50px;min-height: 300px">#{indexController.randomPlan.description}</p>
+                            <div class="createPlanView">
+                                <section class="createPlanView__img">
+                                    <p:graphicImage id="imageID"  style="margin-bottom:30px;" width="400"  library="images" name="#{indexController.getImage()}"/>
+
+                                </section>
+                                <section class="createPlanView__info">
+                                    <div class="plan-info__primary">
+                                        <h2 class="plan__name" >#{indexController.randomPlan.name}</h2>
+                                        <p class="plan-info__description">#{indexController.randomPlan.description}</p>
+                                    </div>
+
+                                    <div class="plan-info__items">
+                                        <span class="plan__item"><b>Ubicación </b>#{indexController.randomPlan.city}</span>
+                                        <span class="plan__item"><b>Tipo </b>#{indexController.randomPlan.type}</span>
+                                        <span class="plan__item"><b>Precio </b>#{indexController.randomPlan.price}</span>
+                                        <span class="plan__item"><b>Edad </b>#{indexController.randomPlan.age}</span>
+                                        <span class="plan__item"><b>Compañía </b>#{indexController.randomPlan.companion}</span>
+                                    </div>
+
+                                </section>
 
                             </div>
-                            <div style="padding-top:20px;padding-bottom:20px;"><b>Ubicación: </b>#{indexController.randomPlan.city}</div>
-                            <span  style="padding-right:20px"><b>Tipo: </b>#{indexController.randomPlan.type}</span>
-                            <span  style="padding-right:20px"><b>Precio: </b>#{indexController.randomPlan.price}</span>
-                            <span  style="padding-right:20px"><b>Edad: </b>#{indexController.randomPlan.age}</span>
-                            <span  style="padding-right:20px"><b>Compañía: </b>#{indexController.randomPlan.companion}</span>
+
+
                             <script>showPlan();</script>
                             <div style="text-aling_left">
                                 <p:staticMessage severity="warn" summary="LIMITE DE PLANES" detail="Para aceptar o rechazar el plan debe registrarse"/>
@@ -252,7 +241,7 @@
             </footer>
         </div>
 
-        <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40"> 
+        <p:dialog header="Iniciar sesión" widgetVar="login" minHeight="40">
             <h:form>
 
                 <p:panel id="p_panelid">
@@ -264,7 +253,7 @@
                         <p:outputLabel for="pass" value="Contraseña"/>
                         <p:password id="pass" value="#{indexController.user.password}" requiredMessage="Contraseña obligatorio" required="true"/>
 
-                        <p:commandButton value="Acceder"  ajax="false" actionListener="#{indexController.verificarUsuario()}"/>            
+                        <p:commandButton value="Acceder"  ajax="false" actionListener="#{indexController.verificarUsuario()}"/>
 
                     </p:panelGrid>
                 </p:panel>
@@ -272,7 +261,7 @@
 
         </p:dialog>
 
-        <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60"> 
+        <p:dialog header="Crear cuenta" widgetVar="register" minHeight="60">
             <h:form>
 
                 <p:panel id="p_panelid">
@@ -298,7 +287,7 @@
 
 
                     </p:panelGrid>
-                    <p:commandButton value="Crear cuenta" ajax="false"  style="width: 175px" actionListener="#{indexController.insertarUsuario()}"/>            
+                    <p:commandButton value="Crear cuenta" ajax="false"  style="width: 175px" actionListener="#{indexController.insertarUsuario()}"/>
 
                 </p:panel>
             </h:form>

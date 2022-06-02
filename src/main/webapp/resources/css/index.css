@@ -3,10 +3,18 @@
 *,*::after, *::before {
     box-sizing: border-box;
     margin: 0;
+
+
+
+}
+
+html {
+    scroll-behavior: smooth;
 }
 body {
     display: flex;
     justify-content: center;
+
 }
 
 .wrapper {
@@ -24,7 +32,7 @@ body {
     background-color: white;
     margin-bottom: 2rem;
     border-bottom: .6px solid black;
-   
+
 }
 .header__logo{
     font-family: 'Yellowtail';
@@ -202,7 +210,47 @@ button.ui-button.registerBtn:hover{
 }
 
 /*PLANES */
-.plan__trending{
+.createPlanView {
+    margin-top: 2em;
+    display: flex;
+
+}
+
+.createPlanView__info{
+    padding-left: 10px;
+}
+.plan__name {
+    font-size: 30px;
+}
+
+.plan-info__description{
+    margin-bottom: 1em;
+    margin-top: 0.5em;
+}
+.plan-info__primary {
+    border-bottom: 1px solid gray;
+}
+.plan-info__items {
+    display: flex;
+}
+
+.plan__item {
+    display: flex;
+    flex-direction: column;
+    max-width: 100px;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    border: 4px solid #6ddd6d54;
+    border-radius: 10px;
+    padding: 1px;
+    margin-right: 10px;
+}
+
+.plan-info__items {
+    margin-top: 1em;
+}
+/*.plan__trending{
     display: flex;
     justify-content: center;
     margin-top:2rem;
@@ -220,7 +268,7 @@ button.ui-button {
     background-color: white;
     color: black;
 
-    /*    width: 100px;*/
+        width: 100px;
     height: 40px;
 }
 
@@ -234,7 +282,7 @@ input.ui-inputfield {
 }
 .planTableHeader {
     padding: 10px;
-    
+
 }
 .planTable {
     width: 100%;
@@ -246,7 +294,7 @@ input.ui-inputfield {
     margin-top:5px;
     text-align: center;
     padding: 10px;
-}
+}*/
 
 /* TESTIMONIALS */
 .testimonials-cards {
@@ -339,4 +387,93 @@ input.ui-inputfield {
 .footer {
     padding: 10px 0;
     border-top: 1px solid black;
+}
+
+
+.product-item .product-item-content {
+    border: 1px solid var(--surface-d);
+    border-radius: 3px;
+    margin: .3rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.product-item .product-image {
+    width: 50%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23)
+}
+
+.selectOne{
+    min-width: 150px;
+    min-height: 30px;
+    font-size: 20px;
+    margin-left:20px;
+    margin-right: 30px;
+}
+
+/* PLAN DETAILS */
+.preview {
+    display: flex;
+}
+.plan-detail {
+    background-color: #0288d1;
+    height: 41em;
+    width: 30em;
+    border-radius: 13px;
+    position: relative;
+}
+
+.plan-detail__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    height: 48%;
+    font-size: 1.3em;
+
+}
+.plan-detail__info-primary {
+    width: 74%;
+}
+
+.plan-detail__info-primary:first-child > h2{
+    text-align: center;
+}
+.plan-detail__info-description {
+    justify-self: flex-start;
+}
+
+.plan-detail__info-items {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 2em));
+    row-gap: 1em;
+    column-gap: 1.2em;
+}
+
+.plan-detail__info-items__item {
+    display: flex;
+    flex-direction: column;
+}
+
+.plan-detail__favouriteBtn {
+    width: 90% !important;
+    background-color: red !important;
+    margin-bottom: 0.2em !important;
+    font-size: 18px !important;
+    display: flex !important;
+    align-content: center !important;
+    justify-content: space-around !important;
+
+}
+.review {
+    margin-top: 4em;
+    border-top: 1px dashed black;
+    padding-top: 13px;
+}
+
+.review-form {
+    display: flex;
+    align-content: center;
+    margin-top: 4em;
 }
