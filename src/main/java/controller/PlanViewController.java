@@ -9,6 +9,7 @@ import EJB.FavouriteFacadeLocal;
 import EJB.PlanFacadeLocal;
 import EJB.ReviewFacade;
 import EJB.ReviewFacadeLocal;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -44,12 +45,23 @@ public class PlanViewController implements Serializable {
     private PlanFacadeLocal planEJB;
     
     @PostConstruct
-    public void init() {
+    public void init(){
         this.review = new Review();
         this.plan = (Plan) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("plan");
-        
+        if(this.plan == null){
+            doRedirect("/planazzo/faces/privado/cliente/index.xhtml");
+        }
     }
 
+    private void doRedirect(String url) {
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            fc.getExternalContext().redirect(url);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     public String getImage() {
 
         if (this.plan.getImage() == null) {

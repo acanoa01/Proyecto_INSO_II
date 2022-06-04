@@ -159,7 +159,7 @@
                                 </section>
                                 <section class="createPlanView__info">
                                     <div class="plan-info__primary">
-                                        <h2 class="plan__name" >#{indexController.randomPlan.name}</h2>
+                                        <h2 id="planName" class="plan__name" >#{indexController.randomPlan.name}</h2>
                                         <p class="plan-info__description">#{indexController.randomPlan.description}</p>
                                     </div>
 
@@ -178,9 +178,8 @@
 
                             <script>showPlan();</script>
                             <div style="text-aling_left">
-                                <p:staticMessage severity="warn" summary="LIMITE DE PLANES" detail="Para aceptar o rechazar el plan debe registrarse"/>
-                                <p:commandButton value="Aceptar"  disabled="True" onclick="showPlan()" action="#{indexController.aceptarPlan}" styleClass="rounded-button ui-button-success disabled" />
-                                <p:commandButton value="Rechazar" update="formm" disabled="True" onclick="showPlan()" action="#{indexController.searchRandomPlan}" style="margin:40px;" styleClass="rounded-button ui-button-danger disabled" />
+                                <p:commandButton value="Aceptar"  onclick="showPlan()" action="#{indexController.aceptarPlan}" styleClass="rounded-button ui-button-success disabled" />
+                                <p:commandButton value="Rechazar" update="formm" onclick="showPlan()" action="#{indexController.searchRandomPlan}" style="margin:40px;" styleClass="rounded-button ui-button-danger disabled" />
                             </div>
                         </div>
 
